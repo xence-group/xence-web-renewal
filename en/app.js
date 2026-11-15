@@ -383,7 +383,7 @@ ${r.noImg ? html`<div style="height: 320px; background: #696660; display: flex; 
 
 <footer style="border-top: 1px solid #222; padding: 64px 4vw; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; font-size: 13px; color: #A9A69F; line-height: 1.9">
 <div><p class="en" style="margin: 0 0 12px; color: #fff; font-weight: 800; font-size: 20px">XENCE</p>XENCE Inc. ／ XENCE First-class Architect Office<br />Registered in Aichi Prefecture (I-4) No. 14198</div>
-<div>Nagoya — SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Japan<br />Düsseldorf — Germany</div>
+<div>Nagoya — SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Japan</div>
 <div class="en">Instagram ／ note ／ LinkedIn<br />© XENCE Inc.</div>
 </footer>
 </div>`; };

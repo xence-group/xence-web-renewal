@@ -69,7 +69,7 @@ JA = dict(
  studio='建築士、エンジニア、研究者、運営チーム。名古屋とデュッセルドルフから。', peopleH='People',
  cH='建設投資81兆円（日本）を<br>国産のモジュール建築に変える技術を持てば、<br>世界は循環社会に変わる。',
  cards=[('建てたい・置きたい','温室、宿、住宅、什器の設計施工 →'),('資源を活かしたい','製材所・解体事業者・自治体の方 →'),('技術で組みたい','企業・大学・海外パートナーの方 →'),('投資・事業提携','投資家・事業会社の方 →')],
- foot1='株式会社XENCE ／ XENCE一級建築士事務所<br>愛知県知事登録（い－4）第14198号', foot2='Nagoya — 愛知県名古屋市中区栄1-29-29 SIMON 10 SAKAE 401<br>Düsseldorf — Germany',
+ foot1='株式会社XENCE ／ XENCE一級建築士事務所<br>愛知県知事登録（い－4）第14198号', foot2='Nagoya — 愛知県名古屋市中区栄1-29-29 SIMON 10 SAKAE 401',
 )
 
 EN = dict(
@@ -121,7 +121,7 @@ EN = dict(
  studio='Architects, engineers, researchers and operators. From Nagoya and Düsseldorf.', peopleH='People',
  cH='With the technology to turn Japan’s<br>¥81tn of construction into domestic modular architecture,<br>the world becomes a circular society.',
  cards=[('Build with us','Greenhouses, guesthouses, homes and furniture →'),('Supply materials','For sawmills, demolition firms and municipalities →'),('Partner on R&amp;D','For companies, universities and international partners →'),('Invest','For investors and strategic partners →')],
- foot1='XENCE Inc. ／ XENCE First-class Architect Office<br>Registered in Aichi Prefecture (I-4) No. 14198', foot2='Nagoya — SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Japan<br>Düsseldorf — Germany',
+ foot1='XENCE Inc. ／ XENCE First-class Architect Office<br>Registered in Aichi Prefecture (I-4) No. 14198', foot2='Nagoya — SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Japan',
 )
 
 TECH = {

@@ -383,7 +383,7 @@ ${r.noImg ? html`<div style="height: 320px; background: #696660; display: flex; 
 
 <footer style="border-top: 1px solid #222; padding: 64px 4vw; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; font-size: 13px; color: #A9A69F; line-height: 1.9">
 <div><p class="en" style="margin: 0 0 12px; color: #fff; font-weight: 800; font-size: 20px">XENCE</p>株式会社XENCE ／ XENCE一級建築士事務所<br />愛知県知事登録（い－4）第14198号</div>
-<div>Nagoya — 愛知県名古屋市中区栄1-29-29 SIMON 10 SAKAE 401<br />Düsseldorf — Germany</div>
+<div>Nagoya — 愛知県名古屋市中区栄1-29-29 SIMON 10 SAKAE 401</div>
 <div class="en">Instagram ／ note ／ LinkedIn<br />© XENCE Inc.</div>
 </footer>
 </div>`; };
