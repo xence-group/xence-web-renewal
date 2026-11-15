@@ -15,7 +15,7 @@ B = {  # asset urls
  'table': '/_blob/2726743cbe18e8962c03389fd87a03a5', 'logs': '/_blob/96c11e44a63da5ae8feb2f98b49ee99b',
  'lca': '/_blob/32c9f334cd827a7516fcf09e4bbf49cc',
  't1': '/_blob/174dde0f3b21f60ea39180d3b4167fd3', 't2': '/_blob/885d7329b070ff1b488415113eced735', 't3': '/_blob/538c03eb81b170a1d21139352861653b',
- 't4': '/_blob/53ad6e0e0485b53b0569dbb68a474541', 't5': '/_blob/ad063c4c9374549834de29d09593ccdc', 't6': '/_blob/47d97a62836e98aaf05bd2d9557b1ae7',
+ 't4': '/_blob/53ad6e0e0485b53b0569dbb68a474541', 't5': '/_blob/303e10990362d647261779a785ebe7f5', 't6': '/_blob/959100f2fd98bcf9ede524f89cd75260',
  'scale': '/_blob/1c7f068225be46db83bd2eba287580f0', 'scalePoster': '/_blob/cd7e1833210c5b378b301f715b73e4d3',
  'whyForest': '/_blob/66773f197849d4fbaddc565e4e64217e', 'whyLogs': '/_blob/6279775f3f4fb42920ca2717999e3d97', 'whyWaste': '/_blob/2f6f837b0adad80d0c23f691a92a90c2', 'joint2': '/_blob/116e27f5fe0fe1eb6b49ad94822a6d31', 'woodnode': '/_blob/855b9ad22c70078993518c179d7e6a4e', 'higashiura': '/_blob/6bc3d5268bbd9a9dd809c9560f45a34b', 'wfbench': '/_blob/1a3534db213e2ee00bbaa8ddc3d3b88f', 'arch': '/_blob/32bbb3912f8050b6d0d5529ab994e594', 'house': '/_blob/cd7e1833210c5b378b301f715b73e4d3', 'bench': '/_blob/bc7a3f7fa89d244d44ff358e5763976a', 'chashitsu': '/_blob/b9b66c6a693bba44881dedec2a10f9be', 'proto': '/_blob/1b488a6d81d5789c8367e802f0821e19',
 }
@@ -67,7 +67,7 @@ JA = dict(
  rec=['Red Dot Design Award 2026','グッドデザイン賞 2025','ウッドデザイン賞 2025','名古屋大学発ベンチャー','愛知県 革新事業創造事業費補助金 採択','協業：竹中工務店／CCC（代官山T-SITE）'],
  recH='評価と協業',
  studio='建築士、エンジニア、研究者、運営チーム。名古屋とデュッセルドルフから。', peopleH='People',
- cH='国内の建設投資81兆円が<br>循環に変われば、<br>世界はもっと循環する。',
+ cH='国内の建設投資81兆円を<br>モジュールに変える技術を持てば、<br>世界はもっと循環する。',
  cards=[('建てたい・置きたい','温室、宿、住宅、什器の設計施工 →'),('資源を活かしたい','製材所・解体事業者・自治体の方 →'),('技術で組みたい','企業・大学・海外パートナーの方 →'),('投資・事業提携','投資家・事業会社の方 →')],
  foot1='株式会社XENCE ／ XENCE一級建築士事務所<br>愛知県知事登録（い－4）第14198号', foot2='Nagoya — 愛知県名古屋市中区栄1-29-29 SIMON 10 SAKAE 401<br>Düsseldorf — Germany',
 )
@@ -119,7 +119,7 @@ EN = dict(
  rec=['Red Dot Design Award 2026','Good Design Award 2025','Wood Design Award 2025','Nagoya University startup','Aichi Prefecture innovation grant','Partners incl. Takenaka Corporation, CCC'],
  recH='Recognition & partners',
  studio='Architects, engineers, researchers and operators. From Nagoya and Düsseldorf.', peopleH='People',
- cH='If Japan’s ¥81tn construction<br>economy goes circular,<br>the world turns with it.',
+ cH='With the technology to turn Japan’s<br>¥81tn of construction into modules,<br>the world becomes more circular.',
  cards=[('Build with us','Greenhouses, guesthouses, homes and furniture →'),('Supply materials','For sawmills, demolition firms and municipalities →'),('Partner on R&amp;D','For companies, universities and international partners →'),('Invest','For investors and strategic partners →')],
  foot1='XENCE Inc. ／ XENCE First-class Architect Office<br>Registered in Aichi Prefecture (I-4) No. 14198', foot2='Nagoya — SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Japan<br>Düsseldorf — Germany',
 )
@@ -130,14 +130,14 @@ TECH = {
   ('02','3D構造解析','STRUCTURAL ANALYSIS','積雪と風の荷重を3Dフレーム全体にかけ、変形と部材ごとの検定比を確かめる。規格外の材でも構造に使える根拠をつくる。','t2','積雪・風荷重による3Dフレームの変形と、部材ごとの検定比（イメージ）','温室の3Dフレームが積雪と風で変形し、部材が検定比に応じて色分けされるアニメーション',True),
   ('03','デジタル加工と接合','FABRICATION','不整形な材をスキャンし、曲がりや木目、耳をそのまま活かす形で部材と継手を割り付ける。金物に頼らない木組みで組み上げ、分解もできる。','t3','曲がった耳材をスキャンし、材の曲がりに沿って部材と継手を割り付ける','曲がった板材をスキャンし、その曲線に沿った部材と加工パスを生成するアニメーション',True),
   ('04','3Dプリント','ADDITIVE MANUFACTURING','自由な形を、積層できる向きに起こし、張り出しの角度を検出して積層できる形状へ自動で調整してから造形する。金属（WAAM）のほか、樹脂や木粉複合材にも同じ流れで対応する。','t4','曲面を90度起こし、張り出しを検出して積層できる形に自動調整してから、下から積み上げる（金属WAAMの例）','曲面が90度回転し、造形台の上に下から層を積み上げていくアニメーション',True),
-  ('05','Material Passport','TRACEABILITY','伐採・運搬・製材・乾燥・加工・建物まで、材の履歴とCO₂をひとつのQRコードに記録し、次の利用へ受け継ぐ。2026年10月に運用開始。','t5','森から建物まで、履歴とCO₂がひとつのQRコードに積み上がる（記録例）','森、トレーラー、製材所、乾燥、加工、建物の順に記録が加わるQRコード付きパスポートのアニメーション',True),
+  ('05','Material Passport','TRACEABILITY','伐採・運搬・製材・乾燥・加工・建物までの来歴とともに、木材の炭素固定量と各工程のGHG排出量をひとつのQRコードに記録し、次の利用へ受け継ぐ。2026年10月に運用開始。','t5','森から建物まで、来歴・炭素固定量・GHG排出量をひとつのQRで引き継ぐ（記録例）','森、トレーラー、製材所、乾燥、加工、建物の順に記録が加わるQRコード付きパスポートのアニメーション',True),
   ('06','LCA・運用データ','WHOLE-LIFE CARBON','建物の生涯CO₂をJ-CATやOne Click LCAで算定し、運用データとあわせて資産価値の根拠にする。','t6','木造温室の炭素固定、J-CATによるホールライフカーボン、キャンパスの施設費分析','炭素固定量、ライフサイクルCO2の内訳、施設費の内訳が順に表示されるアニメーション',True)],
  'en': [
   ('01','Design engine','COMPUTATIONAL DESIGN','Feed in what’s actually available — lengths, sections, quantities — and the engine generates the structure and every cut. One rule set designs greenhouses, furniture and pavilions.','t1','Irregular stock automatically allocated to frame members','Animation of inventory boards being allocated to a greenhouse frame',True),
   ('02','Structural analysis','STRUCTURAL ANALYSIS','Snow and wind loads are run across the full 3D frame, checking deflection and utilisation member by member — the evidence that non-standard material can carry real loads.','t2','Snow and wind load cases on the 3D frame, utilisation per member (illustrative)','Animation of a greenhouse frame deflecting under snow and wind, members coloured by utilisation',True),
   ('03','Digital fabrication','FABRICATION','We scan irregular stock and shape each member around its curve, grain and waney edge instead of cutting them away. Timber joints lock it together — no steel hardware, fully demountable.','t3','A curved board scanned, and a member shaped to follow its curve','Animation of a curved board being scanned and a member and toolpath following its shape',True),
   ('04','3D printing','ADDITIVE MANUFACTURING','Free-form geometry is stood up, checked for overhangs and automatically reshaped to be printable before slicing. Shown here in steel (WAAM); the same pipeline runs resin and wood composite.','t4','Stood up, checked for overhangs, auto-adjusted to be printable, then built bottom-up (steel WAAM example)','Animation of a curved surface rotating upright and being printed layer by layer',True),
-  ('05','Material Passport','TRACEABILITY','Felling, haulage, sawing, drying, fabrication, building: each step adds its history and carbon to one QR code that travels with the piece into its next use. Live since October 2026.','t5','History and carbon build up in one QR code, forest to building (sample record)','Animation of a QR passport collecting records from forest, trailer, sawmill, kiln, fabrication and building',True),
+  ('05','Material Passport','TRACEABILITY','Felling, haulage, sawing, drying, fabrication, building: one QR code records the history, the carbon stored in the wood and the GHG emitted at each step, and passes all three to the piece’s next use. Live since October 2026.','t5','History, stored carbon and GHG emissions, carried by one QR code (sample record)','Animation of a QR passport collecting records from forest, trailer, sawmill, kiln, fabrication and building',True),
   ('06','LCA & operating data','WHOLE-LIFE CARBON','We calculate whole-life carbon with J-CAT and One Click LCA, then pair it with operating data to evidence a building’s value as an asset.','t6','Greenhouse carbon storage, whole-life carbon in J-CAT, and campus facility-cost analytics','Animation showing carbon storage, lifecycle carbon breakdown and facility cost breakdown',True)]}
 
 # id, cat, img, ja(title,type,input,tech,place,year,status,desc), en(...)
