@@ -42,18 +42,33 @@ details summary{cursor:pointer;list-style:none}details summary::-webkit-details-
 .xroot{font-family:Montserrat, 'Zen Kaku Gothic New', sans-serif;color:#fff;background:#000;overflow-x:hidden}
 @supports (overflow-x: clip){.xroot{overflow-x:clip}}
 .xroot h1,.xroot h2,.xroot h3{color:inherit}
+#mission .hero-copy h1{word-break:keep-all}
+section[id]{scroll-margin-top:76px}
+@media (max-width: 1100px){.mods-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (max-width: 760px){
-.aw-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+#mission .hero-shade{background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 38%, rgba(0,0,0,0.88) 62%, #000 100%)!important}
+#mission .hero-copy{bottom:96px!important;max-width:none!important}
+#mission .hero-cap{display:none}
+.mods-grid{grid-template-columns:1fr!important}
+header .lang{font-size:12px}
+#works figure{width:80vw!important}
+
+.aw-row{gap:18px!important;flex-direction:column;align-items:flex-start!important}
+.aw-logos{gap:22px 28px!important}
+.aw-logos{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;width:100%;gap:24px 28px!important}
+.aw-logo{height:auto!important;max-height:48px;max-width:100%}
+#awards{padding:28px 6vw!important}
 .news-row{grid-template-columns:minmax(0,1fr) 20px !important;gap:6px 12px !important}
 .news-row > span:first-child{grid-column:1 / -1}
 
 header{padding:18px 5vw!important;flex-wrap:nowrap!important}
 header nav{gap:0!important}
-header nav > a:not([href="#contact"]), header nav > span{display:none!important}
+header nav > a:not([href="#contact"]){display:none!important}
+header nav > span.lang{order:-1;margin-right:16px}
 header nav > a[href="#contact"]{padding:10px 16px!important;font-size:12px!important}
 header > div{font-size:20px!important}
 #mission{height:100svh!important;min-height:600px!important}
-#mission h1{font-size:8.4vw!important;line-height:1.18!important;letter-spacing:0!important}
+#mission h1{font-size:7.4vw!important;line-height:1.22!important;letter-spacing:0!important}
 #mission > div:nth-of-type(3){left:5vw!important;right:5vw!important;bottom:84px!important}
 #mission .fadein{margin-bottom:14px!important}
 #mission .fadein + h1 + .fadein{gap:14px!important;margin-top:20px!important}
@@ -103,8 +118,7 @@ section [style*="margin-top: 48px"]{margin-top:24px!important}
 #configurator .cfg-stats span{font-size:10px!important}
 #configurator [style*="minmax(150px, 220px)"]{grid-template-columns:1fr!important;gap:6px!important}
 #configurator [style*="padding: 24px 28px"]{padding:18px!important}
-#modules .zoom{height:200px!important}
-#modules .mod-wide .zoom{height:240px!important}
+#modules .zoom{aspect-ratio:16 / 10!important}
 #projects aside{order:-1;position:static!important;flex-basis:100%!important}
 #projects .zoom, #projects aside [style*="height: 320px"]{height:220px!important}
 #projects [style*="min-width: 680px"]{min-width:0!important;grid-template-columns:28px 1fr auto!important;gap:10px!important}

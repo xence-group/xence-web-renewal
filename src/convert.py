@@ -14,6 +14,10 @@ for l in open('/tmp/idsha.txt'):
     i, s = l.split()
     LOCAL[i] = loc[s]
 
+import os.path
+if os.path.exists('/tmp/extra_ids.txt'):
+    for l in open('/tmp/extra_ids.txt'):
+        if l.strip(): i, p = l.split(); LOCAL[i] = p
 NAMES = {}
 def asset_url(bid):
     if bid not in NAMES:
@@ -45,7 +49,7 @@ def convert(fname, lang, other_href, other_label):
     heads = [h.replace('{{accent}}', props['accent']) for h in heads]
     xdc = re.sub(r'<!--.*?-->', '', xdc, flags=re.S)
     # language switch
-    xdc = xdc.replace('<a href="#contact" style="background: #fff', f'<a href="{other_href}" class="en" style="font-weight: 700; letter-spacing: 0.08em">{other_label}</a><a href="#contact" style="background: #fff', 1)
+    pass
     # attributes
     xdc = re.sub(r'\s+hint-placeholder-[a-z]+="[^"]*"', '', xdc)
     for a in SVG_CAMEL:

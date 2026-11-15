@@ -45,18 +45,33 @@ details summary{cursor:pointer;list-style:none}details summary::-webkit-details-
 .xroot{font-family:@@font@@;color:#fff;background:#000;overflow-x:hidden}
 @supports (overflow-x: clip){.xroot{overflow-x:clip}}
 .xroot h1,.xroot h2,.xroot h3{color:inherit}
+#mission .hero-copy h1{word-break:keep-all}
+section[id]{scroll-margin-top:76px}
+@media (max-width: 1100px){.mods-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (max-width: 760px){
-.aw-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+#mission .hero-shade{background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 38%, rgba(0,0,0,0.88) 62%, #000 100%)!important}
+#mission .hero-copy{bottom:96px!important;max-width:none!important}
+#mission .hero-cap{display:none}
+.mods-grid{grid-template-columns:1fr!important}
+header .lang{font-size:12px}
+#works figure{width:80vw!important}
+
+.aw-row{gap:18px!important;flex-direction:column;align-items:flex-start!important}
+.aw-logos{gap:22px 28px!important}
+.aw-logos{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;width:100%;gap:24px 28px!important}
+.aw-logo{height:auto!important;max-height:48px;max-width:100%}
+#awards{padding:28px 6vw!important}
 .news-row{grid-template-columns:minmax(0,1fr) 20px !important;gap:6px 12px !important}
 .news-row > span:first-child{grid-column:1 / -1}
 
 header{padding:18px 5vw!important;flex-wrap:nowrap!important}
 header nav{gap:0!important}
-header nav > a:not([href="#contact"]), header nav > span{display:none!important}
+header nav > a:not([href="#contact"]){display:none!important}
+header nav > span.lang{order:-1;margin-right:16px}
 header nav > a[href="#contact"]{padding:10px 16px!important;font-size:12px!important}
 header > div{font-size:20px!important}
 #mission{height:100svh!important;min-height:600px!important}
-#mission h1{font-size:8.4vw!important;line-height:1.18!important;letter-spacing:0!important}
+#mission h1{font-size:7.4vw!important;line-height:1.22!important;letter-spacing:0!important}
 #mission > div:nth-of-type(3){left:5vw!important;right:5vw!important;bottom:84px!important}
 #mission .fadein{margin-bottom:14px!important}
 #mission .fadein + h1 + .fadein{gap:14px!important;margin-top:20px!important}
@@ -106,8 +121,7 @@ section [style*="margin-top: 48px"]{margin-top:24px!important}
 #configurator .cfg-stats span{font-size:10px!important}
 #configurator [style*="minmax(150px, 220px)"]{grid-template-columns:1fr!important;gap:6px!important}
 #configurator [style*="padding: 24px 28px"]{padding:18px!important}
-#modules .zoom{height:200px!important}
-#modules .mod-wide .zoom{height:240px!important}
+#modules .zoom{aspect-ratio:16 / 10!important}
 #projects aside{order:-1;position:static!important;flex-basis:100%!important}
 #projects .zoom, #projects aside [style*="height: 320px"]{height:220px!important}
 #projects [style*="min-width: 680px"]{min-width:0!important;grid-template-columns:28px 1fr auto!important;gap:10px!important}
@@ -126,12 +140,12 @@ input[type=range]{accent-color:#FF5528;width:100%;height:28px}
 </helmet>
 <div class="xroot" style="font-family: @@font@@; color: #fff; background: #000; width: 100%">
 
-<header style="position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 28px 4vw">
+<header class="site-head" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(0,0,0,0.62); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 18px 4vw">
 <div class="en" style="font-weight: 800; font-size: 24px; letter-spacing: 0.04em">XENCE</div>
 <nav aria-label="Main" class="en" style="display: flex; gap: 26px; flex-wrap: wrap; align-items: center; font-size: 14px; font-weight: 600">
 <a href="#model">Model</a><a href="#technology">Technology</a><a href="#configurator">Configurator</a><a href="#projects">Projects</a><a href="#impact">Impact</a><a href="#growth">Investors</a>
 <a href="#contact" style="background: #fff; color: #000; padding: 12px 22px; border-radius: 999px; font-weight: 700">CONTACT <span class="live" style="color: {{accent}}">●</span></a>
-<span style="color: #D8D6D1">JA / EN / DE</span>
+<span class="lang" style="color: #8a877f"><a href="/" style="color: @@jaC@@">JA</a> / <a href="/en/" style="color: @@enC@@">EN</a></span>
 </nav>
 </header>
 
@@ -139,22 +153,31 @@ input[type=range]{accent-color:#FF5528;width:100%;height:28px}
 <div class="par" style="position: absolute; inset: 0">
 <video ref="{{muteRef}}" src="{{heroSrc}}" poster="{{heroPoster}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" aria-label="@@heroAria@@" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
 </div>
-<div style="position: absolute; inset: 0; background: rgba(0,0,0,0.42)"></div>
-<div style="position: absolute; left: 4vw; right: 4vw; bottom: 150px; max-width: 1440px">
+<div class="hero-shade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.12) 72%, rgba(0,0,0,0) 100%)"></div>
+<div class="hero-copy" style="position: absolute; left: 4vw; right: 4vw; bottom: 140px; max-width: 760px">
 <p class="en fadein" style="margin: 0 0 28px; font-size: 13px; letter-spacing: 0.24em; color: {{accent}}; font-weight: 700">@@eyebrow@@</p>
-<h1 style="margin: 0; font-size: clamp(52px, 8.2vw, 136px); line-height: 1.08; font-weight: 900; letter-spacing: -0.02em">
+<h1 style="margin: 0; font-size: clamp(34px, 4.4vw, 76px); line-height: 1.16; font-weight: 900; letter-spacing: -0.02em">
 <span class="mask"><span>@@h1a@@</span></span>
 <span class="mask d1"><span>@@h1b@@</span></span>
 </h1>
-<div class="fadein" style="display: flex; gap: 48px; flex-wrap: wrap; align-items: end; margin-top: 36px">
-<p class="en" style="margin: 0; font-size: clamp(20px, 2vw, 30px); font-weight: 700">@@tag@@</p>
-<p style="margin: 0; max-width: 600px; font-size: 16px; line-height: 1.9; color: #E8E6E1">@@heroBody@@</p>
+<div class="fadein" style="display: flex; flex-direction: column; gap: 14px; margin-top: 28px">
+<p class="en" style="margin: 0; font-size: clamp(17px, 1.4vw, 22px); font-weight: 700">@@tag@@</p>
+<p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 1.9; color: #E8E6E1">@@heroBody@@</p>
 </div>
 </div>
 <div style="position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid rgba(255,255,255,0.25); padding: 22px 0; overflow: hidden; background: rgba(0,0,0,0.35)">
 <div class="track en" style="gap: 56px; font-size: 15px; font-weight: 600; white-space: nowrap; color: #E8E6E1">@@MQ@@</div>
 </div>
+<p class="en hero-cap fadein" style="position: absolute; right: 4vw; bottom: 140px; margin: 0; font-size: 11px; letter-spacing: 0.2em; color: #A9A69F; text-align: right; line-height: 2">SAME TIMBER, REASSEMBLED<br><span style="color: #fff">PAVILION → GREENHOUSE → HOUSE</span></p>
 </section>
+<section id="awards" style="border-bottom: 1px solid #222; padding: 40px 4vw; box-sizing: border-box">
+<div class="aw-row" style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; gap: 56px; flex-wrap: wrap">
+<p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.22em; color: #A9A69F; line-height: 1.8">AWARDS &amp;<br>RECOGNITION</p>
+<div class="aw-logos" style="display: flex; align-items: center; gap: 56px; flex-wrap: wrap; flex: 1">@@AWARDS@@</div>
+<p class="aw-more" style="margin: 0; font-size: 14px; color: #D8D6D1">@@awH@@</p>
+</div>
+</section>
+
 
 <section id="works" style="padding: 56px 0 0">
 <div style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 4vw 8px; scrollbar-width: none">@@GAL@@</div>
@@ -313,7 +336,7 @@ input[type=range]{accent-color:#FF5528;width:100%;height:28px}
 <p style="margin: 0; max-width: 520px; font-size: 16px; line-height: 1.9; color: #D8D6D1">@@modLead@@</p>
 </div>
 <div class="reveal" style="margin-bottom: 64px"><video ref="{{muteRef}}" src="@@scale@@" poster="@@scalePoster@@" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" aria-label="@@scaleAria@@" style="width: 100%; aspect-ratio: 16 / 10; display: block; background: #000"></video></div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px">@@MODS@@</div>
+<div class="mods-grid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px">@@MODS@@</div>
 </section>
 
 <section id="projects" style="border-top: 1px solid #222; padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box">
@@ -356,10 +379,7 @@ input[type=range]{accent-color:#FF5528;width:100%;height:28px}
 <p style="margin: 0; max-width: 440px; font-size: 15px; line-height: 1.8">@@impLead@@</p>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px 40px">@@IMP@@</div>
-<details style="margin-top: 64px; background: #000; color: #fff; padding: 0">
-<summary style="padding: 22px 28px; font-weight: 700; font-size: 15px; display: flex; justify-content: space-between"><span>@@basisSum@@</span><span class="en">+</span></summary>
-<ol style="margin: 0; padding: 8px 28px 28px 48px; font-size: 13px; line-height: 1.85; color: #D8D6D1">@@BASIS@@</ol>
-</details>
+
 </div>
 </section>
 
@@ -371,7 +391,7 @@ input[type=range]{accent-color:#FF5528;width:100%;height:28px}
 </section>
 
 <section id="news" style="padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box; border-top: 1px solid #222">
-<div class="reveal" style="margin-bottom: 96px"><p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #A9A69F">RECOGNITION</p><h2 style="margin: 0 0 16px; font-size: clamp(32px, 3.6vw, 56px); font-weight: 900">@@awH@@</h2><p style="margin: 0 0 40px; font-size: 16px; line-height: 1.8; color: #D8D6D1">@@awP@@</p><div class="aw-grid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">@@AWARDS@@</div></div>
+
 <div class="reveal"><div style="display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px"><h2 class="en" style="margin: 0; font-size: clamp(40px, 5vw, 76px); font-weight: 900">News</h2><a href="https://xencegroup.com/news" target="_blank" rel="noopener" class="en" style="font-size: 14px; color: #A9A69F">View all ↗</a></div><div style="border-top: 1px solid #fff">@@NEWS@@</div></div>
 </section>
 

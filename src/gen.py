@@ -1,8 +1,8 @@
 import json, re
 
 B = {  # asset urls
- 'hero': '/_blob/7c5f4db0ca472ab7e8c679ccecaac214', 'heroPoster': '/_blob/cfe346df0999bbdd3e11b10388cca3fd',
- 'heroM': '/_blob/1e76272a0c8e66cee6f002da101617af', 'heroPosterM': '/_blob/3bc65aeb0f4795cc67fa8afdd8c8e44a', 'heroShellD': '/_blob/6ea631533f250d8cdfab3c504fee4550', 'heroShellM': '/_blob/631573d39db29ed854e91605cc84cc5a', 'heroV10D': '/_blob/8867be9629459f9e8118e550046de46b', 'heroV10M': '/_blob/3ef47860092a314dadff031d0433461b', 'hero4k': '/_blob/2856d4b0c55055b6971c5c6fd422b89a',
+ 'hero': '/_blob/334cd0644157cb178cdcfca30c13cc79', 'heroPoster': '/_blob/0bcfae6ec423d1385bd1f16de7ef0897',
+ 'heroM': '/_blob/26aca2e9c9079400ebb9d01a088ada45', 'heroPosterM': '/_blob/a91d93876c93f12a03214fde54536436', 'heroShellD': '/_blob/6ea631533f250d8cdfab3c504fee4550', 'heroShellM': '/_blob/631573d39db29ed854e91605cc84cc5a', 'heroV10D': '/_blob/8867be9629459f9e8118e550046de46b', 'heroV10M': '/_blob/3ef47860092a314dadff031d0433461b', 'hero4k': '/_blob/2856d4b0c55055b6971c5c6fd422b89a',
  'heroV4': '/_blob/7b5b07ca38a48bef5c46abc5f09cbca4',
  'heroV3': '/_blob/994cb5d41a833ead6596c5ca8e05a54c', 'bench3d': '/_blob/ca56ace82d3ef7e9f92cef742bbee2d2', 'bench3d_b': '/_blob/dd8ca0b169f796b4d3ff8f64703f056c',
  'heroV2': '/_blob/c762b279b87494dcfe6b5af8e9c06dd0', 'heroV2Poster': '/_blob/97aadf582b149f18913f994399a05c68',
@@ -21,7 +21,7 @@ B = {  # asset urls
 }
 
 JA = dict(
- lang='ja', title='XENCE — 規格外資源を、建築に。', font="'Zen Kaku Gothic New', sans-serif",
+ lang='ja', title='XENCE — あらゆる素材を建築に。', font="'Zen Kaku Gothic New', sans-serif",
  heroAria='森、丸太、製材所、設計データ、建方、木組み、完成した温室をつなぐ映像',
  eyebrow='OUR MISSION', h1a='「建てて終わり」を、', h1b='終わらせる。', tag='Waste in. Assets out.',
  heroBody='端材、大径木、解体材、木粉。建設が使えずに手放してきた規格外の資源を、XENCEは建築に変えます。設計・施工・運用をひとつのデジタルデータでつなぎ、建てた後も記録し、運用し、次の建築へ循環させます。',
@@ -30,8 +30,8 @@ JA = dict(
  stats=[('約40%','丸太のうち、一般的な製材で建材になる割合。残りは燃料・チップ・廃棄へ回る。'),('553万t','国内で毎年出る建設発生木材。そのうち96.2%がチップや燃料として処理されている。'),('35%+','EUの廃棄物のうち建設由来の割合。採取される資源の約半分は建設に使われている。')],
  statsNote='出典は「数字で見るXENCE」の計算根拠を参照',
  imgLogs='雪の積もる土場に積まれた丸太', wc1='森の資源', wc2='規格外として残る丸太', wc3='捨てられていく資源', wa1='上空から見た森と林道', wa2='断面も太さも不揃いな丸太の山', wa3='埋立地に積み上がる廃棄物', imgSaw='製材所で端材を手にする職人',
- modelH='規格外資源を、建築に。<br>建築を、社会の資産に。',
- modelLead='XENCEは設計も施工も自社で行い、建てた施設の指定管理・運営まで担います。そこで得たデータを技術開発に戻し、次の建築をより速く、確かにする。<b>ひとつの建築から、素材・建築・データの3つの収益が生まれます。</b>',
+ modelH='あらゆる素材を建築に。<br>建築を、持続可能な社会資産に。',
+ modelLead='XENCEは設計も施工も自社で行い、建てた施設の指定管理・運営まで担います。そこで得たデータを技術開発に戻し、次の建築をより速く、確かにする。<b>建築の請負を、建てて終わりにしない。素材のデータから環境配慮、運営マネジメントまでをつなぐ、建築のプラットフォーマーになります。</b>',
  cols=[('DESIGN','設計','一級建築士事務所として、温室・住宅・施設を設計する。'),('BUILD','施工','規格外の材を自社で加工し、組み上げる。'),('OPERATE','指定管理','建てた施設を運営・管理し、データを残す。'),('R&amp;D','技術開発','自動設計・構造解析・Passportを自社で開発する。')],
  fly=['設計','施工','指定管理','技術開発'], flyCap='設計・施工・指定管理を一社で行い、そこで得たデータを技術開発に戻す。回るほど、次の建築が速く確かになる。',
  techH='規格外を、<br>標準にするデジタル技術。', techLead='自社で開発したツールで、設計・施工・運用をひとつのデータでつなぎます。',
@@ -82,8 +82,8 @@ EN = dict(
  stats=[('~40%','of a log becomes building material at a typical sawmill. The rest is burned, chipped or dumped.'),('5.53 Mt','of construction timber waste every year in Japan — 96.2% of it ends up as chips or fuel.'),('35%+','of all EU waste comes from construction, which consumes about half of every material we extract.')],
  statsNote='Sources: see “XENCE in numbers” below',
  imgLogs='Snow-covered logs stacked at a timber yard', wc1='THE FOREST', wc2='LOGS LEFT AS NON-STANDARD', wc3='RESOURCES THROWN AWAY', wa1='Aerial view of a forest and logging road', wa2='A stack of irregular logs', wa3='Waste piled at a landfill', imgSaw='A sawmill worker holding an offcut',
- modelH='Non-standard in.<br>Long-term value out.',
- modelLead='XENCE designs and builds, then runs and manages what it builds. The data from every site goes back into our technology, so each building is faster and more certain than the last. <b>One building, three revenue streams: material, architecture, data.</b>',
+ modelH='Every material into architecture.<br>Architecture into lasting social assets.',
+ modelLead='XENCE designs and builds, then runs and manages what it builds. The data from every site goes back into our technology, so each building is faster and more certain than the last. <b>A building contract should not end at handover. XENCE connects material data, environmental performance and facility management as a platform for architecture.</b>',
  cols=[('DESIGN','Design','A licensed architecture office designing greenhouses, homes and facilities.'),('BUILD','Build','We fabricate non-standard timber in-house and put it up ourselves.'),('OPERATE','Operate','We run and manage what we build — and keep its data.'),('R&amp;D','Technology','Design engine, structural analysis and Material Passport, built in-house.')],
  fly=['Design','Build','Operate','R&amp;D'], flyCap='Design, build and operation in one company, with the data fed back into R&amp;D. The more it turns, the faster and surer the next building.',
  techH='Digital tools that make<br>the non-standard standard.', techLead='Software we write ourselves links design, fabrication and operation into a single stream of data.',
@@ -173,8 +173,10 @@ NEWS = [
  ('2025/9/29','250930','ウッドデザイン賞 2025 | サーキュラー木造温室が受賞しました','Circular Timber Greenhouse wins the Japan Wood Design Award 2025'),
  ('2024/11/20','241120','第36回技術研究発表会 優秀賞 | 金属3Dプリンター製接合部の開発が受賞しました','Excellence Award at the 36th Technical Research Presentation for a metal 3D-printed joint'),
 ]
-AWARDS = [('/_blob/608f117ed81e3df0feed88d4035b0650','Red Dot Award 2026 Urban Design'),('/_blob/38e4338c07959de746d4f748d9923f78','Good Design Award 2025'),('/_blob/db1e40e54a4ba6e7a0752a6d15eed3a0','Japan Wood Design Award 2025'),('/_blob/157895a167dafee71d0282b68a501711','Nagoya University Venture')]
+AWARDS = [('/_blob/052aa96702508b472f01ef9ebe01de8e','Red Dot Award 2026 Urban Design',64),('/_blob/a452341457ff43b5de75a004f2bf079e','Good Design Award 2025',40),('/_blob/4a5397c6298a199bc06dbb8539f7955f','Japan Wood Design Award 2025',38),('/_blob/20e037604f6b902123dccf183892d977','Nagoya University Venture',60)]
 
+GT = {'ja': ['ライフサイクル運営', 'パラメトリックデザイン', 'デジタルファブリケーション', '施設園芸マーケット', 'LCA・マテリアルパスポート', 'プラットフォーマー'],
+      'en': ['Lifecycle operation', 'Parametric design', 'Digital fabrication', 'Greenhouse market', 'LCA & material passports', 'Platform model']}
 def page(L, code):
     tech = [dict(num=a, title=b, tag=c, body=d, media=B[e], caption=f, alt=g, video=h) for (a,b,c,d,e,f,g,h) in TECH[code]]
     projs = []
@@ -186,24 +188,25 @@ def page(L, code):
     stats = ''.join(f'''<div class="reveal" style="border-top: 2px solid #fff; padding-top: 24px"><p class="en" style="margin: 0; font-size: clamp(48px, 5vw, 80px); font-weight: 800; letter-spacing: -0.02em">{v}</p><p style="margin: 12px 0 0; font-size: 15px; line-height: 1.8; color: #D8D6D1">{t}</p></div>''' for v, t in L['stats'])
     cols = ''.join(f'''<div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: {{{{accentDark}}}}; font-weight: 700">{a}</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">{b}</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">{c}</p></div>''' for a, b, c in L['cols'])
     fly = L['fly']
-    mods = ''.join(f'''<article class="reveal{' mod-wide' if k == 'arch' else ''}" style="{'grid-column: 1 / -1' if k == 'arch' else ''}"><div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{{{accent}}}}"></span><span style="flex: 1; height: 1px; background: #444"></span></div><div class="zoom" style="height: {'560px' if k == 'arch' else '260px'}"><img src="{B[k]}" alt="{alt}" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><p class="en" style="margin: 18px 0 6px; font-size: 12px; color: {{{{accent}}}}; letter-spacing: 0.14em; font-weight: 700">{s}</p><h3 style="margin: 0 0 10px; font-size: 22px; font-weight: 900">{t}</h3><p style="margin: 0; font-size: 14px; line-height: 1.8; color: #D8D6D1">{b}</p></article>''' for k, s, t, b, alt in L['mods'])
+    mods = ''.join(f'''<article class="reveal"><div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{{{accent}}}}"></span><span style="flex: 1; height: 1px; background: #444"></span></div><div class="zoom" style="aspect-ratio: 4 / 3"><img src="{B[k]}" alt="{alt}" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><p class="en" style="margin: 18px 0 6px; font-size: 12px; color: {{{{accent}}}}; letter-spacing: 0.14em; font-weight: 700">{s}</p><h3 style="margin: 0 0 10px; font-size: 22px; font-weight: 900">{t}</h3><p style="margin: 0; font-size: 14px; line-height: 1.8; color: #D8D6D1">{b}</p></article>''' for k, s, t, b, alt in L['mods'])
     imp = ''.join(f'''<div class="reveal" style="border-top: 2px solid #000; padding-top: 20px"><p class="en" style="margin: 0 0 10px; font-size: 11px; letter-spacing: 0.16em; font-weight: 700">{tag.upper() if code=='en' else tag}</p><p class="en" style="margin: 0; font-size: clamp(44px, 4.4vw, 68px); font-weight: 800; letter-spacing: -0.02em">{v}</p><p style="margin: 10px 0 0; font-size: 14px; line-height: 1.75">{t}</p></div>''' for v, t, tag in L['imp'])
     basis = ''.join(f'<li style="margin: 0 0 14px">{b}</li>' for b in L['basis'])
-    gro = ''.join(f'''<div class="reveal" style="border-top: 1px solid #444; padding-top: 24px"><p class="en" style="margin: 0; font-size: 13px; color: {{{{accent}}}}; font-weight: 700">{n}</p><h3 style="margin: 12px 0 10px; font-size: 22px; font-weight: 900">{h}</h3><p style="margin: 0; font-size: 15px; line-height: 1.85; color: #D8D6D1">{b}</p></div>''' for n, h, b in L['gro'])
+    gro = ''.join(f'''<div class="reveal" style="border-top: 1px solid #444; padding-top: 24px"><p style="margin: 0; font-size: 13px; color: {{{{accent}}}}; font-weight: 700; letter-spacing: 0.06em"><span class="en">{n}</span><span style="margin-left: 12px">{GT[code][int(n) - 1]}</span></p><h3 style="margin: 12px 0 10px; font-size: 22px; font-weight: 900">{h}</h3><p style="margin: 0; font-size: 15px; line-height: 1.85; color: #D8D6D1">{b}</p></div>''' for n, h, b in L['gro'])
     mkt = ''.join(f'''<div style="background: #000; padding: 28px"><p class="en" style="margin: 0; font-size: 36px; font-weight: 800">{v}</p><p style="margin: 8px 0 0; font-size: 13px; color: #A9A69F">{t}</p></div>''' for v, t in L['mkt'])
     rec = ''.join(f'<span style="padding: 12px 20px; border: 1px solid #444; border-radius: 999px; font-size: 14px">{r}</span>' for r in L['rec'])
     cards = ''.join(f'''<a href="#c{i}" class="row" style="background: #000; padding: 36px; display: block"><span class="en" style="font-size: 12px; color: {{{{accent}}}}">0{i}</span><span style="display: block; margin-top: 12px; font-size: 22px; font-weight: 700">{a}</span><span style="display: block; margin-top: 10px; font-size: 14px; color: #D8D6D1">{b}</span></a>''' for i, (a, b) in enumerate(L['cards'], 1))
     PEOPLE = [('/_blob/ec97285f0d43f2ae3e1dac0e6e94f21c','Kotaro Ozawa','Founder & CEO'),('/_blob/e79686e0cc8af439e8723114d6320641','Asako Osedo','Co-Director, Service Design Officer'),('/_blob/3e4cc91e964e98e9528c00a02f29d335','Koji Saito','Lead Architect'),('/_blob/0844533af6b687145bc76ba6f4251f08','Akihiro Yamada','Lead Construction Management'),('/_blob/786bbef104e74efe8a687b810c6eba9f','Kotaro Jin','Architect'),('/_blob/dffba86edfbe66be4576f9f844cb9046','Kosuke Kuroda','Designer'),('/_blob/030d3dc28477b4f6443099d08fe34506','Yushi Kimoto','Designer'),('/_blob/4177b533ea70c9bbb73e21e74ef11f20','Mako Sumi','Community Manager')]
     people = ''.join(f'''<div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="{m}" alt="{n}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">{n}</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">{r}</p></div>''' for m, n, r in PEOPLE)
     GAL = [('gh_night_in','サーキュラー木造温室™','Circular Timber Greenhouse™','2025'),('bench3d','3Dプリントベンチ','3D-printed bench','2025'),('joint','金物を使わない木組み','Timber joint, no steel',''),('higashiura','東浦町 セルフビルド温室','Self-build greenhouse, Higashiura','2026'),('gh_interior','温室の内部','Inside the greenhouse','2025'),('tsite','代官山T-SITE 提灯スタンド','Lantern stands, Daikanyama T-SITE','2026')]
-    gal = ''.join(f'''<figure style="margin: 0; flex: none; width: min(78vw, 1100px); scroll-snap-align: start"><div class="zoom" style="aspect-ratio: 3 / 2; background: #111"><img src="{B[k]}" alt="{ja if code == 'ja' else en}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><figcaption style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #A9A69F"><span>{ja if code == 'ja' else en}</span><span class="en">{y}</span></figcaption></figure>''' for k, ja, en, y in GAL)
-    awards = ''.join(f'<div style="background: #fff; aspect-ratio: 9 / 5; display: flex; align-items: center; justify-content: center"><img src="{u}" alt="{a}" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; display: block"></div>' for u, a in AWARDS)
+    gal = ''.join(f'''<figure style="margin: 0; flex: none; width: min(46vw, 640px); scroll-snap-align: start"><div class="zoom" style="aspect-ratio: 3 / 2; background: #111"><img src="{B[k]}" alt="{ja if code == 'ja' else en}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><figcaption style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #A9A69F"><span>{ja if code == 'ja' else en}</span><span class="en">{y}</span></figcaption></figure>''' for k, ja, en, y in GAL)
+    awards = ''.join(f'<img src="{u}" alt="{a}" loading="lazy" class="aw-logo" style="height: {h}px; width: auto; display: block">' for u, a, h in AWARDS)
     news = ''.join(f'''<a href="https://xencegroup.com/news/{sl}" target="_blank" rel="noopener" class="row news-row" style="display: grid; grid-template-columns: 120px minmax(0, 1fr) 24px; gap: 24px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid #333"><span class="en" style="font-size: 13px; color: #A9A69F">{d}</span><span style="font-size: 17px; line-height: 1.7">{ja if code == 'ja' else en}</span><span class="en" style="color: {{{{accent}}}}">↗</span></a>''' for d, sl, ja, en in NEWS)
-    awH = '受賞・認定' if code == 'ja' else 'Awards & recognition'
-    awP = ('Red Dot、グッドデザイン賞、ウッドデザイン賞を受賞。名古屋大学発ベンチャーに認定されています。' if code == 'ja' else 'Red Dot, Good Design and Japan Wood Design awards. Certified Nagoya University venture.')
+    awH = 'ほか受賞多数' if code == 'ja' else 'and many more'
+    awP = ('Red Dot、グッドデザイン賞、ウッドデザイン賞ほか受賞多数。名古屋大学発ベンチャー認定。' if code == 'ja' else 'Red Dot, Good Design, Japan Wood Design and more. Certified Nagoya University venture.')
     th = L['th']
     html = TEMPLATE
     rep = dict(L)
+    rep.update(jaC='#fff' if code == 'ja' else '#8a877f', enC='#fff' if code == 'en' else '#8a877f')
     rep.update(AWARDS=awards, NEWS=news, awH=awH, awP=awP, GAL=gal, PEOPLE=people, MQ=mq, STATS=stats, COLS=cols, F0=fly[0], F1=fly[1], F2=fly[2], F3=fly[3], MODS=mods, IMP=imp, BASIS=basis, GRO=gro, MKT=mkt, REC=rec, CARDS=cards,
                TH0=th[0], TH1=th[1], TH2=th[2], TH3=th[3], TH4=th[4], DATA=json.dumps(data, ensure_ascii=False).replace("'", "\\u0027"), **{k: v for k, v in B.items()})
     for k, v in rep.items():
