@@ -16,7 +16,7 @@ B = {  # asset urls
  'lca': '/_blob/32c9f334cd827a7516fcf09e4bbf49cc',
  't1': '/_blob/174dde0f3b21f60ea39180d3b4167fd3', 't2': '/_blob/885d7329b070ff1b488415113eced735', 't3': '/_blob/538c03eb81b170a1d21139352861653b',
  't4': '/_blob/53ad6e0e0485b53b0569dbb68a474541', 't5': '/_blob/303e10990362d647261779a785ebe7f5', 't6': '/_blob/959100f2fd98bcf9ede524f89cd75260',
- 'scale': '/_blob/1c7f068225be46db83bd2eba287580f0', 'scalePoster': '/_blob/cd7e1833210c5b378b301f715b73e4d3',
+ 'scale': '/_blob/4d7a93445adbc363eb24dfed3985e92f', 'scalePoster': '/_blob/5be7674aa701fda05ffab325f6a5d947',
  'whyForest': '/_blob/66773f197849d4fbaddc565e4e64217e', 'whyLogs': '/_blob/6279775f3f4fb42920ca2717999e3d97', 'whyWaste': '/_blob/2f6f837b0adad80d0c23f691a92a90c2', 'joint2': '/_blob/116e27f5fe0fe1eb6b49ad94822a6d31', 'woodnode': '/_blob/855b9ad22c70078993518c179d7e6a4e', 'higashiura': '/_blob/6bc3d5268bbd9a9dd809c9560f45a34b', 'wfbench': '/_blob/1a3534db213e2ee00bbaa8ddc3d3b88f', 'arch': '/_blob/32bbb3912f8050b6d0d5529ab994e594', 'house': '/_blob/cd7e1833210c5b378b301f715b73e4d3', 'bench': '/_blob/bc7a3f7fa89d244d44ff358e5763976a', 'chashitsu': '/_blob/b9b66c6a693bba44881dedec2a10f9be', 'proto': '/_blob/1b488a6d81d5789c8367e802f0821e19',
 }
 
@@ -44,7 +44,7 @@ JA = dict(
  modH='ジョイントから建築まで、<br>ひとつのモジュールで拡張する。',
  modLead='XENCEの設計単位は、建物ではなくジョイントです。不揃いな材をつなぐ同じ接合ルールを、家具・プロダクト、温室、建築へとデジタルに組み上げていきます。大きさが変わっても、設計・加工・記録のデータは一本でつながっています。',
  mods=[('joint2','01 — JOINT · 0.1 m','ジョイント','製材所の耳材を、金属3Dプリントのジョイントでつなぐ。トポロジー最適化で材ごとに形を変え、ボルトを外せば分解して再利用できる。すべての基本単位。','耳付きの板材4枚を放射状につなぐ金属3Dプリントのジョイント'),('tsite','02 — PRODUCT · 1 m','家具・プロダクト','同じジョイントで什器を組む。祭りの提灯スタンドが、そのままベンチに組み替わる。','代官山T-SITEの提灯スタンド'),('gh_interior','03 — GREENHOUSE · 10 m','温室','モジュールを連ねて温室に。80㎡から数haまで、設計ルールを変えずに広げる。','サーキュラー木造温室の内部と木製トラス'),('arch','04 — ARCHITECTURE · 12 m','建築','住宅も同じジョイントのルールとデータで設計する。柱・梁の接合まで一本のデータでつながり、分解すれば次の建築の材料になる。','XENCEが設計する木造住宅の外観パース')],
- scaleAria='ジョイントが家具、温室、建築へと拡張していくモーショングラフィック',
+ scaleAria='代官山T-SITEの提灯スタンドのジョイントが組み上がり、スタンド、温室、建築へと拡張していくモーショングラフィック',
  projH='プロジェクト', fAria='種類で絞り込み', asideAria='選択中のプロジェクト', noPhoto='[写真 準備中]',
  th=['No.','Project','Type','Input','年'], dType='種類', dInput='素材', dTech='技術', dPlace='場所', dYear='年', dStatus='状況',
  impH='数字で見るXENCE', impLead='実績値と目標値を分けて表示しています。すべての数字に計算式と出典を付けています。',
@@ -96,7 +96,7 @@ EN = dict(
  modH='From joint to building,<br>one module scales.',
  modLead='Our unit of design isn’t the building — it’s the joint. The same connection rules that join irregular timber assemble furniture, greenhouses and architecture, scaled up in software. At every size, design, fabrication and record data stay one continuous thread.',
  mods=[('joint2','01 — JOINT · 0.1 m','The joint','Sawmill offcuts meet at a metal 3D-printed node, topology-optimised to fit each piece. Unbolt it and everything comes apart for reuse. The base unit of everything.','Metal 3D-printed node joining four waney-edged boards'),('tsite','02 — PRODUCT · 1 m','Furniture & product','The same joint builds furniture. A festival lantern stand reassembles straight into a bench.','Lantern stands at Daikanyama T-SITE'),('gh_interior','03 — GREENHOUSE · 10 m','Greenhouse','Modules link into greenhouses — from 80 m² to several hectares, without changing the rules.','Inside the Circular Timber Greenhouse'),('arch','04 — ARCHITECTURE · 12 m','Architecture','Houses are designed on the same joint rules and data, down to every post-and-beam connection. Take one apart and it becomes material for the next building.','Exterior rendering of a timber house designed by XENCE')],
- scaleAria='Motion graphic: a joint scaling up to furniture, greenhouses and buildings',
+ scaleAria='Motion graphic: the wedged joint of the Daikanyama T-SITE lantern stand assembles, then scales up to the stand, a greenhouse and a building',
  projH='Projects', fAria='Filter by type', asideAria='Selected project', noPhoto='[Photo coming soon]',
  th=['No.','Project','Type','Input','Year'], dType='Type', dInput='Input', dTech='Technology', dPlace='Location', dYear='Year', dStatus='Status',
  impH='XENCE in numbers', impLead='Results and targets are labelled separately. Every figure comes with its formula and source.',
