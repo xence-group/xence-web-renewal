@@ -16,7 +16,7 @@ B = {  # asset urls
  'lca': '/_blob/32c9f334cd827a7516fcf09e4bbf49cc',
  't1': '/_blob/174dde0f3b21f60ea39180d3b4167fd3', 't2': '/_blob/885d7329b070ff1b488415113eced735', 't3': '/_blob/538c03eb81b170a1d21139352861653b',
  't4': '/_blob/53ad6e0e0485b53b0569dbb68a474541', 't5': '/_blob/303e10990362d647261779a785ebe7f5', 't6': '/_blob/959100f2fd98bcf9ede524f89cd75260',
- 'scale': '/_blob/4d7a93445adbc363eb24dfed3985e92f', 'scalePoster': '/_blob/5be7674aa701fda05ffab325f6a5d947',
+ 'scale': '/_blob/254d8ce5ca0f7b219fb6f2140efc89ff', 'scalePoster': '/_blob/d4dfdaf3428f88090167812931773c3a',
  'whyForest': '/_blob/66773f197849d4fbaddc565e4e64217e', 'whyLogs': '/_blob/6279775f3f4fb42920ca2717999e3d97', 'whyWaste': '/_blob/2f6f837b0adad80d0c23f691a92a90c2', 'joint2': '/_blob/116e27f5fe0fe1eb6b49ad94822a6d31', 'woodnode': '/_blob/855b9ad22c70078993518c179d7e6a4e', 'higashiura': '/_blob/6bc3d5268bbd9a9dd809c9560f45a34b', 'wfbench': '/_blob/1a3534db213e2ee00bbaa8ddc3d3b88f', 'arch': '/_blob/32bbb3912f8050b6d0d5529ab994e594', 'house': '/_blob/cd7e1833210c5b378b301f715b73e4d3', 'bench': '/_blob/bc7a3f7fa89d244d44ff358e5763976a', 'chashitsu': '/_blob/b9b66c6a693bba44881dedec2a10f9be', 'proto': '/_blob/1b488a6d81d5789c8367e802f0821e19',
 }
 
