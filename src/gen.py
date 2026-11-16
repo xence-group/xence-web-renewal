@@ -14,6 +14,7 @@ B = {  # asset urls
  'joint': '/_blob/a4bbd6726f9ccecdfcf22ec97e91be01', 'tsite': '/_blob/6ac87887e326b32746dc6c1d325b2dc2',
  'table': '/_blob/2726743cbe18e8962c03389fd87a03a5', 'logs': '/_blob/96c11e44a63da5ae8feb2f98b49ee99b',
  'lca': '/_blob/32c9f334cd827a7516fcf09e4bbf49cc',
+'memu': '/assets/memu.jpg', 'ideastoa': '/assets/ideastoa.jpg', 'monomiyusan': '/assets/monomiyusan.jpg',
  't1': '/_blob/174dde0f3b21f60ea39180d3b4167fd3', 't2': '/_blob/885d7329b070ff1b488415113eced735', 't3': '/_blob/538c03eb81b170a1d21139352861653b',
  't4': '/_blob/53ad6e0e0485b53b0569dbb68a474541', 't5': '/_blob/303e10990362d647261779a785ebe7f5', 't6': '/_blob/959100f2fd98bcf9ede524f89cd75260',
  'scale': '/_blob/7eb576eacf2d9e48c429a7ee09448bde', 'scalePoster': '/_blob/e2d28e04ba444f74cc80344a0883b857',
@@ -150,9 +151,12 @@ PROJ = [
  ('p12','ar','woodnode',('端材を建築にするジョイント（WoodNode）','建築','耳材・端材','金属3Dプリント・トポロジー最適化','[場所]','2024','完成','製材所で出る耳材を構造に使うための建築ジョイント。材ごとに違う形に合わせて金属3Dプリントで造形し、トポロジー最適化で強度と軽さを両立した。竹中工務店・シモダフランジ・野地木材工業と協働。アーバンインフラ・テクノロジー推進会議 優秀賞。'),('WoodNode — a joint that turns offcuts into architecture','Architecture','Sawmill offcuts','Metal 3D printing · Topology optimisation','[Location]','2024','Completed','A structural joint that lets sawmill offcuts carry loads. Each node is metal 3D-printed to fit its pieces and topology-optimised for strength and low weight. With Takenaka Corporation, Shimoda Flange and Noji Lumber. Excellence Award, Urban Infrastructure Technology Promotion Conference.')),
  ('p7','ar','arch',('大径木の家','建築','大径木','構造解析・デジタル加工','東京都','2026','施工中','流通しにくい大径木を、組立梁として構造に使う住宅。'),('House of large-diameter logs','Architecture','Large-diameter logs','Analysis · Fabrication','Tokyo','2026','Under construction','A house that puts hard-to-sell large-diameter logs to work as built-up structural beams.')),
  ('p8','ma','wfbench',('木粉樹脂ペレット（竹中工務店・倉敷紡績と共同開発）','素材・データ','端材・木粉','素材開発','東京・日本橋で採用','2025','610 kg 納入','エンジニアリングウッドの端材を木粉にし、生分解性樹脂や再生PPと混ぜて成形材料にした。'),('Wood-flour resin pellets (with Takenaka and Kurabo)','Material & data','Offcuts · Wood flour','Materials R&D','Adopted in Nihonbashi, Tokyo','2025','610 kg delivered','Engineered-wood offcuts milled to flour and compounded with biodegradable resin or recycled PP into a mouldable material.')),
+('p21','fm','memu',('MEMU Open Research Campus','ファシリティマネジメント','既存施設','ファシリティマネジメント','北海道大樹町','2022','運営中','北海道大樹町の研究キャンパスで、施設のファシリティマネジメントを担う。既存の建物を活かしながら、使い方に合わせて手を入れ続けている。'),('MEMU Open Research Campus','Facility management','Existing facility','Facility management','Taiki, Hokkaido','2022','Operating','Facility management for a research campus in Taiki, Hokkaido — keeping existing buildings in use and adapting them as needs change.')),
+('p22','fm','ideastoa',('名古屋大学 Idea Stoa','ファシリティマネジメント','既存施設','ファシリティマネジメント','名古屋','2023','運営中','レーザーカッターなどの工作機械を備えた、名古屋大学のものづくり・交流の拠点。施設のファシリティマネジメントを担う。'),('Idea Stoa, Nagoya University','Facility management','Existing facility','Facility management','Nagoya','2023','Operating','Nagoya University’s space for making and meeting, equipped with laser cutters and other machines. XENCE manages the facility.')),
+('p23','fm','monomiyusan',('物見遊山（遊棟）','ファシリティマネジメント','古民家','ファシリティマネジメント・宿運営','岐阜県郡上市白鳥町','2026','運営中','白鳥の暮らしや遊びを旅人に紹介し、受け継いでいく古民家の宿。地域の人と旅人がつながる拠点として運営している。'),('Monomiyusan (Yuto)','Facility management','Old farmhouse','Facility management · Hospitality','Shirotori, Gujo, Gifu','2026','Operating','A guesthouse in an old farmhouse that introduces travellers to everyday life and play in Shirotori, and hands it on. Run as a place where locals and visitors meet.')),
 ]
-FILT = {'ja': [('all','すべて'),('fu','家具・プロダクト'),('gh','温室'),('ar','建築'),('ma','素材・データ')],
-        'en': [('all','All'),('fu','Furniture'),('gh','Greenhouse'),('ar','Architecture'),('ma','Material & data')]}
+FILT = {'ja': [('all','すべて'),('fu','家具・プロダクト'),('gh','温室'),('ar','建築'),('ma','素材・データ'),('fm','ファシリティマネジメント')],
+        'en': [('all','All'),('fu','Furniture'),('gh','Greenhouse'),('ar','Architecture'),('ma','Material & data'),('fm','Facility management')]}
 KINDS = {'ja': {'col':'柱','raf':'合掌','tie':'陸梁','beam':'桁・母屋','sill':'土台','brace':'筋かい'},
          'en': {'col':'Posts','raf':'Rafters','tie':'Ties','beam':'Beams & purlins','sill':'Sills','brace':'Braces'}}
 UI = {'ja': {'explode':'分解する','assemble':'組み立てる','unit':'棟','units':'棟'}, 'en': {'explode':'Take it apart','assemble':'Put it back together','unit':' unit','units':' units'}}
