@@ -177,7 +177,7 @@ NEWS = [
  ('2025/9/29','250930','ウッドデザイン賞 2025 | サーキュラー木造温室が受賞しました','Circular Timber Greenhouse wins the Japan Wood Design Award 2025'),
  ('2024/11/20','241120','第36回技術研究発表会 優秀賞 | 金属3Dプリンター製接合部の開発が受賞しました','Excellence Award at the 36th Technical Research Presentation for a metal 3D-printed joint'),
 ]
-AWARDS = [('/_blob/052aa96702508b472f01ef9ebe01de8e','Red Dot Award 2026 Urban Design',64),('/_blob/a452341457ff43b5de75a004f2bf079e','Good Design Award 2025',40),('/_blob/4a5397c6298a199bc06dbb8539f7955f','Japan Wood Design Award 2025',38),('/_blob/20e037604f6b902123dccf183892d977','Nagoya University Venture',60)]
+AWARDS = [('/_blob/052aa96702508b472f01ef9ebe01de8e','Red Dot Award 2026 Urban Design',64),('/_blob/a452341457ff43b5de75a004f2bf079e','Good Design Award 2025',40),('/_blob/4a5397c6298a199bc06dbb8539f7955f','Japan Wood Design Award 2025',64),('/_blob/20e037604f6b902123dccf183892d977','Nagoya University Venture',60)]
 
 GT = {'ja': ['ライフサイクル運営', 'パラメトリックデザイン', 'デジタルファブリケーション', '施設園芸マーケット', 'LCA・マテリアルパスポート', 'プラットフォーマー'],
       'en': ['Lifecycle operation', 'Parametric design', 'Digital fabrication', 'Greenhouse market', 'LCA & material passports', 'Platform model']}
