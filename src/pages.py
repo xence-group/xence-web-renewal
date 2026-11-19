@@ -306,7 +306,7 @@ def company(L):
     pre = T[L]['pre']; N = _news()
     nl = lambda i: (pre + '/news/?id=' + i)
     if L == 'ja':
-        rows = [('社名', '株式会社XENCE（ぜんす）'), ('英文表記', 'XENCE Inc.'), ('設立', '2022年1月28日（2026年1月1日 合同会社から株式会社へ組織変更）'),
+        rows = [('社名', '株式会社XENCE（ゼンス／ぜんす）'), ('英文表記', 'XENCE Inc.'), ('設立', '2022年1月28日（2026年1月1日 合同会社から株式会社へ組織変更）'),
                 ('代表者', '代表取締役CEO 小澤巧太郎（一級建築士）'), ('本社', '〒460-0008 愛知県名古屋市中区栄一丁目29番29号 SIMON 10 SAKAE 401'), ('拠点', '名古屋（愛知県）'),
                 ('資本金', '300万円'), ('事業内容', '建築および製造物のデザイン・設計・施工・運営およびコンサルティング<br>サーキュラー木造温室™の設計施工、未利用材・規格外材の建築利用、施設の指定管理・ファシリティマネジメント、LCA・ホールライフカーボン算定、Material Passport'),
                 ('建築士事務所登録', 'XENCE一級建築士事務所　一級 愛知県知事登録（い－4）第14198号'), ('法人番号', '1180003023459'), ('認定', '名古屋大学発ベンチャー（2026年4月）'),
@@ -316,7 +316,7 @@ def company(L):
                 ('2026年1月', 'サーキュラー木造温室が超異分野学会 愛知フォーラム2026 大冷工業賞を受賞', '260116'), ('2026年4月', '名古屋大学発ベンチャーに認定', '260407'),
                 ('2026年6月', 'サーキュラー木造温室™が Red Dot Design Award 2026 アーバンデザイン部門を受賞', '260602'), ('2026年6月', '施工部門「XENCE Engineering」を発足', '260616'),
                 ('2026年6月', '愛知県「革新事業創造事業費補助金」に採択', '260630'), ('2026年10月', '代官山T-SITEで木材トレーサビリティ（Product Passport）の試験運用を開始', '9LhNPbQ0')]
-        media = [('2025年12月', '日経クロステック', '251220'), ('2026年3月', '中京テレビ「アプデの森」', 'zNSZMKlS'), ('2026年7月', '日経木材新聞', '9VckaqYJ')]
+        media = [('2025年11月', 'MAINTAINABLE「建てるほどCO2が減る温室」', 'https://maintainable.jp/circular/xence/26/11/2025/'), ('2025年12月', 'AXIS web「XENCEが循環型木造温室を販売開始」', 'https://www.axismag.jp/posts/2025/12/688378.html'), ('2025年12月', '日経クロステック「建設3Dプリンターと木の端材の融合」', '251220'), ('2026年3月', '中京テレビ「アプデの森」', 'zNSZMKlS'), ('2026年6月', 'MAINTAINABLE「サーキュラー木造温室が国際デザイン賞を受賞」', 'https://maintainable.jp/circular/xence-circular-wooden-greenhouse-red-dot-design-award-2026/18/06/2026/'), ('2026年7月', '日刊木材新聞', '9VckaqYJ')]
         h1, lead, h_hist, h_media = 'Company', 'XENCEは、建設業が使わずに手放してきた木材を、デジタル技術で建築に変える名古屋大学発のスタートアップです。設計・施工・指定管理をひと続きで担い、素材を社会の中で循環させます。', '沿革', 'メディア掲載'
         team = '<p class="lead">チームは<a href="/#studio" style="text-decoration:underline;text-underline-offset:3px">トップページのPeople</a>をご覧ください。</p>'
     else:
@@ -330,10 +330,10 @@ def company(L):
                 ('Jan 2026', 'Dairei Kogyo Award, Hyper-Interdisciplinary Conference Aichi Forum 2026', '260116'), ('Apr 2026', 'Certified as a Nagoya University Venture', '260407'),
                 ('Jun 2026', 'Circular Timber Greenhouse™ wins the Red Dot Design Award 2026, Urban Design', '260602'), ('Jun 2026', 'XENCE Engineering, a construction division, launches', '260616'),
                 ('Jun 2026', 'Selected for an Aichi Prefecture innovation grant', '260630'), ('Oct 2026', 'Timber traceability (Product Passport) trial begins at Daikanyama T-SITE', '9LhNPbQ0')]
-        media = [('Dec 2025', 'Nikkei xTECH', '251220'), ('Mar 2026', 'Chukyo TV “Apude no Mori”', 'zNSZMKlS'), ('Jul 2026', 'Nikkei Mokuzai Shimbun', '9VckaqYJ')]
+        media = [('Nov 2025', 'MAINTAINABLE (in Japanese)', 'https://maintainable.jp/circular/xence/26/11/2025/'), ('Dec 2025', 'AXIS web (in Japanese)', 'https://www.axismag.jp/posts/2025/12/688378.html'), ('Dec 2025', 'Nikkei xTECH', '251220'), ('Mar 2026', 'Chukyo TV “Apude no Mori”', 'zNSZMKlS'), ('Jun 2026', 'MAINTAINABLE — Red Dot award (in Japanese)', 'https://maintainable.jp/circular/xence-circular-wooden-greenhouse-red-dot-design-award-2026/18/06/2026/'), ('Jul 2026', 'Nikkan Mokuzai Shimbun', '9VckaqYJ')]
         h1, lead, h_hist, h_media = 'Company', 'XENCE is a Nagoya University venture that turns the timber construction leaves behind into architecture with digital technology. We design, build and operate as one continuous service, so materials keep circulating.', 'History', 'Media'
         team = '<p class="lead">Meet the team in <a href="/en/#studio" style="text-decoration:underline;text-underline-offset:3px">People</a> on the home page.</p>'
-    li = lambda d, t, i: f'<li><span class="en">{d}</span><span>' + (f'<a href="{nl(i)}">{t}</a>' if i and i in N else t) + '</span></li>'
+    li = lambda d, t, i: f'<li><span class="en">{d}</span><span>' + (f'<a href="{i}" target="_blank" rel="noopener">{t} ↗</a>' if i and i.startswith('http') else f'<a href="{nl(i)}">{t}</a>' if i and i in N else t) + '</span></li>'
     body = (f'<main><p class="eyebrow en">ABOUT XENCE</p><h1 class="en">{h1}</h1><p class="lead">{lead}</p>'
             '<dl class="dl">' + ''.join(f'<dt>{a}</dt><dd>{b}</dd>' for a, b in rows) + '</dl>'
             f'<h2 class="sec">{h_hist}</h2><ul class="tl">' + ''.join(li(*x) for x in hist) + '</ul>'

@@ -35,7 +35,7 @@ ORG = {
 AWARDS = ['Red Dot Award 2026 (Urban Design) — Circular Timber Greenhouse™',
           'Good Design Award 2025', 'Japan Wood Design Award 2025', 'Nagoya University Venture (certified 2026)']
 DESC = {
-    'ja': 'XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋を拠点とする。',
+    'ja': 'XENCE（ゼンス／株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋を拠点とする。',
     'en': 'XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya, Japan.',
 }
 TITLE = {'ja': 'XENCE — あらゆる素材を建築に。', 'en': 'XENCE — Waste in. Assets out.'}
@@ -49,7 +49,7 @@ def jsonld(lang):
     url = SITE + ('/' if lang == 'ja' else '/en/')
     org = {
         '@type': ['Organization', 'ProfessionalService'], '@id': SITE + '/#org',
-        'name': 'XENCE', 'legalName': ORG['legal_ja'], 'alternateName': ['株式会社XENCE', 'XENCE Inc.', 'ぜんす', 'XENCE Architecture Studio', 'XENCE Engineering'],
+        'name': 'XENCE', 'legalName': ORG['legal_ja'], 'alternateName': ['株式会社XENCE', 'XENCE Inc.', 'ゼンス', 'ぜんす', 'XENCE（ゼンス）', '株式会社XENCE（ゼンス）', 'XENCE Architecture Studio', 'XENCE Engineering'],
         'url': SITE + '/', 'logo': SITE + '/assets/favicon.svg', 'image': SITE + '/assets/poster_d_v3.jpg',
         'description': DESC[lang], 'foundingDate': ORG['founded'], 'email': ORG['email'],
         'identifier': {'@type': 'PropertyValue', 'propertyID': '法人番号 (Japan Corporate Number)', 'value': ORG['corp_no']},
@@ -58,7 +58,7 @@ def jsonld(lang):
         'location': [{'@type': 'Place', 'name': 'Nagoya, Japan'}],
         'areaServed': ['JP', 'EU'],
         'founder': {'@id': SITE + '/#founder'},
-        'award': AWARDS, 'knowsAbout': KNOWS, 'sameAs': [ORG['instagram']],
+        'award': AWARDS, 'knowsAbout': KNOWS, 'sameAs': [ORG['instagram'], 'https://www.instagram.com/xence.engineering/', 'https://prtimes.jp/main/html/searchrlp/company_id/123873'],
         'contactPoint': {'@type': 'ContactPoint', 'contactType': 'sales', 'email': ORG['email'], 'url': SITE + ('/contact/' if lang == 'ja' else '/en/contact/'), 'availableLanguage': ['ja', 'en']},
         'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Services', 'itemListElement': [
             {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': n}} for n in (
@@ -184,7 +184,7 @@ def static_home(lang):
     # company facts
     if lang == 'ja':
         out.append('<section id="s-company"><h2>会社概要</h2><dl>'
-                   f'<dt>社名</dt><dd>{ORG["legal_ja"]}（XENCE／ぜんす）</dd><dt>設立</dt><dd>2022年1月28日</dd>'
+                   f'<dt>社名</dt><dd>{ORG["legal_ja"]}（XENCE／ゼンス／ぜんす）</dd><dt>設立</dt><dd>2022年1月28日</dd>'
                    f'<dt>本社</dt><dd>〒{ORG["postal"]} {ORG["region"]}{ORG["locality"]}{ORG["street"]}</dd><dt>拠点</dt><dd>名古屋（愛知県）</dd>'
                    f'<dt>代表</dt><dd>代表取締役CEO {ORG["founder_ja"]}（一級建築士）</dd><dt>登録</dt><dd>{ORG["office_reg"]}</dd>'
                    '<dt>事業内容</dt><dd>建築および製造物のデザイン・設計・施工・運営およびコンサルティング</dd>'

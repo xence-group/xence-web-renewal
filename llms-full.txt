@@ -8,7 +8,7 @@ XENCE is a Nagoya University venture and licensed architecture practice that tur
 
 ## 概要（日本語）
 
-XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋を拠点とする。
+XENCE（ゼンス／株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋を拠点とする。
 
 ## Mission
 
