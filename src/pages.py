@@ -3,6 +3,8 @@
 import os, html
 
 ACCENT = '#FF5528'
+# Google Apps Script web app "XENCE Web 問い合わせ受付" (writes to the sheet "XENCE ウェブサイト 問い合わせ" and mails info@)
+CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwNJH9zN1_IyPzqld1dCi79nolaWi8QMdSWEU2YYkVTVo6E-hAZbu9atOSL57GQKK-U/exec'
 
 T = {
  'ja': dict(
@@ -14,7 +16,7 @@ T = {
    types=[('build','建てたい・置きたい','温室、宿、住宅、什器の設計施工'),('resource','資源を活かしたい','製材所・解体事業者・自治体の方'),('partner','技術で組みたい','企業・大学・海外パートナーの方'),('invest','投資・事業提携','投資家・事業会社の方'),('other','その他','取材・採用・その他のご相談')],
    name='お名前', company='会社名', email='メールアドレス', message='お問い合わせ内容', req='必須', opt='任意',
    privacy='<a href="https://xencegroup.com/privacy-policy" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する',
-   submit='送信する', sending='送信中…',
+   submit='送信する', sending='送信中…', failed='送信できませんでした。お手数ですが info@xencegroup.com までメールでご連絡ください。',
    thanks_h='お問い合わせありがとうございました。', thanks_p='内容を確認のうえ、担当者よりご連絡いたします。<br>数日経っても返信がない場合は、お手数ですが info@xencegroup.com までご連絡ください。', back='トップへ戻る',
    news_lead='XENCEのお知らせ、受賞、メディア掲載。', loading='読み込み中…', news_back='← ニュース一覧へ', notfound='記事が見つかりませんでした。',
    foot1='株式会社XENCE ／ XENCE一級建築士事務所<br>愛知県知事登録（い－4）第14198号',
@@ -28,7 +30,7 @@ T = {
    types=[('build','Build with us','Greenhouses, guesthouses, homes and furniture'),('resource','Supply materials','Sawmills, demolition firms and municipalities'),('partner','Partner on technology','Companies, universities and overseas partners'),('invest','Invest or partner','Investors and corporate partners'),('other','Other','Press, careers and anything else')],
    name='Name', company='Company', email='Email', message='Message', req='Required', opt='Optional',
    privacy='I agree to the <a href="https://xencegroup.com/en/privacy-policy" target="_blank" rel="noopener">privacy policy</a>',
-   submit='Send', sending='Sending…',
+   submit='Send', sending='Sending…', failed='Your message could not be sent. Please email info@xencegroup.com.',
    thanks_h='Thank you for getting in touch.', thanks_p='We will review your message and reply soon.<br>If you have not heard from us within a few days, please write to info@xencegroup.com.', back='Back to top',
    news_lead='Announcements, awards and press coverage from XENCE.', loading='Loading…', news_back='← All news', notfound='Article not found.',
    foot1='XENCE Inc. ／ XENCE First-class Architect Office<br>Registered in Aichi Prefecture (I-4) No. 14198',
@@ -153,8 +155,7 @@ def contact(L):
 <p class="lead">{t['lead']}</p>
 <div class="grid">
 {side}
-<form name="contact" method="POST" action="{pre}/contact/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-<input type="hidden" name="form-name" value="contact">
+<form name="contact" method="POST" action="{CONTACT_ENDPOINT}" data-thanks="{pre}/contact/thanks/">
 <input type="hidden" name="lang" value="{L}">
 <p class="hp"><label>Don’t fill this out: <input name="bot-field"></label></p>
 <fieldset><legend>{t['type_label']} {req}</legend><div class="types">{types}</div></fieldset>
@@ -173,7 +174,13 @@ def contact(L):
 (function(){{
 var p=new URLSearchParams(location.search).get('type');
 var r=p&&document.querySelector('input[name="type"][value="'+p.replace(/[^a-z]/g,'')+'"]'); if(r) r.checked=true;
-document.querySelector('form').addEventListener('submit',function(){{var b=this.querySelector('button');b.disabled=true;b.firstChild.nodeValue='{t['sending']} ';}});
+var f=document.querySelector('form');
+f.addEventListener('submit',function(ev){{
+ ev.preventDefault();var b=f.querySelector('button');b.disabled=true;b.firstChild.nodeValue='{t['sending']} ';
+ fetch(f.action,{{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(f))}})
+  .then(function(){{location.href=f.dataset.thanks;}})
+  .catch(function(){{b.disabled=false;b.firstChild.nodeValue='{t['submit']} ';alert('{t['failed']}');}});
+}});
 }})();
 </script>'''
     return shell(L, t['title_contact'], body, '/contact/', script)

@@ -94,8 +94,7 @@ footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
 <p class="lead">Tell us what you would like to build, supply or explore together.<br>We take on architectural design and construction, products made from unused timber, facility management and LCA support.</p>
 <div class="grid">
 <div class="side"><b>XENCE Inc.</b>SIMON 10 SAKAE 401<br>1-29-29 Sakae, Naka-ku<br>Nagoya 460-0008, Japan<br><br><b>Düsseldorf</b>We also meet partners in Europe.<br><br><b>Email</b><a href="mailto:info@xencegroup.com">info@xencegroup.com</a></div>
-<form name="contact" method="POST" action="/en/contact/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-<input type="hidden" name="form-name" value="contact">
+<form name="contact" method="POST" action="https://script.google.com/macros/s/AKfycbwNJH9zN1_IyPzqld1dCi79nolaWi8QMdSWEU2YYkVTVo6E-hAZbu9atOSL57GQKK-U/exec" data-thanks="/en/contact/thanks/">
 <input type="hidden" name="lang" value="en">
 <p class="hp"><label>Don’t fill this out: <input name="bot-field"></label></p>
 <fieldset><legend>Topic <span class="tag">Required</span></legend><div class="types"><label><input type="radio" name="type" value="build" required><span class="n en">01</span><span class="t">Build with us</span><span class="d">Greenhouses, guesthouses, homes and furniture</span></label><label><input type="radio" name="type" value="resource"><span class="n en">02</span><span class="t">Supply materials</span><span class="d">Sawmills, demolition firms and municipalities</span></label><label><input type="radio" name="type" value="partner"><span class="n en">03</span><span class="t">Partner on technology</span><span class="d">Companies, universities and overseas partners</span></label><label><input type="radio" name="type" value="invest"><span class="n en">04</span><span class="t">Invest or partner</span><span class="d">Investors and corporate partners</span></label><label><input type="radio" name="type" value="other"><span class="n en">05</span><span class="t">Other</span><span class="d">Press, careers and anything else</span></label></div></fieldset>
@@ -119,7 +118,13 @@ footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
 (function(){
 var p=new URLSearchParams(location.search).get('type');
 var r=p&&document.querySelector('input[name="type"][value="'+p.replace(/[^a-z]/g,'')+'"]'); if(r) r.checked=true;
-document.querySelector('form').addEventListener('submit',function(){var b=this.querySelector('button');b.disabled=true;b.firstChild.nodeValue='Sending… ';});
+var f=document.querySelector('form');
+f.addEventListener('submit',function(ev){
+ ev.preventDefault();var b=f.querySelector('button');b.disabled=true;b.firstChild.nodeValue='Sending… ';
+ fetch(f.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(f))})
+  .then(function(){location.href=f.dataset.thanks;})
+  .catch(function(){b.disabled=false;b.firstChild.nodeValue='Send ';alert('Your message could not be sent. Please email info@xencegroup.com.');});
+});
 })();
 </script>
 </body>
