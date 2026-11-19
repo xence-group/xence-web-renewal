@@ -98,6 +98,29 @@ article .body a{color:#FF5528;word-break:break-all}
 .back{display:inline-block;margin-top:56px;font-size:14px;color:#A9A69F}
 footer{border-top:1px solid #222;padding:64px 4vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;font-size:13px;color:#A9A69F;line-height:1.9}
 footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
+footer .fl a{color:#A9A69F}footer .fl a:hover{color:#FF5528}
+.eyebrow{margin:0 0 16px;font-size:13px;letter-spacing:.22em;color:#A9A69F}
+.dl{display:grid;grid-template-columns:200px minmax(0,1fr);border-top:1px solid #fff;margin:0 0 96px}
+.dl dt,.dl dd{margin:0;padding:22px 0;border-bottom:1px solid #333;font-size:15px;line-height:1.9}
+.dl dt{color:#A9A69F;font-size:13px;padding-right:24px}
+.dl dd a{text-decoration:underline;text-underline-offset:3px}
+h2.sec{font-size:clamp(28px,3vw,44px);font-weight:900;margin:0 0 28px}
+.tl{list-style:none;margin:0 0 96px;padding:0;border-top:1px solid #fff}
+.tl li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid #333;font-size:15px;line-height:1.8}
+.tl li span:first-child{color:#A9A69F}
+.tl li a{text-decoration:underline;text-underline-offset:3px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:48px 24px}
+.pgrid a{display:block}.pgrid img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#111;transition:opacity .3s}.pgrid a:hover img{opacity:.85}
+.pgrid .n{display:block;margin-top:16px;font-size:12px;color:#FF5528;letter-spacing:.14em}.pgrid .t{display:block;margin-top:6px;font-size:19px;font-weight:800;line-height:1.5}.pgrid .m{display:block;margin-top:6px;font-size:13px;color:#A9A69F}
+.phero{width:100%;max-height:72vh;aspect-ratio:16/9;object-fit:cover;display:block;background:#111;margin:0 0 56px}
+.pbody{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:64px;border-top:1px solid #fff;padding-top:40px;margin-bottom:96px}
+.pbody p{margin:0 0 1.4em;font-size:17px;line-height:2.05;color:#E8E6E1}
+.pbody .meta{display:grid;grid-template-columns:88px 1fr;row-gap:14px;font-size:14px;align-self:start}
+.pbody .meta span:nth-child(odd){color:#A9A69F}
+.rel a{display:block;padding:18px 0;border-bottom:1px solid #333;font-size:15px}
+.pn{display:flex;justify-content:space-between;gap:24px;border-top:1px solid #333;padding-top:28px;font-size:14px;color:#A9A69F}
+.pn a{color:#A9A69F}.pn a:hover{color:#FF5528}
+.cta2{display:inline-block;margin-top:48px;background:#fff;color:#000;padding:16px 28px;border-radius:999px;font-weight:700}.cta2:hover{color:#000;opacity:.85}
 @media (max-width:860px){
  header nav .sec{display:none}
  header .cta{padding:10px 16px;font-size:12px}
@@ -108,6 +131,9 @@ footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
  .types{grid-template-columns:1fr}
  .news a{grid-template-columns:1fr 20px;gap:4px 12px}
  .news .d{grid-column:1/-1}
+ .dl{grid-template-columns:1fr}.dl dt{padding-bottom:0;border-bottom:0}
+ .tl li{grid-template-columns:1fr;gap:4px}
+ .pbody{grid-template-columns:1fr;gap:40px}
 }
 </style>
 </head>
@@ -143,7 +169,7 @@ footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
 <footer>
 <div><p class="f en">XENCE</p>株式会社XENCE ／ XENCE一級建築士事務所<br>愛知県知事登録（い－4）第14198号</div>
 <div>Nagoya — 愛知県名古屋市中区栄1-29-29 SIMON 10 SAKAE 401</div>
-<div class="en">Instagram ／ note ／ LinkedIn<br>© XENCE Inc.</div>
+<div class="fl"><a href="/company/">会社概要</a><br><a href="/projects/">プロジェクト</a><br><a href="/news/">News</a><br><a href="/contact/">お問い合わせ</a></div><div class="fl en"><a href="https://www.instagram.com/xence_architecture_studio/" target="_blank" rel="noopener">Instagram ↗</a><br><a href="https://www.instagram.com/xence.engineering/" target="_blank" rel="noopener">Instagram — XENCE Engineering ↗</a><br><a href="mailto:info@xencegroup.com">info@xencegroup.com</a><br>© XENCE Inc.</div>
 </footer>
 <script>
 (function(){

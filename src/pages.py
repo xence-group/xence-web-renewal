@@ -104,6 +104,29 @@ article .body a{color:%(accent)s;word-break:break-all}
 .back{display:inline-block;margin-top:56px;font-size:14px;color:#A9A69F}
 footer{border-top:1px solid #222;padding:64px 4vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;font-size:13px;color:#A9A69F;line-height:1.9}
 footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
+footer .fl a{color:#A9A69F}footer .fl a:hover{color:%(accent)s}
+.eyebrow{margin:0 0 16px;font-size:13px;letter-spacing:.22em;color:#A9A69F}
+.dl{display:grid;grid-template-columns:200px minmax(0,1fr);border-top:1px solid #fff;margin:0 0 96px}
+.dl dt,.dl dd{margin:0;padding:22px 0;border-bottom:1px solid #333;font-size:15px;line-height:1.9}
+.dl dt{color:#A9A69F;font-size:13px;padding-right:24px}
+.dl dd a{text-decoration:underline;text-underline-offset:3px}
+h2.sec{font-size:clamp(28px,3vw,44px);font-weight:900;margin:0 0 28px}
+.tl{list-style:none;margin:0 0 96px;padding:0;border-top:1px solid #fff}
+.tl li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid #333;font-size:15px;line-height:1.8}
+.tl li span:first-child{color:#A9A69F}
+.tl li a{text-decoration:underline;text-underline-offset:3px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:48px 24px}
+.pgrid a{display:block}.pgrid img{width:100%%;aspect-ratio:3/2;object-fit:cover;display:block;background:#111;transition:opacity .3s}.pgrid a:hover img{opacity:.85}
+.pgrid .n{display:block;margin-top:16px;font-size:12px;color:%(accent)s;letter-spacing:.14em}.pgrid .t{display:block;margin-top:6px;font-size:19px;font-weight:800;line-height:1.5}.pgrid .m{display:block;margin-top:6px;font-size:13px;color:#A9A69F}
+.phero{width:100%%;max-height:72vh;aspect-ratio:16/9;object-fit:cover;display:block;background:#111;margin:0 0 56px}
+.pbody{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:64px;border-top:1px solid #fff;padding-top:40px;margin-bottom:96px}
+.pbody p{margin:0 0 1.4em;font-size:17px;line-height:2.05;color:#E8E6E1}
+.pbody .meta{display:grid;grid-template-columns:88px 1fr;row-gap:14px;font-size:14px;align-self:start}
+.pbody .meta span:nth-child(odd){color:#A9A69F}
+.rel a{display:block;padding:18px 0;border-bottom:1px solid #333;font-size:15px}
+.pn{display:flex;justify-content:space-between;gap:24px;border-top:1px solid #333;padding-top:28px;font-size:14px;color:#A9A69F}
+.pn a{color:#A9A69F}.pn a:hover{color:%(accent)s}
+.cta2{display:inline-block;margin-top:48px;background:#fff;color:#000;padding:16px 28px;border-radius:999px;font-weight:700}.cta2:hover{color:#000;opacity:.85}
 @media (max-width:860px){
  header nav .sec{display:none}
  header .cta{padding:10px 16px;font-size:12px}
@@ -114,8 +137,20 @@ footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
  .types{grid-template-columns:1fr}
  .news a{grid-template-columns:1fr 20px;gap:4px 12px}
  .news .d{grid-column:1/-1}
+ .dl{grid-template-columns:1fr}.dl dt{padding-bottom:0;border-bottom:0}
+ .tl li{grid-template-columns:1fr;gap:4px}
+ .pbody{grid-template-columns:1fr;gap:40px}
 }
 '''
+
+# Footer links. Add note / LinkedIn here (label, url) once their URLs are fixed.
+SOCIAL = [('Instagram', 'https://www.instagram.com/xence_architecture_studio/'), ('Instagram — XENCE Engineering', 'https://www.instagram.com/xence.engineering/')]
+def foot_links(L):
+    pre = T[L]['pre']
+    nav = [('Company' if L == 'en' else '会社概要', pre + '/company/'), ('Projects' if L == 'en' else 'プロジェクト', pre + '/projects/'), ('News', pre + '/news/'), ('Contact' if L == 'en' else 'お問い合わせ', pre + '/contact/')]
+    a = lambda l, u, ext=False: f'<a href="{u}"' + (' target="_blank" rel="noopener"' if ext else '') + f'>{l}</a>'
+    return ('<div class="fl">' + '<br>'.join(a(l, u) for l, u in nav) + '</div>'
+            '<div class="fl en">' + '<br>'.join(a(l + ' ↗', u, True) for l, u in SOCIAL) + '<br><a href="mailto:info@xencegroup.com">info@xencegroup.com</a><br>© XENCE Inc.</div>')
 
 def shell(L, title, body, path, script=''):
     t = T[L]; pre = t['pre']
@@ -143,7 +178,7 @@ def shell(L, title, body, path, script=''):
 <footer>
 <div><p class="f en">XENCE</p>{t['foot1']}</div>
 <div>{t['foot2']}</div>
-<div class="en">Instagram ／ note ／ LinkedIn<br>© XENCE Inc.</div>
+{foot_links(L)}
 </footer>
 {script}
 </body>
@@ -249,3 +284,89 @@ for L in ('ja', 'en'):
         d = os.path.join(base, rel); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(fn(L))
         print(os.path.relpath(os.path.join(d, 'index.html'), root))
+
+# ---------------------------------------------------------------- company & projects
+import re as _re, json as _json
+def _app_data(L):
+    src = open(os.path.join(root, 'app.js' if L == 'ja' else 'en/app.js'), encoding='utf-8').read()
+    return _json.loads(_re.search(r'this\.D = (\{.*?\});\n', src).group(1))
+SLUG = {'p1': 'circular-timber-greenhouse', 'p2': 'higashiura-greenhouse', 'p3': 'daikanyama-tsite-lantern-bench', 'p4': 'nagoya-university-ctecs-furniture',
+        'p11': 'waam-3d-printed-bench', 'p12': 'woodnode', 'p7': 'large-diameter-timber-house', 'p8': 'wood-flour-resin-pellets',
+        'p21': 'memu-open-research-campus', 'p22': 'nagoya-university-idea-stoa', 'p23': 'monomiyusan'}
+# news ids related to each project (shown as links on the project page)
+REL = {'p1': ['260602', '251001', '250930', '260116', '260630', '9VckaqYJ', 'zNSZMKlS', '251220'], 'p3': ['_kRFwB8a', '9LhNPbQ0'], 'p12': ['241120']}
+_clean = lambda v: _re.sub(r'\s*\[[^\]]*\]', '', v or '').strip()
+def _news():
+    src = open(os.path.join(root, 'lib/news.js'), encoding='utf-8').read()
+    return {n['id']: n for n in _json.loads(_re.search(r'export const FALLBACK = (\[.*?\]);\n', src, _re.S).group(1))}
+
+def company(L):
+    pre = T[L]['pre']; N = _news()
+    nl = lambda i: (pre + '/news/?id=' + i)
+    if L == 'ja':
+        rows = [('社名', '株式会社XENCE（ぜんす）'), ('英文表記', 'XENCE Inc.'), ('設立', '2022年1月28日（2026年1月1日 合同会社から株式会社へ組織変更）'),
+                ('代表者', '代表取締役CEO 小澤巧太郎（一級建築士）'), ('本社', '〒460-0008 愛知県名古屋市中区栄一丁目29番29号 SIMON 10 SAKAE 401'), ('拠点', '名古屋（日本）、デュッセルドルフ（ドイツ）'),
+                ('資本金', '300万円'), ('事業内容', '建築および製造物のデザイン・設計・施工・運営およびコンサルティング<br>サーキュラー木造温室™の設計施工、未利用材・規格外材の建築利用、施設の指定管理・ファシリティマネジメント、LCA・ホールライフカーボン算定、Material Passport'),
+                ('建築士事務所登録', 'XENCE一級建築士事務所　一級 愛知県知事登録（い－4）第14198号'), ('法人番号', '1180003023459'), ('認定', '名古屋大学発ベンチャー（2026年4月）'),
+                ('部門', 'XENCE Architecture Studio（設計）／ XENCE Engineering（施工、2026年6月発足）'), ('お問い合わせ', '<a href="mailto:info@xencegroup.com">info@xencegroup.com</a>　／　<a href="' + pre + '/contact/">お問い合わせフォーム</a>')]
+        hist = [('2022年1月', '合同会社XENCE 設立', None), ('2023年3月', '一級建築士事務所を登録', None), ('2024年11月', '金属3Dプリンター製接合部の開発が第36回技術研究発表会 優秀賞を受賞', '241120'),
+                ('2025年9月', 'サーキュラー木造温室がウッドデザイン賞2025・グッドデザイン賞2025を受賞', '251001'), ('2026年1月', '株式会社XENCEへ組織変更、コーポレートロゴを刷新', '260101'),
+                ('2026年1月', 'サーキュラー木造温室が超異分野学会 愛知フォーラム2026 大冷工業賞を受賞', '260116'), ('2026年4月', '名古屋大学発ベンチャーに認定', '260407'),
+                ('2026年6月', 'サーキュラー木造温室™が Red Dot Design Award 2026 アーバンデザイン部門を受賞', '260602'), ('2026年6月', '施工部門「XENCE Engineering」を発足', '260616'),
+                ('2026年6月', '愛知県「革新事業創造事業費補助金」に採択', '260630'), ('2026年10月', '代官山T-SITEで木材トレーサビリティ（Product Passport）の試験運用を開始', '9LhNPbQ0')]
+        media = [('2025年12月', '日経クロステック', '251220'), ('2026年3月', '中京テレビ「アプデの森」', 'zNSZMKlS'), ('2026年7月', '日経木材新聞', '9VckaqYJ')]
+        h1, lead, h_hist, h_media = 'Company', 'XENCEは、建設業が使わずに手放してきた木材を、デジタル技術で建築に変える名古屋大学発のスタートアップです。設計・施工・指定管理をひと続きで担い、素材を社会の中で循環させます。', '沿革', 'メディア掲載'
+        team = '<p class="lead">チームは<a href="/#studio" style="text-decoration:underline;text-underline-offset:3px">トップページのPeople</a>をご覧ください。</p>'
+    else:
+        rows = [('Company name', 'XENCE Inc. (株式会社XENCE)'), ('Founded', '28 January 2022 (reorganised as a kabushiki kaisha on 1 January 2026)'), ('CEO', 'Kotaro Ozawa, Founder & CEO (first-class registered architect)'),
+                ('Head office', 'SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Aichi 460-0008, Japan'), ('Bases', 'Nagoya, Japan and Düsseldorf, Germany'), ('Capital', 'JPY 3 million'),
+                ('Business', 'Design, engineering, construction, operation and consulting for buildings and products: the Circular Timber Greenhouse™, building with unused and non-standard timber, facility management, LCA and whole-life carbon, Material Passport'),
+                ('Registration', 'XENCE First-class Architect Office, Aichi Prefecture registration (I-4) No. 14198'), ('Corporate number', '1180003023459'), ('Certification', 'Nagoya University Venture (April 2026)'),
+                ('Divisions', 'XENCE Architecture Studio (design) / XENCE Engineering (construction, since June 2026)'), ('Contact', '<a href="mailto:info@xencegroup.com">info@xencegroup.com</a> / <a href="' + pre + '/contact/">contact form</a>')]
+        hist = [('Jan 2022', 'XENCE founded (as a godo kaisha)', None), ('Mar 2023', 'Registered as a first-class architect office', None), ('Nov 2024', 'Excellence Award at the 36th Technical Research Presentation for a metal 3D-printed joint', '241120'),
+                ('Sep 2025', 'Circular Timber Greenhouse wins the Japan Wood Design Award 2025 and the Good Design Award 2025', '251001'), ('Jan 2026', 'Reorganised as XENCE Inc.; new corporate identity', '260101'),
+                ('Jan 2026', 'Dairei Kogyo Award, Hyper-Interdisciplinary Conference Aichi Forum 2026', '260116'), ('Apr 2026', 'Certified as a Nagoya University Venture', '260407'),
+                ('Jun 2026', 'Circular Timber Greenhouse™ wins the Red Dot Design Award 2026, Urban Design', '260602'), ('Jun 2026', 'XENCE Engineering, a construction division, launches', '260616'),
+                ('Jun 2026', 'Selected for an Aichi Prefecture innovation grant', '260630'), ('Oct 2026', 'Timber traceability (Product Passport) trial begins at Daikanyama T-SITE', '9LhNPbQ0')]
+        media = [('Dec 2025', 'Nikkei xTECH', '251220'), ('Mar 2026', 'Chukyo TV “Apude no Mori”', 'zNSZMKlS'), ('Jul 2026', 'Nikkei Mokuzai Shimbun', '9VckaqYJ')]
+        h1, lead, h_hist, h_media = 'Company', 'XENCE is a Nagoya University venture that turns the timber construction leaves behind into architecture with digital technology. We design, build and operate as one continuous service, so materials keep circulating.', 'History', 'Media'
+        team = '<p class="lead">Meet the team in <a href="/en/#studio" style="text-decoration:underline;text-underline-offset:3px">People</a> on the home page.</p>'
+    li = lambda d, t, i: f'<li><span class="en">{d}</span><span>' + (f'<a href="{nl(i)}">{t}</a>' if i and i in N else t) + '</span></li>'
+    body = (f'<main><p class="eyebrow en">ABOUT XENCE</p><h1 class="en">{h1}</h1><p class="lead">{lead}</p>'
+            '<dl class="dl">' + ''.join(f'<dt>{a}</dt><dd>{b}</dd>' for a, b in rows) + '</dl>'
+            f'<h2 class="sec">{h_hist}</h2><ul class="tl">' + ''.join(li(*x) for x in hist) + '</ul>'
+            f'<h2 class="sec">{h_media}</h2><ul class="tl">' + ''.join(li(*x) for x in media) + '</ul>' + team + '</main>')
+    return shell(L, 'XENCE | ' + ('会社概要' if L == 'ja' else 'Company'), body, '/company/')
+
+def projects_index(L):
+    pre = T[L]['pre']; D = _app_data(L)
+    cards = ''.join(f'<a href="{pre}/projects/{SLUG[p["id"]]}/"><img src="{p["img"]}" alt="{p["title"]}" loading="lazy"><span class="n en">{i+1:03d} · {p["type"]}</span><span class="t">{p["title"]}</span><span class="m">' + ' · '.join(x for x in [_clean(p['place']), p['year'], p['status']] if x) + '</span></a>' for i, p in enumerate(D['projects']))
+    lead = 'XENCEが設計・施工・運営に関わったプロジェクト。家具から温室、建築、素材、施設運営まで。' if L == 'ja' else 'Projects XENCE has designed, built or runs — from furniture and greenhouses to architecture, materials and facility operation.'
+    body = f'<main><p class="eyebrow en">PROJECT INDEX</p><h1 class="en">Projects</h1><p class="lead">{lead}</p><div class="pgrid">{cards}</div></main>'
+    return shell(L, 'XENCE | ' + ('プロジェクト' if L == 'ja' else 'Projects'), body, '/projects/')
+
+def project(L, i):
+    pre = T[L]['pre']; D = _app_data(L); P = D['projects']; p = P[i]; N = _news()
+    lab = ['種類', '素材', '技術', '場所', '年', '状況'] if L == 'ja' else ['Type', 'Material', 'Technology', 'Location', 'Year', 'Status']
+    vals = [p['type'], p['input'], p['tech'], p['place'], p['year'], p['status']]
+    meta = ''.join(f'<span>{a}</span><span>{_clean(v)}</span>' for a, v in zip(lab, vals) if _clean(v))
+    rel = [N[x] for x in REL.get(p['id'], []) if x in N]
+    relh = ('<h2 class="sec">' + ('関連ニュース' if L == 'ja' else 'Related news') + '</h2><div class="rel" style="margin-bottom:96px">' +
+            ''.join(f'<a href="{pre}/news/?id={n["id"]}"><span class="en" style="color:#A9A69F;margin-right:16px">{n["date"]}</span>{(n["en"] or n["ja"]) if L == "en" else n["ja"]}</a>' for n in rel) + '</div>') if rel else ''
+    prv, nxt = P[i - 1], P[(i + 1) % len(P)]
+    body = (f'<main><p class="eyebrow en"><a href="{pre}/projects/">PROJECT INDEX</a> · {i+1:03d}</p><h1 style="font-size:clamp(34px,4.6vw,68px);line-height:1.25">{p["title"]}</h1>'
+            f'<img class="phero" src="{p["img"]}" alt="{p["title"]}">'
+            f'<div class="pbody"><div><p>{_clean(p["desc"])}</p><a class="cta2" href="{pre}/contact/?type=build">' + ('このプロジェクトについて問い合わせる' if L == 'ja' else 'Ask us about this project') + '</a></div>'
+            f'<div class="meta">{meta}</div></div>{relh}'
+            f'<nav class="pn"><a href="{pre}/projects/{SLUG[prv["id"]]}/">← {prv["title"]}</a><a href="{pre}/projects/{SLUG[nxt["id"]]}/">{nxt["title"]} →</a></nav></main>')
+    return shell(L, 'XENCE | ' + p['title'], body, f'/projects/{SLUG[p["id"]]}/')
+
+def write_extra():
+    for L in ('ja', 'en'):
+        base = os.path.join(root, '' if L == 'ja' else 'en')
+        pages = [('company', company(L)), ('projects', projects_index(L))] + [(f'projects/{SLUG[p["id"]]}', project(L, i)) for i, p in enumerate(_app_data(L)['projects'])]
+        for rel, html_ in pages:
+            d = os.path.join(base, rel); os.makedirs(d, exist_ok=True)
+            open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(html_)
+            print(os.path.relpath(os.path.join(d, 'index.html'), root))
+write_extra()

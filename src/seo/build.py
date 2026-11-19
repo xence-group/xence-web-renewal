@@ -104,6 +104,17 @@ def head(lang, path, title, desc, extra_ld=None):
         '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False, separators=(',', ':')) + '</script>',
         '<!--/SEO:HEAD-->'])
 
+SLUG = {'p1': 'circular-timber-greenhouse', 'p2': 'higashiura-greenhouse', 'p3': 'daikanyama-tsite-lantern-bench', 'p4': 'nagoya-university-ctecs-furniture',
+        'p11': 'waam-3d-printed-bench', 'p12': 'woodnode', 'p7': 'large-diameter-timber-house', 'p8': 'wood-flour-resin-pellets',
+        'p21': 'memu-open-research-campus', 'p22': 'nagoya-university-idea-stoa', 'p23': 'monomiyusan'}
+CLEAN = lambda v: re.sub(r'\s*\[[^\]]*\]', '', v or '').strip()
+
+def page_ld(lang, path, name, desc, kind='WebPage', extra=None):
+    g = jsonld(lang)
+    pg = g['@graph'][-1]; pg.update({'@type': kind, '@id': SITE + path + '#page', 'url': SITE + path, 'name': name, 'description': desc})
+    if extra: g['@graph'].append(extra)
+    return g
+
 # ---------------------------------------------------------------- data from the app
 def app_data(lang):
     s = (ROOT / ('app.js' if lang == 'ja' else 'en/app.js')).read_text()
@@ -146,7 +157,7 @@ def static_home(lang):
             out.append(f'<h2>{"プロジェクト" if lang == "ja" else "Projects"}</h2><ul>')
             for p in D['projects']:
                 meta = ' / '.join(x for x in [p['type'], p['input'], p['tech'], p['place'], p['year'], p['status']] if x)
-                out.append(f'<li><h3>{E(p["title"])}</h3><p>{E(meta)}</p><p>{E(p["desc"])}</p></li>')
+                out.append(f'<li><h3><a href="{"/en" if lang == "en" else ""}/projects/{SLUG[p["id"]]}/">{E(p["title"])}</a></h3><p>{E(CLEAN(meta))}</p><p>{E(CLEAN(p["desc"]))}</p></li>')
             out.append('</ul>')
         elif sid == 'news':
             out.append('<h2>News</h2><ul>')
@@ -218,6 +229,8 @@ def inject(path, head_html, body_html, body_anchor):
     s = re.sub(r'\n?<!--SEO:HEAD-->.*?<!--/SEO:HEAD-->', '', s, flags=re.S)
     s = s.replace('</title>', '</title>\n' + head_html, 1)
     s = re.sub(r'<article id="prerender".*?</article>\n?', '', s, flags=re.S)
+    if not body_html:
+        p.write_text(s); return
     if body_anchor == 'app':
         s = re.sub(r'<div id="app">\s*</div>', lambda m: '<div id="app">\n' + body_html + '\n</div>', s, count=1)
     else:
@@ -231,6 +244,24 @@ def main():
         inject(f'{pre.strip("/") + "/" if pre else ""}news/index.html', head(lang, pre + '/news/', 'XENCE | News', nd), static_news(lang), 'body')
         cd = 'XENCEへのお問い合わせ。温室・宿・住宅・什器の設計施工、未利用材の活用、技術連携、投資・事業提携のご相談。' if lang == 'ja' else 'Contact XENCE about design & build, putting unused timber to work, technology partnerships, or investment.'
         inject(f'{pre.strip("/") + "/" if pre else ""}contact/index.html', head(lang, pre + '/contact/', 'XENCE | Contact', cd), static_contact(lang), 'body')
+        # company & projects (already static HTML: head metadata only)
+        cdesc = ('株式会社XENCE（XENCE Inc.）の会社概要。設立2022年、名古屋大学発ベンチャー、一級建築士事務所。本社は名古屋、拠点はデュッセルドルフ。沿革・受賞・メディア掲載。' if lang == 'ja'
+                 else 'Company profile of XENCE Inc. (株式会社XENCE): founded 2022, Nagoya University venture, licensed architecture office, Nagoya and Düsseldorf. History, awards and media.')
+        inject(f'{pre.strip("/") + "/" if pre else ""}company/index.html', head(lang, pre + '/company/', 'XENCE | ' + ('会社概要' if lang == 'ja' else 'Company'), cdesc,
+               page_ld(lang, pre + '/company/', 'XENCE | Company', cdesc, 'AboutPage')), '', 'body')
+        D = app_data(lang)
+        pdesc = ('XENCEのプロジェクト一覧。サーキュラー木造温室™、代官山T-SITE、大径木の家、WoodNode、MEMUなど。' if lang == 'ja' else 'XENCE projects: Circular Timber Greenhouse™, Daikanyama T-SITE, a house of large-diameter timber, WoodNode, MEMU and more.')
+        items = [{'@type': 'ListItem', 'position': i + 1, 'url': SITE + pre + '/projects/' + SLUG[p['id']] + '/', 'name': p['title']} for i, p in enumerate(D['projects'])]
+        inject(f'{pre.strip("/") + "/" if pre else ""}projects/index.html', head(lang, pre + '/projects/', 'XENCE | Projects', pdesc,
+               page_ld(lang, pre + '/projects/', 'XENCE | Projects', pdesc, 'CollectionPage', {'@type': 'ItemList', 'itemListElement': items})), '', 'body')
+        for p in D['projects']:
+            path = pre + '/projects/' + SLUG[p['id']] + '/'
+            d = CLEAN(p['desc'])
+            work = {'@type': 'CreativeWork', '@id': SITE + path + '#work', 'name': p['title'], 'description': d, 'image': SITE + p['img'],
+                    'creator': {'@id': SITE + '/#org'}, 'dateCreated': p['year'], 'locationCreated': CLEAN(p['place']) or None,
+                    'keywords': ', '.join(x for x in [p['type'], CLEAN(p['input']), p['tech']] if x), 'inLanguage': lang}
+            work = {k: v for k, v in work.items() if v}
+            inject(path.lstrip('/') + 'index.html', head(lang, path, 'XENCE | ' + p['title'], (d or p['title'])[:160], page_ld(lang, path, p['title'], d, 'WebPage', work)), '', 'body')
     write_txt()
 
 # ---------------------------------------------------------------- txt files
@@ -247,6 +278,8 @@ def write_txt():
         + ''.join(f'User-agent: {b}\n' for b in AI_BOTS) + 'Allow: /\nDisallow: /assets/archive/\n\n'
         'Sitemap: https://xencegroup.com/sitemap.xml\n')
     urls = [('/', '/en/', '1.0', 'weekly'), ('/news/', '/en/news/', '0.8', 'weekly'), ('/contact/', '/en/contact/', '0.6', 'monthly')]
+    urls += [('/company/', '/en/company/', '0.9', 'monthly'), ('/projects/', '/en/projects/', '0.8', 'monthly')]
+    urls += [(f'/projects/{v}/', f'/en/projects/{v}/', '0.7', 'monthly') for v in SLUG.values()]
     urls += [(f'/news/?id={n["id"]}', f'/en/news/?id={n["id"]}', '0.6', 'yearly') for n in fb]
     x = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
     for ja, en, pr, cf in urls:
@@ -274,6 +307,8 @@ Who XENCE works with: owners who want to build greenhouses, stays, houses or fix
 ## Key pages
 - [Home (Japanese)](https://xencegroup.com/): mission, model, technology, projects, impact, team
 - [Home (English)](https://xencegroup.com/en/)
+- [Company profile](https://xencegroup.com/company/) ([English](https://xencegroup.com/en/company/)): facts, history, awards, media
+- [Projects](https://xencegroup.com/projects/) ([English](https://xencegroup.com/en/projects/)): one page per project
 - [News](https://xencegroup.com/news/): press releases and media coverage
 - [Contact](https://xencegroup.com/contact/): build / resources / technology partners / investment
 - [Full text for language models](https://xencegroup.com/llms-full.txt)
@@ -303,7 +338,7 @@ Who XENCE works with: owners who want to build greenhouses, stays, houses or fix
     full += [f'- {i["txt"]}' for i in sec(oj, 'modules') if i['t'] in ('H2', 'P', 'H3')]
     full.append('\n## Projects / プロジェクト\n')
     for a, b in zip(Dj['projects'], De['projects']):
-        full.append(f'### {b["title"]} / {a["title"]}\n- {b["type"]} · {b["place"]} · {b["year"]} · {b["status"]}\n- EN: {b["desc"]}\n- JA: {a["desc"]}\n')
+        full.append(f'### {b["title"]} / {a["title"]}\n- {b["type"]} · {CLEAN(b["place"])} · {b["year"]} · {b["status"]}\n- URL: https://xencegroup.com/projects/{SLUG[a["id"]]}/\n- EN: {CLEAN(b["desc"])}\n- JA: {CLEAN(a["desc"])}\n')
     full.append('## Impact (with calculation basis on the website) / 数字で見るXENCE\n')
     full += [f'- {t}' for t in impact]
     full.append('\n## Why XENCE lasts / 価値を出し続けられる理由\n')

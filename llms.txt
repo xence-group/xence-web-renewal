@@ -9,6 +9,8 @@ Who XENCE works with: owners who want to build greenhouses, stays, houses or fix
 ## Key pages
 - [Home (Japanese)](https://xencegroup.com/): mission, model, technology, projects, impact, team
 - [Home (English)](https://xencegroup.com/en/)
+- [Company profile](https://xencegroup.com/company/) ([English](https://xencegroup.com/en/company/)): facts, history, awards, media
+- [Projects](https://xencegroup.com/projects/) ([English](https://xencegroup.com/en/projects/)): one page per project
 - [News](https://xencegroup.com/news/): press releases and media coverage
 - [Contact](https://xencegroup.com/contact/): build / resources / technology partners / investment
 - [Full text for language models](https://xencegroup.com/llms-full.txt)

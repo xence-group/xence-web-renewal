@@ -55,7 +55,8 @@ const flt = this.state.filter;
 const visible = D.projects.filter((p) => flt === 'all' || p.cat === flt);
 const rowSel = visible.some((p) => p.id === this.state.row) ? this.state.row : (visible[0] ? visible[0].id : '');
 const stc = (s) => /完成|納品|Completed|Delivered|610/.test(s) ? '#FFFFFF' : (/運用|Live|完了/.test(s) ? accent : '#A9A69F');
-const rows = visible.map((p, i) => { const on = p.id === rowSel; return { ...p, no: String(D.projects.indexOf(p) + 1).padStart(3, '0'), on, hasImg: !!p.img, noImg: !p.img, numColor: on ? accent : '#A9A69F', stColor: stc(p.status), pad: on ? '16px' : '0px', bg: on ? '#1a1a19' : 'transparent', pick: () => this.setState({ row: p.id }) }; });
+const SLUG = {"p1": "circular-timber-greenhouse", "p2": "higashiura-greenhouse", "p3": "daikanyama-tsite-lantern-bench", "p4": "nagoya-university-ctecs-furniture", "p11": "waam-3d-printed-bench", "p12": "woodnode", "p7": "large-diameter-timber-house", "p8": "wood-flour-resin-pellets", "p21": "memu-open-research-campus", "p22": "nagoya-university-idea-stoa", "p23": "monomiyusan"};
+const rows = visible.map((p, i) => { const on = p.id === rowSel; return { ...p, href: '/en/projects/' + (SLUG[p.id] || '') + '/', no: String(D.projects.indexOf(p) + 1).padStart(3, '0'), on, hasImg: !!p.img, noImg: !p.img, numColor: on ? accent : '#A9A69F', stColor: stc(p.status), pad: on ? '16px' : '0px', bg: on ? '#1a1a19' : 'transparent', pick: () => this.setState({ row: p.id }) }; });
 const filters = D.filters.map(([k, label]) => ({ label, n: k === 'all' ? D.projects.length : D.projects.filter((p) => p.cat === k).length, on: flt === k, ...chip(flt === k, false), pick: () => this.setState({ filter: k }) }));
 return {
 heroSrc: this.state.heroSrc || undefined, heroPoster: this.state.heroPoster || undefined,
@@ -305,6 +306,7 @@ ${r.noImg ? html`<div style="height: 320px; background: #696660; display: flex; 
 <h3 style="margin: 0 0 12px; font-size: 23px">${r.title}</h3>
 <p style="margin: 0 0 20px; font-size: 14px; line-height: 1.85; color: #D8D6D1">${r.desc}</p>
 <div style="display: grid; grid-template-columns: 96px 1fr; row-gap: 10px; font-size: 13px; border-top: 1px solid #333; padding-top: 16px"><span style="color: #A9A69F">Type</span><span>${r.type}</span><span style="color: #A9A69F">Input</span><span>${r.input}</span><span style="color: #A9A69F">Technology</span><span>${r.tech}</span><span style="color: #A9A69F">Location</span><span>${r.place}</span><span style="color: #A9A69F">Year</span><span>${r.year}</span></div>
+<a href="${r.href}" class="en" style="display: inline-block; margin-top: 24px; font-size: 14px; font-weight: 700; color: #fff; border-bottom: 1px solid #fff; padding-bottom: 4px">View project →</a>
 </div>
 ` : null}
 `)}
@@ -345,7 +347,7 @@ ${r.noImg ? html`<div style="height: 320px; background: #696660; display: flex; 
 <footer style="border-top: 1px solid #222; padding: 64px 4vw; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; font-size: 13px; color: #A9A69F; line-height: 1.9">
 <div><p class="en" style="margin: 0 0 12px; color: #fff; font-weight: 800; font-size: 20px">XENCE</p>XENCE Inc. ／ XENCE First-class Architect Office<br />Registered in Aichi Prefecture (I-4) No. 14198</div>
 <div>Nagoya — SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Japan</div>
-<div class="en">Instagram ／ note ／ LinkedIn<br />© XENCE Inc.</div>
+<div><a href="/en/company/" style="color: #A9A69F">Company</a><br /><a href="/en/projects/" style="color: #A9A69F">Projects</a><br /><a href="/en/news/" style="color: #A9A69F">News</a><br /><a href="/en/contact/" style="color: #A9A69F">Contact</a></div><div class="en"><a href="https://www.instagram.com/xence_architecture_studio/" target="_blank" rel="noopener" style="color: #A9A69F">Instagram ↗</a><br /><a href="https://www.instagram.com/xence.engineering/" target="_blank" rel="noopener" style="color: #A9A69F">Instagram — XENCE Engineering ↗</a><br /><a href="mailto:info@xencegroup.com" style="color: #A9A69F">info@xencegroup.com</a><br />© XENCE Inc.</div>
 </footer>
 </div>`; };
 { const pre = document.getElementById('prerender'); if (pre) pre.remove(); }

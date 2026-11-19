@@ -8,13 +8,10 @@
 /products/*  https://archive.xencegroup.com/products/:splat  302
 /en/products  https://archive.xencegroup.com/en/products  302
 /en/products/*  https://archive.xencegroup.com/en/products/:splat  302
-/company  https://archive.xencegroup.com/company  302
-/en/company  https://archive.xencegroup.com/en/company  302
 /privacy-policy  https://archive.xencegroup.com/privacy-policy  302
 /en/privacy-policy  https://archive.xencegroup.com/en/privacy-policy  302
 /greenhouse  https://archive.xencegroup.com/greenhouse  302
 /llms  /llms.txt  301
 /thanks  /contact/thanks/  301
-/projects  /#projects  301
 /people  /#studio  301
 /en/people  /en/#studio  301

@@ -81,56 +81,67 @@ XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築ス�
 
 ### Circular Timber Greenhouse™ / サーキュラー木造温室™
 - Greenhouse · Mie · 2025 · Completed
+- URL: https://xencegroup.com/projects/circular-timber-greenhouse/
 - EN: A timber greenhouse whose structure is built from sawmill offcuts. Fully demountable; units link together to scale. Red Dot Design Award 2026.
 - JA: 製材所の端材を構造に使った木造温室。全部材を分解・再組立でき、連棟で面積を広げられる。Red Dot Design Award 2026 受賞。
 
 ### Self-build greenhouse, Higashiura (2 units, 130 m²) / 東浦町 セルフビルド温室（2連棟・130㎡）
 - Greenhouse · Higashiura, Aichi · 2026 · Under construction
+- URL: https://xencegroup.com/projects/higashiura-greenhouse/
 - EN: A three-zone greenhouse — forestry seedlings, strawberries, tomatoes — raised with numbered parts by the people who will farm it.
 - JA: 林業用苗木・イチゴ・トマトの3ゾーンをもつ温室を、番号付きの部材で、使う人たち自身が組み上げる。
 
 ### Lantern stand ⇄ bench, Daikanyama T-SITE / 代官山T-SITE 提灯スタンド ⇄ ベンチ
 - Furniture · Tokyo · 2026 · Completed
+- URL: https://xencegroup.com/projects/daikanyama-tsite-lantern-bench/
 - EN: Lantern stands for a summer festival, reassembled into benches once it ended. No steel hardware — and a Material Passport for every part.
 - JA: 夏祭りの提灯スタンドを、祭りの後にベンチへ組み替えた。金物を使わない木製ジョイントで、全部材にMaterial Passportを発行。
 
 ### New-material furniture, Nagoya University C-TECs / 名古屋大学 C-TECs 新素材什器
 - Furniture · Nagoya · 2026 · Delivered
-- EN: Furniture for the exchange space at Nagoya University’s Institute of Innovation for Future Society. [Add material and spec]
-- JA: 名古屋大学 未来社会創造機構の交流スペースのために製作した什器。[素材・仕様を記入]
+- URL: https://xencegroup.com/projects/nagoya-university-ctecs-furniture/
+- EN: Furniture for the exchange space at Nagoya University’s Institute of Innovation for Future Society.
+- JA: 名古屋大学 未来社会創造機構の交流スペースのために製作した什器。
 
 ### 3D-printed bench / 3Dプリントベンチ
 - Furniture · Aichi · 2025 · Completed
+- URL: https://xencegroup.com/projects/waam-3d-printed-bench/
 - EN: A bench re-sliced for WAAM and printed in one continuous piece of steel — lattice seat and ribbed legs included.
 - JA: 形状を積層用に自動変換し、WAAMで一体造形したベンチ。座面の格子と脚のリブまで、ひと続きの金属で積み上げている。
 
 ### WoodNode — a joint that turns offcuts into architecture / 端材を建築にするジョイント（WoodNode）
-- Architecture · [Location] · 2024 · Completed
+- Architecture ·  · 2024 · Completed
+- URL: https://xencegroup.com/projects/woodnode/
 - EN: A structural joint that lets sawmill offcuts carry loads. Each node is metal 3D-printed to fit its pieces and topology-optimised for strength and low weight. With Takenaka Corporation, Shimoda Flange and Noji Lumber. Excellence Award, Urban Infrastructure Technology Promotion Conference.
 - JA: 製材所で出る耳材を構造に使うための建築ジョイント。材ごとに違う形に合わせて金属3Dプリントで造形し、トポロジー最適化で強度と軽さを両立した。竹中工務店・シモダフランジ・野地木材工業と協働。アーバンインフラ・テクノロジー推進会議 優秀賞。
 
 ### House of large-diameter logs / 大径木の家
 - Architecture · Tokyo · 2026 · Under construction
+- URL: https://xencegroup.com/projects/large-diameter-timber-house/
 - EN: A house that puts hard-to-sell large-diameter logs to work as built-up structural beams.
 - JA: 流通しにくい大径木を、組立梁として構造に使う住宅。
 
 ### Wood-flour resin pellets (with Takenaka and Kurabo) / 木粉樹脂ペレット（竹中工務店・倉敷紡績と共同開発）
 - Material & data · Adopted in Nihonbashi, Tokyo · 2025 · 610 kg delivered
+- URL: https://xencegroup.com/projects/wood-flour-resin-pellets/
 - EN: Engineered-wood offcuts milled to flour and compounded with biodegradable resin or recycled PP into a mouldable material.
 - JA: エンジニアリングウッドの端材を木粉にし、生分解性樹脂や再生PPと混ぜて成形材料にした。
 
 ### MEMU Open Research Campus / MEMU Open Research Campus
 - Facility management · Taiki, Hokkaido · 2022 · Operating
+- URL: https://xencegroup.com/projects/memu-open-research-campus/
 - EN: Facility management for a research campus in Taiki, Hokkaido — keeping existing buildings in use and adapting them as needs change.
 - JA: 北海道大樹町の研究キャンパスで、施設のファシリティマネジメントを担う。既存の建物を活かしながら、使い方に合わせて手を入れ続けている。
 
 ### Idea Stoa, Nagoya University / 名古屋大学 Idea Stoa
 - Facility management · Nagoya · 2023 · Operating
+- URL: https://xencegroup.com/projects/nagoya-university-idea-stoa/
 - EN: Nagoya University’s space for making and meeting, equipped with laser cutters and other machines. XENCE manages the facility.
 - JA: レーザーカッターなどの工作機械を備えた、名古屋大学のものづくり・交流の拠点。施設のファシリティマネジメントを担う。
 
 ### Monomiyusan (Yuto) / 物見遊山（遊棟）
 - Facility management · Shirotori, Gujo, Gifu · 2026 · Operating
+- URL: https://xencegroup.com/projects/monomiyusan/
 - EN: A guesthouse in an old farmhouse that introduces travellers to everyday life and play in Shirotori, and hands it on. Run as a place where locals and visitors meet.
 - JA: 白鳥の暮らしや遊びを旅人に紹介し、受け継いでいく古民家の宿。地域の人と旅人がつながる拠点として運営している。
 
