@@ -64,6 +64,8 @@ article h1{font-size:clamp(28px,3.4vw,46px);line-height:1.45;font-weight:900;let
 article img{width:100%;height:auto;display:block;margin:0 0 48px;background:#111}
 article .body{font-size:16.5px;line-height:2.1;color:#E8E6E1;border-top:1px solid #333;padding-top:40px}
 article .body p{margin:0 0 1.6em}
+article .body h2{font-size:22px;line-height:1.6;font-weight:900;margin:2.4em 0 1em;color:#fff}
+article .body .lead-in{font-size:18px;font-weight:700;color:#fff;margin-bottom:2em}
 article .body a{color:#FF5528;word-break:break-all}
 .back{display:inline-block;margin-top:56px;font-size:14px;color:#A9A69F}
 footer{border-top:1px solid #222;padding:64px 4vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;font-size:13px;color:#A9A69F;line-height:1.9}
@@ -103,7 +105,12 @@ footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
 import { loadNews, newsHref, isExternal } from '/lib/news.js';
 const L = 'ja', PRE = '';
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
-const fmtBody = (s) => esc(s.trim()).split(/\n\s*\n/).map((p) => '<p>' + p.replace(/\n/g, '<br>').replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>') + '</p>').join('');
+const link = (t) => t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+const fmtBody = (s) => esc(s.trim()).split(/\n\s*\n/).map((p) => {
+  if (p.startsWith('## ')) return '<h2>' + p.slice(3) + '</h2>';
+  if (p.startsWith('&gt; ')) return '<p class="lead-in">' + link(p.slice(5).replace(/\n/g, '<br>')) + '</p>';
+  return '<p>' + link(p.replace(/\n/g, '<br>')) + '</p>';
+}).join('');
 const id = new URLSearchParams(location.search).get('id');
 const root = document.getElementById('news-root');
 loadNews().then((list) => {

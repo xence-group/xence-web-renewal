@@ -1,0 +1,2 @@
+/news/:id  /news/?id=:id  301
+/en/news/:id  /en/news/?id=:id  301
