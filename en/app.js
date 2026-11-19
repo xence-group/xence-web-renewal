@@ -348,4 +348,5 @@ ${r.noImg ? html`<div style="height: 320px; background: #696660; display: flex; 
 <div class="en">Instagram ／ note ／ LinkedIn<br />© XENCE Inc.</div>
 </footer>
 </div>`; };
+{ const pre = document.getElementById('prerender'); if (pre) pre.remove(); }
 render(h(App, {"accent": "#FF5528", "autoplayTech": true}), document.getElementById('app'));

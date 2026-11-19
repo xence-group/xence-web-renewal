@@ -21,3 +21,9 @@ Live at xencegroup.com (Cloudflare Pages). Pages only on the old STUDIO site are
 - **Hero video** v3 (`assets/hero_d_v3.mp4` 16:9, `assets/hero_m_v3.mp4` 9:16, 40 s): irregular timber allocated to a reference grid → structure → light → heat → architecture → WAAM node close-up → cassettes (2.4 × 5.9 m) relocated. Source is `src/hero/scene.html` (three.js) rendered frame by frame with `src/hero/render.mjs` (Playwright + ffmpeg). Earlier versions are kept in `assets/archive/`.
 - **People** is read from the same Google Sheet, tab `people` (掲載 checkbox / 順番 / 名前 / 役職 / 写真). Uncheck 掲載 to hide someone, add a row to add someone. Fallback list in `lib/people.js`.
 - **Configurator** is now 3D: `lib/ghmodel.js` (parametric member list, same model as the greenhouse LP) and `lib/gh3d.js` (three.js viewer, loaded only when the section comes near the viewport; `vendor/three.module.min.js` r170).
+
+## Search & AI discoverability (2026-11-19)
+
+- `python3 src/seo/build.py` regenerates, without any visual change: `<head>` meta (description, canonical, hreflang, OGP) and JSON-LD (Organization / Person / Product / WebSite / WebPage); a static text copy of each page inside `<article id="prerender">` (hidden by CSS once JS runs and removed by `app.js` before Preact renders, so crawlers that do not run JS can read the site); `robots.txt` (AI crawlers allowed, Content-Signal), `sitemap.xml`, `llms.txt`, `llms-full.txt`.
+- When visible copy changes, refresh the outlines first: run a local server on :8790 and `node src/seo/outline.mjs`, copy `/home/claude/outline_*.json` to `src/seo/`, then run `build.py`.
+- IndexNow key file: `<key>.txt` at the root (key in `src/seo/indexnow_key`).

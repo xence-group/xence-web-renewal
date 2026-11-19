@@ -13,7 +13,7 @@
 /privacy-policy  https://archive.xencegroup.com/privacy-policy  302
 /en/privacy-policy  https://archive.xencegroup.com/en/privacy-policy  302
 /greenhouse  https://archive.xencegroup.com/greenhouse  302
-/llms  https://archive.xencegroup.com/llms  302
+/llms  /llms.txt  301
 /thanks  /contact/thanks/  301
 /projects  /#projects  301
 /people  /#studio  301

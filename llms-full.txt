@@ -1,0 +1,549 @@
+# XENCE — full profile
+
+Last updated: 2026-11-19. Source: https://xencegroup.com/ (Japanese) and https://xencegroup.com/en/ (English).
+
+## Summary (English)
+
+XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya and Düsseldorf.
+
+## 概要（日本語）
+
+XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋とデュッセルドルフが拠点。
+
+## Mission
+
+「建てて終わり」を、終わらせる。 — Waste in. Assets out. 端材、大径木、解体材、木粉。建設が使えずに手放してきた規格外の資源を、XENCEは建築に変えます。設計・施工・運用をひとつのデジタルデータでつなぎ、建てた後も記録し、運用し、次の建築へ循環させます。
+
+## Business model / 事業モデル
+
+- OUR MODEL
+- オープンインテグラルな建築をつくる、 建設業で最良のプラットフォーム。
+- XENCEは設計・施工・指定管理を、一件ずつの請負としてではなく、ひと続きの仕事として担います。森や製材所、解体現場から出る素材を社会の中でつなぎ、建物にし、使われ方を記録し、役目を終えたら次の建築へ渡す。仕様を開いて誰とでも組めるオープンさと、素材から運用までを一貫して担う統合力。その両方で、建設業をサーキュラーエコノミーへ変えていきます。
+- 設計・施工・指定管理を途切れさせず、そこで得たデータを技術開発に戻す。回るほど素材のつながりが広がり、次の建築が速く確かになる。
+- DESIGN
+- 設計
+- 一級建築士事務所として、温室・住宅・施設を設計する。
+- BUILD
+- 施工
+- 規格外の材を自社で加工し、組み上げる。
+- OPERATE
+- 指定管理
+- 建てた施設を運営・管理し、データを残す。
+- R&D
+- 技術開発
+- 自動設計・構造解析・Passportを自社で開発する。
+
+## Technology / 技術
+
+### 01 Design engine / 自動設計エンジン
+- EN: Feed in what’s actually available — lengths, sections, quantities — and the engine generates the structure and every cut. One rule set designs greenhouses, furniture and pavilions.
+- JA: 手元の材の寸法と数から、構造と部材の割付を自動で生成する。温室・家具・パビリオンを同じルールで設計できる。
+
+### 02 Structural analysis / 3D構造解析
+- EN: Snow and wind loads are run across the full 3D frame, checking deflection and utilisation member by member — the evidence that non-standard material can carry real loads.
+- JA: 積雪と風の荷重を3Dフレーム全体にかけ、変形と部材ごとの検定比を確かめる。規格外の材でも構造に使える根拠をつくる。
+
+### 03 Digital fabrication / デジタル加工と接合
+- EN: We scan irregular stock and shape each member around its curve, grain and waney edge instead of cutting them away. Timber joints lock it together — no steel hardware, fully demountable.
+- JA: 不整形な材をスキャンし、曲がりや木目、耳をそのまま活かす形で部材と継手を割り付ける。金物に頼らない木組みで組み上げ、分解もできる。
+
+### 04 3D printing / 3Dプリント
+- EN: Free-form geometry is stood up, checked for overhangs and automatically reshaped to be printable before slicing. Shown here in steel (WAAM); the same pipeline runs resin and wood composite.
+- JA: 自由な形を、積層できる向きに起こし、張り出しの角度を検出して積層できる形状へ自動で調整してから造形する。金属（WAAM）のほか、樹脂や木粉複合材にも同じ流れで対応する。
+
+### 05 Material Passport / Material Passport
+- EN: Felling, haulage, sawing, drying, fabrication, building: one QR code records the history, the carbon stored in the wood and the GHG emitted at each step, and passes all three to the piece’s next use. Live since October 2026.
+- JA: 伐採・運搬・製材・乾燥・加工・建物までの来歴とともに、木材の炭素固定量と各工程のGHG排出量をひとつのQRコードに記録し、次の利用へ受け継ぐ。2026年10月に運用開始。
+
+### 06 LCA & operating data / LCA・運用データ
+- EN: We calculate whole-life carbon with J-CAT and One Click LCA, then pair it with operating data to evidence a building’s value as an asset.
+- JA: 建物の生涯CO₂をJ-CATやOne Click LCAで算定し、運用データとあわせて資産価値の根拠にする。
+
+## Modular system / モジュール
+
+- MODULAR SYSTEM
+- ジョイントから建築まで、 ひとつのモジュールで拡張する。
+- XENCEの設計単位は、建物ではなくジョイントです。不揃いな材をつなぐ同じ接合ルールを、家具・プロダクト、温室、建築へとデジタルに組み上げていきます。大きさが変わっても、設計・加工・記録のデータは一本でつながっています。
+- 01 — JOINT · 0.1 m
+- ジョイント
+- 製材所の耳材を、金属3Dプリントのジョイントでつなぐ。トポロジー最適化で材ごとに形を変え、ボルトを外せば分解して再利用できる。すべての基本単位。
+- 02 — PRODUCT · 1 m
+- 家具・プロダクト
+- 同じ耳材が、別のモジュールで什器に変わる。祭りの提灯スタンドが、そのままベンチに組み替わる。
+- 03 — GREENHOUSE · 10 m
+- 温室
+- モジュールを連ねて温室に。80㎡から数haまで、設計ルールを変えずに広げる。
+- 04 — ARCHITECTURE · 30 m
+- 建築
+- 住宅も同じジョイントのルールとデータで設計する。柱・梁の接合まで一本のデータでつながり、分解すれば次の建築の材料になる。
+
+## Projects / プロジェクト
+
+### Circular Timber Greenhouse™ / サーキュラー木造温室™
+- Greenhouse · Mie · 2025 · Completed
+- EN: A timber greenhouse whose structure is built from sawmill offcuts. Fully demountable; units link together to scale. Red Dot Design Award 2026.
+- JA: 製材所の端材を構造に使った木造温室。全部材を分解・再組立でき、連棟で面積を広げられる。Red Dot Design Award 2026 受賞。
+
+### Self-build greenhouse, Higashiura (2 units, 130 m²) / 東浦町 セルフビルド温室（2連棟・130㎡）
+- Greenhouse · Higashiura, Aichi · 2026 · Under construction
+- EN: A three-zone greenhouse — forestry seedlings, strawberries, tomatoes — raised with numbered parts by the people who will farm it.
+- JA: 林業用苗木・イチゴ・トマトの3ゾーンをもつ温室を、番号付きの部材で、使う人たち自身が組み上げる。
+
+### Lantern stand ⇄ bench, Daikanyama T-SITE / 代官山T-SITE 提灯スタンド ⇄ ベンチ
+- Furniture · Tokyo · 2026 · Completed
+- EN: Lantern stands for a summer festival, reassembled into benches once it ended. No steel hardware — and a Material Passport for every part.
+- JA: 夏祭りの提灯スタンドを、祭りの後にベンチへ組み替えた。金物を使わない木製ジョイントで、全部材にMaterial Passportを発行。
+
+### New-material furniture, Nagoya University C-TECs / 名古屋大学 C-TECs 新素材什器
+- Furniture · Nagoya · 2026 · Delivered
+- EN: Furniture for the exchange space at Nagoya University’s Institute of Innovation for Future Society. [Add material and spec]
+- JA: 名古屋大学 未来社会創造機構の交流スペースのために製作した什器。[素材・仕様を記入]
+
+### 3D-printed bench / 3Dプリントベンチ
+- Furniture · Aichi · 2025 · Completed
+- EN: A bench re-sliced for WAAM and printed in one continuous piece of steel — lattice seat and ribbed legs included.
+- JA: 形状を積層用に自動変換し、WAAMで一体造形したベンチ。座面の格子と脚のリブまで、ひと続きの金属で積み上げている。
+
+### WoodNode — a joint that turns offcuts into architecture / 端材を建築にするジョイント（WoodNode）
+- Architecture · [Location] · 2024 · Completed
+- EN: A structural joint that lets sawmill offcuts carry loads. Each node is metal 3D-printed to fit its pieces and topology-optimised for strength and low weight. With Takenaka Corporation, Shimoda Flange and Noji Lumber. Excellence Award, Urban Infrastructure Technology Promotion Conference.
+- JA: 製材所で出る耳材を構造に使うための建築ジョイント。材ごとに違う形に合わせて金属3Dプリントで造形し、トポロジー最適化で強度と軽さを両立した。竹中工務店・シモダフランジ・野地木材工業と協働。アーバンインフラ・テクノロジー推進会議 優秀賞。
+
+### House of large-diameter logs / 大径木の家
+- Architecture · Tokyo · 2026 · Under construction
+- EN: A house that puts hard-to-sell large-diameter logs to work as built-up structural beams.
+- JA: 流通しにくい大径木を、組立梁として構造に使う住宅。
+
+### Wood-flour resin pellets (with Takenaka and Kurabo) / 木粉樹脂ペレット（竹中工務店・倉敷紡績と共同開発）
+- Material & data · Adopted in Nihonbashi, Tokyo · 2025 · 610 kg delivered
+- EN: Engineered-wood offcuts milled to flour and compounded with biodegradable resin or recycled PP into a mouldable material.
+- JA: エンジニアリングウッドの端材を木粉にし、生分解性樹脂や再生PPと混ぜて成形材料にした。
+
+### MEMU Open Research Campus / MEMU Open Research Campus
+- Facility management · Taiki, Hokkaido · 2022 · Operating
+- EN: Facility management for a research campus in Taiki, Hokkaido — keeping existing buildings in use and adapting them as needs change.
+- JA: 北海道大樹町の研究キャンパスで、施設のファシリティマネジメントを担う。既存の建物を活かしながら、使い方に合わせて手を入れ続けている。
+
+### Idea Stoa, Nagoya University / 名古屋大学 Idea Stoa
+- Facility management · Nagoya · 2023 · Operating
+- EN: Nagoya University’s space for making and meeting, equipped with laser cutters and other machines. XENCE manages the facility.
+- JA: レーザーカッターなどの工作機械を備えた、名古屋大学のものづくり・交流の拠点。施設のファシリティマネジメントを担う。
+
+### Monomiyusan (Yuto) / 物見遊山（遊棟）
+- Facility management · Shirotori, Gujo, Gifu · 2026 · Operating
+- EN: A guesthouse in an old farmhouse that introduces travellers to everyday life and play in Shirotori, and hands it on. Run as a place where locals and visitors meet.
+- JA: 白鳥の暮らしや遊びを旅人に紹介し、受け継いでいく古民家の宿。地域の人と旅人がつながる拠点として運営している。
+
+## Impact (with calculation basis on the website) / 数字で見るXENCE
+
+- 実績値
+- 40→95%
+- 原木1m³あたりの木材利用率。一般的な製材と、XENCEの設計・加工プロセスの比較。
+- 算定値
+- 840 t
+- 木造温室1haあたりの炭素固定量（CO₂換算、躯体・建設時）。
+- 算定値
+- 99.8 t
+- XENCEがLCA算定した建物（木材126.9 m³）の炭素貯蔵量。スギ立木 約198本分。
+- 算定値
+- −19%
+- 同じ建物のホールライフカーボン104.6 kg-CO₂e/㎡。事務所の平均値129 kgとの比較。
+- 実績値
+- 610 kg
+- 端材・木粉から製造し、納入した木粉樹脂ペレット。
+- 目標値
+- 11.5万 t
+- 製材所200社・年20万m³を建築に流したときの年間炭素貯蔵量（CO₂換算）。
+
+## Why XENCE lasts / 価値を出し続けられる理由
+
+01ライフサイクル運営
+### 設計データが、そのまま運用と開示の基盤になるから
+XENCEは設計の段階から、部材ごとのLCCO₂と建物を構成する3Dデータを一つのモデルにまとめる。このモデルがファシリティマネジメントと非財務情報開示の基盤になり、竣工後の運用・保全・CO₂報告まで同じデータで支援できる。素材のデータ、接合部の製造データ（シモダフランジ）、施設の運用データ（MEMU）、LCAが一つにつながることで、XENCEは建てて終わる会社ではなく、建築のデータを回し続けるプラットフォームになる。
+02パラメトリックデザイン
+### 一度つくった設計ルールが、何度でも価値を生むから
+サーキュラー木造温室™は、接合部と部材の割付をパラメトリックなルールとして持つモジュール商品である。敷地や規模の条件を入れれば、構造・数量・見積・加工データまでが自動で出るため、案件ごとに設計を一からつくり直す必要がない。件数が増えるほど1件あたりの設計・積算の工数は下がり、利益率が上がりやすい。設計ルールそのものが資産として積み上がり、より速く、より多くの場所に届けられる。
+03デジタルファブリケーション
+### あらゆる地域のものづくりを加速させられるから
+全国の製材所には、製材機やNCなどの加工機がすでにある。XENCEは不揃いな材を前提にした設計データを、各地の機械に合わせて出力する。既存の設備がそのまま付加価値の高い部材をつくる製造ツールに変わり、工場を新設せずに地域ごとのものづくりを立ち上げられる。
+04施設園芸マーケット
+### 受け止める市場が大きいから
+国内の施設園芸は37,000 haある。その1%（370 ha）を木造温室に置き換えるだけで、㎡4万円で約1,480億円の需要になる。木造温室は、植物工場やアクアポニクスなど多様化する農業建築を受け止める。
+05LCA・マテリアルパスポート
+### 社会制度が、数値証明された環境建築を求め始めたから
+改正建築物省エネ法（2026年7月公布）にもとづき、国は2028年度に建築物のLCA評価制度を始める方針で、5,000㎡以上の事務所には届出義務を予定している。EUでもデジタルプロダクトパスポートの導入が進む。XENCEはJ-CATによる算定とMaterial Passportをすでに実務で運用しているため、制度が求める数値を始まった時点から出せる。
+06プラットフォーマー
+### 森も工場も持たず、協働により迅速に広げるから
+XENCEは森林も製材工場も所有しない。全国約3,500の製材所（プレカット・製材で約1.4兆円の市場）と地域の工務店を、在庫データと設計データでつなぐ。設備投資に縛られず、地域のパートナーとの協働で、同じ仕組みのまま迅速に広がる。
+評価
+
+## Team
+
+- 建築士、エンジニア、研究者、運営チーム。名古屋とデュッセルドルフから。
+- Kotaro Ozawa
+- Founder & CEO
+- Asako Osedo
+- Co-Director, Service Design Officer
+- Koji Saito
+- Lead Architect
+- Akihiro Yamada
+- Lead Construction Management
+- Kotaro Jin
+- Architect
+- Kosuke Kuroda
+- Designer
+- Mako Sumi
+- Community Manager
+
+## News / ニュース
+
+### 2026/10/23 — 「未活用材をどれだけ使えたか」代官山T-SITEにて木材トレーサビリティの試験運用を開始
+EN: Daikanyama T-SITE begins a timber traceability trial: how much unused wood was put to use
+URL: https://xencegroup.com/news/?id=9LhNPbQ0
+
+> XENCE、規格材と非規格材を部材単位で記録し、木材の由来や炭素貯蔵量とともに可視化。
+
+株式会社XENCE（代表取締役：小澤巧太郎）は、木材製品の素材・製造・環境情報を製品1点ごとに記録する「Product Passport」の運用を開始。第一弾として、カルチュア・コンビニエンス・クラブ株式会社が運営する代官山T-SITE（東京都渋谷区）に納品された什器3点にProduct Passportを発行しました。
+
+XENCEは、建築や家具づくりを通じて、製材時に発生する端材など、これまで十分に活用されてこなかった木材を「活用材」へ変える取り組みを続ける建築会社です。今回始動したProduct Passportでは、単に「木を使った量」を記録するだけでなく、どの部材に規格材を使い、どの部材に非規格材を使ったのかを素材ロットごとに紐付けて記録。これにより、一つの製品をつくるために、未活用材をどれだけ新たな用途へ転換できたのかを製品単位で可視化します。
+
+今後、XENCEが手がける家具から建築まで対象を広げ、「未活用材を使う」という循環経済行動をデータとして残し、公開していくことを目指します。
+
+## 木材を使った量だけでは、「どんな木材を使ったか」は分からない
+
+木材を建築や家具として長期間利用することは、木材中の炭素を製品の使用期間にわたって貯蔵することにつながります。一方で、同じ量の木材を使用した製品であっても、その木材が一般的に流通する規格材なのか、製材時に発生し従来は製品になりにくかった材なのかという違いは、通常の炭素貯蔵量の数値だけからは読み取ることができません。
+
+例えば丸太を製材すると、中心部から寸法の揃った規格材を取り出す一方、丸太の曲面を含む「ミミ材」や、製材した時の芯材など不定形な規格外材が多く発生し、丸太から建築用材として使える材の量は30%程度に留まると言われます。未活用の規格外材を多く製品として長期的に利用することができれば、一本の丸太からできるだけ多くの部分を価値ある製品にすることが出来ます。
+
+XENCEが開発する建築や家具製品では、従来、チップや燃料等として低価値に処理されたり、燃やされてCO2を即時放出していた「規格外材」を多く活用することを目指しています。
+
+## 使用した未活用材の量がわかるDPPデータベースを構築
+
+XENCE がこの度開発したProduct Passportでは、製品を構成する部材単位で情報を登録し、それぞれを製材所から収集した素材ロットデータや輸送情報と紐付けます。これにより、DPP (デジタルプロダクトパスポート) の登録情報として一般的に期待される炭素貯蔵量や、材料および輸送に伴うGHG排出量の自動計算が可能です。
+
+それに加え、特にXENCE独自の指標として、素材を「規格材」と「非規格材」に分離して記録することで、当該製品に使用した木材のうち、どれだけが従来活用されていなかった材を活用できたのか自動計算し、製品ごとやプロジェクトごとに確認ができるようになります。
+
+XENCEでは、これを自社の循環経済行動を証明するための指標のひとつとして位置づけています。
+
+## Product Passport に記録する情報
+
+この度試験運用を開始したProduct Passportでは、欧州で法制化が進むDPP (デジタルプロダクトパスポート) の考え方を参考にし、製品ごとに固有のIDを発行し、自社・利用者・取引事業者など、それぞれに必要となる情報の公開範囲を検討しながら運用していきます。
+
+管理するデータは今後素材提供者や加工者など製造に関わるステークホルダと協業し、試験運用を通してフィードバックを得ながら取るべきデータ・公開すべきデータ・取ることが難しい/取らなくて良いデータを検証していきますが、現時点では主に以下の情報を記録しています。
+
+■ 素材に関する情報
+樹種、産地、伐採時期、規格材／非規格材の区分、含水率、乾燥方法、認証情報など
+
+■ 製造に関する情報
+製材地、加工地、製造地など
+
+■ 輸送に関する情報
+山林から製材地、加工地、製造地までの輸送経路、距離、をファシリティ住所から算出
+
+■ 環境に関する情報
+木材使用量(㎥)、質量(kg)から、炭素貯蔵量、輸送に伴うGHG排出量を算出
+
+■ 製品の履歴
+製造、納品、移設、修理、解体、回収など、製品に発生するライフサイクルイベント
+
+一方で、製品に付与されたQRコードからアクセスできる一般公開情報については、DPPデータベース登録情報の他に、製品情報や使い方、生産者のメッセージといったコミュニケーションコンテンツも格納が可能。利用者と素材、生産地を繋ぐメディアとして、未活用材や循環経済行動への興味喚起、行動変容に役立てます。
+
+## 第一弾は、約46％に非規格材を使用した木製フレーム
+
+Product Passport の第一弾として、2026年9月にカルチュア・コンビニエンス・クラブ株式会社が運営する代官山T-SITEへ導入された木製フレームにProduct Passportを発行。本製品には、紀伊半島で伐採・製材された国産ヒノキを100%使用しています。
+
+特徴的なのは、一般的な規格材だけでなく、製材時に丸太の外周部から生まれる「ミミ材」を積極的に使用していることです。製品に使用した木材のうち、約46％を非規格材が占めています。
+
+当製品は、2026年9月18日（金）から9月27日（日）まで開催される「代官山 爽涼祭 2026」期間中は、代官山 蔦屋書店 ３号館入り口前でイベント什器として使用し、会期後は同じ部材を組み替えてベンチとして循環活用し、代官山T-SITE内で継続利用を予定。
+
+▼ 本製品の「Product Passport」一般公開ページ例
+https://xencegroup.com/pp/olw-ccd-A8F3Q7N2
+
+## なぜ今、Product Passport なの
+
+### 2026/9/11 — 代官山T-SITE「爽涼祭」に、端材から生まれた提灯台が登場
+EN: Lantern stands made from offcuts at Daikanyama T-SITE’s summer festival
+URL: https://xencegroup.com/news/?id=_kRFwB8a
+
+> 祭りが終わるとベンチに。材料の約46%に端材を活用した木製フレームをXENCEが開発
+
+祭りが終わったら、捨てるのではなくベンチへ。株式会社XENCE（代表取締役：小澤巧太郎）が、材料の約46%に製材時の端材「ミミ材」等を活用した木製フレームを開発しました。本製品はカルチュア・コンビニエンス・クラブ株式会社が運営する代官山T-SITE（東京都渋谷区）にて、2026年9月18日（金）から9月27日（日）まで開催される「代官山 爽涼祭 2026」の会期中、代官山 蔦屋書店 3号館 入口に提灯台として設置されます。会期終了後はベンチへと組み替え、翌年の夏には再び提灯台として使用できる設計です。
+
+### 2026/7/22 — 日経木材新聞にて「サーキュラー木造温室®︎」をご紹介いただきました
+EN: Circular Timber Greenhouse® featured in the Nikkei Mokuzai Shimbun
+URL: https://xencegroup.com/news/?id=9VckaqYJ
+
+掲載日: 2026年7月22日
+https://jfpj.jp/mokuzai_news/44129
+
+### 2026/6/30 — XENCE、愛知県の補助金事業に採択「サーキュラー木造温室™」の新モデル開発を開始
+EN: Selected for an Aichi Prefecture grant; development of a new Circular Timber Greenhouse™ model begins
+URL: https://xencegroup.com/news/?id=260630
+
+> 未利用木材とロボティクスで、モジュラー建築の量産体制化を目指す
+
+株式会社XENCE（本社：愛知県名古屋市、代表取締役：小澤巧太郎、以下「XENCE」）は、愛知県が実施する「革新事業創造事業費補助金」（2026年度）の交付対象事業に採択されました。
+
+本補助金は、民間主導で社会課題の解決に取り組む革新的なプロジェクトを後押しする制度です。愛知県が社会課題の解決と地域の活性化に資するイノベーションの創出を目指す「革新事業創造戦略」に基づき、採択プロジェクトは愛知県の「革新事業」として正式に認定されます。
+
+XENCEは今回、「農林水産業」「DX」の重点政策分野において採択され、当社が開発する「サーキュラー木造温室™」の新モデル開発とロボティクスを活用した自動化技術の開発・実証を推進します。
+
+## 「サーキュラー木造温室™」について
+
+サーキュラー木造温室™は、製材所においてこれまで十分に活用されてこなかった未利用木材を主要構造材とした温室です。農業用温室だけでなく、観光農園や教育・研究、コミュニティ拠点など、多様な用途へ展開可能なモジュール建築として開発されており、2025年に三重県志摩市にて実証導入が始動しています。
+
+鉄骨造の温室と同等以下の価格帯ながら、建設段階で二酸化炭素を排出量を大幅に固定するカーボンネガティブを実現。木材本来の断熱性・調湿性・耐塩害性を活かした長期利用を可能にし、解体後は素材の回収・再利用ができるようデザインされた、ライフサイクル全体で資源を循環させる建築です。
+
+今回の補助金を活用し、本温室の新モデル開発とロボティクスを活用した自動設計・自動加工の技術開発を実施し、非規格材を使ったモジュラー建築の量産体制を構築します。
+
+## 「革新事業創造事業費補助金」について
+
+愛知県が2022年12月に策定した「革新事業創造戦略」に基づき、社会課題の解決と地域の活性化に資する優れた提案と評価されたものが「革新事業」として採択され、本補助金の交付を受けることができる。補助対象分野は、健康長寿・農林水産業・文化芸術・スポーツ・防災・危機管理・GX・DXの7分野。
+
+補助対象期間：2026年4月1日から2027年3月20日まで
+詳細：https://www.pref.aichi.jp/soshiki/innovation-kikaku/
+
+### 2026/6/16 — 施工特化の新部門「XENCE Engineering」を発足
+EN: XENCE Engineering, a new construction-focused division, launches
+URL: https://xencegroup.com/news/?id=260616
+
+> 木造住宅から非住宅まで、東海地域で施工請負を本格開始。設計と施工をつなぐ新しい工務店へ
+
+株式会社XENCE（本社：愛知県名古屋市、代表：小澤巧太郎）は、2026年5月20日、 施工請負を担う新部門「XENCE Engineering（ゼンス エンジニアリング）」を発足しました。木造住宅の新築・改修、テナント・オフィス改修、非住宅建築の新築・改修・解体など、東海地域を中心に設計事務所・施主から施工請負を承ります。
+
+XENCEはこれまで、 3Dプリンターやロボット加工などを用いたデジタルファブリケーションや、流通規格に乗らない未利用材を用いたモジュール建築の開発・施工など、一般的な施工フローでは難しい複雑な建物の構築に取り組んできました。その過程で蓄積してきた新しい技術に対する施工の知見とこれまでの建築技術を活かし、「建築をつくり方からデザインする」新しい工務店として始動します。
+
+## 建築を、つくり方からデザインする。
+
+私たちは、建築の可能性は「デザイン」だけでなく、「どうつくるか」によって大きく変わると考えています。設計と施工が両輪としてつながり、「どうつくるか」が建築の選択肢を押し広げていく新しい工務店を担う部門としてXENCE Engineering を発足しました。
+
+XENCEはこれまで、サーキュラーエコノミーを建築領域で実践することをテーマに新しい建築のあり方に挑戦してきました。受注請負施工においても、コストの透明性を高め、素材・職人・地域・設計者など多様なステークホルダが関わる循環型の建築生産を目指します。
+
+## XENCE Engineering 概要
+
+XENCE Engineering（ゼンス エンジニアリング）は、設計事務所・施主のパートナーとして住宅の新築・改修・非住宅工事を担うとともに、設計者が描いた建築を現場で確かに立ち上げる施工チームとして活動していきます。 施工のご相談・お見積もりのご依頼は、随時受け付けております。
+
+■ 対応領域
+東海地域中心（拠点：愛知県名古屋市、岐阜県郡上市）
+木造住宅の新築・改修
+テナント／オフィス改修
+非住宅建築の新築・改修・解体
+
+■ 特徴
+一般的な施工管理に加え、非規格材の加工や３Dプリンター、デジタルファブリケーション技術等を扱ってきた知見を要望に応じて一般建築に適用
+素材・職人・地域コミュニティなど、多様な主体が関わる循環(サーキュラー)型の建築生産の経験
+コストの透明性を重視した施工管理
+
+■ XENCE Engineering インスタグラム
+https://www.instagram.com/xence.engineering
+
+### 2026/6/2 — 「サーキュラー木造温室™」が Red Dot Design Award 2026 アーバンデザイン部門を受賞
+EN: Circular Timber Greenhouse™ wins Red Dot Design Award 2026, Urban Design
+URL: https://xencegroup.com/news/?id=260602
+
+> 未利用木材を活用した建築が、国際的なデザイン賞で評価
+
+サーキュラーエコノミーを加速させる建築モジュールを開発する株式会社XENCE（本社：愛知県名古屋市、代表取締役：小澤巧太郎、以下「XENCE」）が開発・販売する「サーキュラー木造温室™」が、国際的に権威あるデザイン賞「レッドドット・デザイン賞（Red Dot Design Award）2026」アーバンデザイン部門を受賞しましたことをお知らせいたします。
+
+「サーキュラー木造温室™」は2025年に発売開始以降、「グッドデザイン賞 2025」「ウッドデザイン賞 2025」「木材活用コンクール」を受賞しており、今回のRed Dot受賞により国内外での評価を確かなものとしました。
+
+## 「サーキュラー木造温室™」について
+
+サーキュラー木造温室™は、製材所においてこれまで十分に活用されてこなかった未利用木材を主要構造材とした温室です。農業用温室だけでなく、観光農園や教育・研究、コミュニティ拠点など、多様な用途へ展開可能なモジュール建築として開発されており、2025年に三重県志摩市にて実証導入が始動、2026年には新モデルの開発を予定しています。
+
+鉄骨造の温室と同等以下の価格帯ながら、建設段階で二酸化炭素を排出量を大幅に固定するカーボンネガティブを実現。木材本来の断熱性・調湿性・耐塩害性を活かした長期利用を可能にし、解体後は素材の回収・再利用ができるようデザインされた、ライフサイクル全体で資源を循環させる建築です。
+
+サーキュラー木造温室™は、以下の事業者とのパートナーシップにより実現しています。
+
+■ 株式会社nojimoku
+本社：三重県熊野市、代表取締役：野地伸卓
+webpage: https://nojimoku.jp/
+製材過程で発生する未利用材を構造材として供給。
+
+■ 株式会社CULTIVERA（カルティベラ）
+本社：沖縄県国頭郡、代表取締役：豊永翔平
+独自の特許栽培技術「Moisculture（モイスカルチャー）」を開発するアグリテック企業。同技術を用いた栽培設備を温室内に導入しているほか、雨水再利用の実証実験を実施している。
+
+XENCEは、共同開発パートナーとともに「サーキュラー木造温室™」の国内外への導入展開を進めています。2026年には新モデルの発表を予定しており、農業に加え、観光・教育・研究・公共空間など多様な用途への適用、および海外市場への進出も視野に入れています。
+
+サーキュラー木造温室™ の詳細はこちらをご覧ください：https://xencegroup.com/greenhouse
+
+## Red Dot Design Awardについて
+
+「レッドドット・デザイン賞」は、ドイツの「iFデザイン賞（iF design award）」、アメリカの「IDEA賞（International Design Excellence Award）」と並び、世界三大デザイン賞のひとつに数えられる権威ある賞です。国際的に活躍するデザインの専門家による審査の結果、当社の未利用木材を活用した建築である「サーキュラー木造温室™」がアーバンデザイン部門を受賞しました。
+
+### 2026/4/7 — プレスリリース｜名古屋大学発ベンチャーに認定。デジタル設計施工×未利用木材で、建設業を「ジェネレーティブコントラクト」へ
+EN: Press release: certified as a Nagoya University venture, moving construction toward the “generative contract”
+URL: https://xencegroup.com/news/?id=260407
+
+> 名古屋大学発ベンチャーに認定
+
+株式会社XENCEは、このたび名古屋大学より「名古屋大学発ベンチャー」の称号を授与されました。
+
+XENCEは、パラメトリックな自動設計とデジタル加工技術を活用し、建築に用いる素材とデザインの可能性を拡張することで、サーキュラーエコノミーに根差した建設業を目指すスタートアップです。
+
+## 建設業を「ジェネレーティブコントラクト」へ
+
+従来の建設業は、多重請負構造のなかで、設計・調達・施工・維持管理が分断されやすく、建設費の高騰やサプライチェーン全体での資源利用率の低下が課題になっています。
+
+XENCEが提唱する「ジェネレーティブコントラクト」とは、デジタル技術を介して、建築主、素材サプライヤー、設計者、施工者が有機的につながり、より合理的で持続可能な建築を実現するデジタル技術に根差した建築プロセスとサプライチェーンの考え方です。
+
+従来型の一方向的な発注・施工の構造から、素材調達 ー デザイン ー 施工 ー 運用 における情報やデータを、建築主・素材サプライヤー・設計施工者とデジタル技術で共有しながら動的に最適解を更新していく、新しい建築プロセスへと変革することを目指しています。
+
+## XENCEの中核は、デジタル技術を用いた動的な設計施工プラットフォーム
+
+この構想の中核にあるのが、デジタルツール、プログラミング、AI等を活用して構築している、自動化・パラメトリック化された設計～施工～運用モデルです。
+
+XENCEは、デザインのみならず、コスト、環境負荷、資材使用量、施工条件などを同時に可視化しながら、それぞれを目的に応じて調整可能な動的設計プラットフォームの構築を進めています。これにより、意匠・性能・経済性・環境性を分断せず、同時に扱う新しい建築の意思決定プロセスを可能にします。
+
+さらに、NC加工や3Dプリント等のデジタル加工技術を接続することで、設計から生産、施工へとつながる一気通貫の建築プロセスの実装を進めています。
+
+## 実績1｜未利用木材を活かす「サーキュラー木造温室」
+
+昨年、そのパイロットプロジェクトの一つとして、「サーキュラー木造温室」™をリリースしました。本プロダクトは昨年、「グッドデザイン賞」「ウッドデザイン賞」「木材活用コンクール」をそれぞれ受賞致しました。
+
+本プロジェクトでは、製材所においてこれまで十分に活用されてこなかった木材を使用可能にする木造躯体モジュールを開発し温室を実現しました。未利用木材を新たな建築資源として位置付け、性能と生産性を両立しながら、地域に存在する資源をより高い価値へと転換する試みです。
+
+## 実績2｜金属3Dプリント接合技術「wood x node」
+
+また、XENCEは竹中工務店、シモダフランジとの共同プロジェクトとして、「wood x node」を発表しています。
+
+このプロジェクトでは、建築のジョイント部分に、マスカスタマイゼーションとの親和性が高い金属3Dプリンターの建築における利用性を追求し、多様な形状の木質構造体を支える接合部の新しい可能性を提示しました。建築における接合部の自由度を高めることで、従来よりも多様な形状や条件に対応可能な木造建築の実現を目指しています。
+
+## 欧州を中心に高まる、建築の循環性と低炭素化への要請
+
+現在、欧州を中心に、建築分野ではサーキュラーエコノミーやエンボディードカーボン低減に関する制度化や市場要請が進みつつあります。建築物の環境性能が、資材調達、投資判断、さらにはカーボンクレジットを含む経済活動とも接続されていく中で、設計段階から資源利用や環境負荷を精緻に扱う必要性は今後さらに高まると考えられます。
+
+XENCEはこうした世界的な潮流に対応し、日本国内にとどまらず、海外物件も視野に入れた建設業の最適化を行う技術およびビジネスモデルの革新を進めていきます。
+
+## 今後の展開
+
+今後は、木造躯体モジュールの開発・実装にとどまらず、標準型モジュール建築物や、中大規模木造建築物へと事業領域を拡大していく予定です。
+
+XENCEは、建築の設計施工に留まらず、建設業のサプライチェーンからデザインをすること、これからの時代の風景をつくる経営方針のもと、技術とビジネスモデルを重視して、建設業における構造的な非効率の解消と、未利用資源の価値化を同時に実現する新たな産業基盤の構築を目指してまいります。
+
+今回の名古屋大学発ベンチャー認定を契機に、XENCEは研究開発と社会実装の往還をさらに加速させ、建築の設計・調達・施工・運用をつなぎ直す新しい仕組みを社会に実装していきます。
+
+### 2026/3/30 — 中京テレビ「アプデの森」でサーキュラー木造温室®︎をご紹介いただきました
+EN: Circular Timber Greenhouse® featured on Chukyo TV’s “Apude no Mori”
+URL: https://xencegroup.com/news/?id=zNSZMKlS
+
+2026年3月30日の中京テレビ「アプデの森」にて当社のサーキュラー木造温室®︎をご紹介いただきました。
+
+### 2026/1/16 — 超異分野学会 愛知フォーラム2026 |「サーキュラー木造温室」が大冷工業賞を受賞しました
+EN: Circular Timber Greenhouse wins the Dairei Kogyo Award at the Hyper-Interdisciplinary Conference Aichi Forum 2026
+URL: https://xencegroup.com/news/?id=260116
+
+株式会社リバネスが主催する「超異分野学会 愛知フォーラム2026」（2026年1月15日開催／会場：STATION Ai、名古屋市）において、当社が開発するモジュラー建築である「サーキュラー木造温室」を活用した提案が大冷工業賞を受賞しました。
+
+本フォーラムは「do more crossovers. 越境の最大地点へ。」をテーマに掲げ、研究者・ベンチャー・大企業・自治体など200名を超える参加者が異分野・異業種の垣根を超えて議論する場です。当社は「知識製造イグニッション」企画に参加し、「工場排熱をXENCEのサーキュラー木造温室で農業へ」 というテーマで発表させていただきました。大冷工業株式会社が設定した募集テーマ「工場内に溜まる熱や湿気の捕捉・移動・回収・再利用」に対する応答として高く評価され、受賞に至りました。
+
+当社は今後も、サーキュラーエコノミーの観点から建築と林産業・農業をつなぐ取り組みを推進してまいります。
+
+＜超異分野学会 愛知フォーラム2026 知識製造イグニッション 大冷工業賞＞
+募集テーマ：工場内に溜まる熱や湿気の捕捉・移動・回収・再利用〜異分野の技術で、工場環境に新たな価値をもたらす〜
+申請テーマ：工場排熱をXENCEのサーキュラー木造温室で農業へ
+申請チーム： 株式会社XENCE 小澤 巧太郎
+
+■ 超異分野学会 愛知フォーラム2026 実施概要ページ
+https://lne.st/2026/01/19/hic-aichi2026-report/
+
+### 2025/12/31 — XENCE、2026年1月1日より株式会社化し、新たなスタート。
+EN: XENCE incorporates as a kabushiki kaisha from 1 January 2026
+URL: https://xencegroup.com/news/?id=260101
+
+> コーポレートロゴも刷新し、建築を通じたサーキュラーエコノミー実装を加速。AIやプログラムを活用した建築手法のモジュール建築で、社会と地球の「未来の風景」を築く組織へ。
+
+XENCE（本社：愛知県名古屋市、代表：小澤巧太郎）は、事業拡大およびガバナンス強化を目的として、2026年1月1日（木）付で合同会社から株式会社へ組織変更を行い、新商号「株式会社XENCE（英文表記：XENCE Inc.）」として新たにスタートすることをお知らせいたします。
+
+また、これに伴い、当社の理念と今後の方向性をより明確に表現するため、コーポレートロゴをリニューアルいたしました。
+
+## 株式会社化の背景と目的：受託型から「社会実装」のフェーズへ
+
+これまで私たちは、建築を通じて資源を循環させる「サーキュラー（Circular）」、そして地球資源を枯渇させないものづくり「リジェネラティブ（Regenerative）」の実現を目指し、建築設計・施工、デザイン、デジタルファブリケーション、研究開発、ファシリティマネジメントなどの多岐にわたる事業に取り組んでまいりました。
+
+従来の建築業は、プロジェクトごとの「受託型」が一般的です。しかし、私たちが目指す「地球上により良い風景を築き、持続可能な社会を実装する」というビジョンを実現するためには、これまでの手法に留まらないアプローチが必要です。
+
+今回、組織変更を行う最大の理由は、私たちが開発・実践してきた建築の設計・施工・運営の手法をモジュール化し、より広く、より社会に深く浸透させる「拡大のフェーズ」へと移行するためです。株式会社化により組織基盤を強化し、事業成長を加速させる決意の表れでもあります。
+
+## 今後の展望：テクノロジーで建設サプライチェーンを変革する
+
+様々な素材を資源に変え、建設業にサーキュラーエコノミーを創出する――このビジョンのもと、私たちは強固なワンチームとして以下の領域に注力します。
+
+■ AI・データサイエンスの活用
+建物の設計・運営において、自動設計プログラムやデータサイエンスを積極的に導入し、最適化と効率化を図ります。
+
+■ 施工のモジュラー化
+建築の部材をモジュール化することで、サプライチェーン全体を循環型へと変革するアプローチを推進します。
+
+組織形態は変わりますが、「建築を通してつくる社会と地球の未来の風景」を常に問い続け、新しい選択肢を提示し続けるというミッションに変わりはありません。今後も社員一同、社業の発展とより良い社会の実現に専心努力してまいる所存です。
+
+## 新コーポレートロゴについて
+
+新たなロゴは、「図と地が反転するように未知の資源から新たな価値をイノベーションし、社会や地球のモジュールとなって未来の風景を築いていく」ことをイメージしてデザインされました。 XENCEそのものが社会の持続可能なシステムの一部（モジュール）として機能し、新しい価値観（図と地の反転）を生み出していく姿勢を表現しています。
+
+ブランドビジュアルリニューアル スペシャルサイト
+https://greeting2026.xencegroup.com/
+
+### 2025/12/20 — 日経クロステックに取材掲載いただきました
+EN: Featured in Nikkei xTECH
+URL: https://xencegroup.com/news/?id=251220
+
+このたび、日経BP社が運営するテクノロジー専門メディア「日経クロステック」にて、当社の金属３Dプリンター建築ジョイントの取り組みが取材を受け、記事が掲載されました。
+
+記事では当社の取り組みや今後目指す姿等取り上げていただいております。ぜひご一読ください。
+
+■ 日経クロステック「建設3Dプリンターと木の端材の融合、スタートアップが示す建築の未来」
+https://xtech.nikkei.com/atcl/nxt/column/18/00138/121701914/
+
+### 2025/9/30 — グッドデザイン賞 2025 | サーキュラー木造温室が受賞しました
+EN: Circular Timber Greenhouse wins the Good Design Award 2025
+URL: https://xencegroup.com/news/?id=251001
+
+この度、弊社（XENCE）にて設計・施工を行いました「サーキュラー木造温室（Circular Greenhouse）」が、2025年度グッドデザイン賞（主催：公益財団法人日本デザイン振興会）を受賞いたしました。
+
+本温室のコンセプトや詳細な仕様につきましては、下記の商品ページをぜひご覧ください。
+
+■ グッドデザイン賞 受賞ページ
+https://www.g-mark.org/gallery/winners/32784
+
+■「サーキュラー木造温室」商品ページ
+https://greenhouse.xencegroup.com/
+
+### 2025/9/29 — ウッドデザイン賞 2025 | サーキュラー木造温室が受賞しました
+EN: Circular Timber Greenhouse wins the Japan Wood Design Award 2025
+URL: https://xencegroup.com/news/?id=250930
+
+この度、弊社（XENCE）が設計・施工を手掛けました「サーキュラー木造温室（Circular Greenhouse）」が、木の良さや価値を再発見させる製品や取り組みを顕彰する「ウッドデザイン賞2025」（主催：一般社団法人日本ウッドデザイン協会）において、ソーシャルデザイン部門で受賞いたしました。
+
+## 評価のポイント (引用)
+
+未利用材を農業温室での利用へ転用し、地域の森林と農業を結ぶ革新的な建築である。台形芯材などの端材を構造に活かした意匠は、資源の循環を実現しつつ存在自体が強いメッセージを持っている。
+
+■ ウッドデザイン賞 受賞ページ
+https://www.wooddesign.jp/db/production/2454/
+
+■「サーキュラー木造温室」商品ページ
+https://greenhouse.xencegroup.com/
+
+### 2024/11/20 — 第36回技術研究発表会 優秀賞 | 金属3Dプリンター製接合部の開発が受賞しました
+EN: Excellence Award at the 36th Technical Research Presentation for a metal 3D-printed joint
+URL: https://xencegroup.com/news/?id=241120
+
+2024年11月に開催された「アーバンインフラ・テクノロジー推進会議 第36回技術研究発表会」において、「不均質な木質部材をつなぐ金属３Dプリンター製接合部の開発」が優秀賞を受賞しました。
+
+この開発は、株式会社XENCE、株式会社シモダフランジ、株式会社竹中工務店の3社の共同プロジェクトです。製材所で発生する端材（ミミ材）を建築構造物に利用することが出来る建築ジョイントを開発し、森林資源の有効活用を図ります。
+
+当社は建築ジョイントのデザインを担当。当ジョイントはトポロジー最適化計算により、材料と強度が最も効率的になる形状を採用。金属３Dプリンター造形を前提とする継手の最適形状の検討と、その結果に基づく最終製品の造形を担当しました。
+
+■ アーバンインフラ・テクノロジー推進会議 第36回技術研究発表会
+https://www.uit.gr.jp/tech_research2024/presentation/program.html
+
+
+## Company / 会社概要
+- 株式会社XENCE (XENCE Inc.), founded 2022-01-28, Japan Corporate Number 1180003023459
+- Head office: 〒460-0008 愛知県名古屋市中区栄一丁目29番地29号 SIMON 10 SAKAE 401; base in Düsseldorf, Germany
+- 一級建築士事務所 愛知県知事登録（い－4）第14198号
+- Business: architectural design, construction, operation and consulting for buildings and products
+- Founder & CEO: Kotaro Ozawa (小澤巧太郎), first-class registered architect
+- Contact: info@xencegroup.com — https://xencegroup.com/contact/
