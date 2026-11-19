@@ -2,86 +2,42 @@ import { h, render, Component as PC } from '/vendor/preact.module.js';
 import htm from '/vendor/htm.module.js';
 const html = htm.bind(h);
 import { loadNews, FALLBACK, newsHref, isExternal } from '/lib/news.js';
+import { ghMembers, ghStats } from '/lib/ghmodel.js';
+import { loadPeople, FALLBACK as PEOPLE } from '/lib/people.js';
 
 class App extends PC {
 constructor(props) {
 super(props);
-this.D = {"techs": [{"num": "01", "title": "自動設計エンジン", "tag": "COMPUTATIONAL DESIGN", "body": "手元の材の寸法と数から、構造と部材の割付を自動で生成する。温室・家具・パビリオンを同じルールで設計できる。", "media": "/assets/t1_design.mp4", "caption": "不揃いな在庫材を、フレームの部材へ自動で割り当てる", "alt": "在庫材が温室フレームの部材に割り当てられていくアニメーション", "video": true}, {"num": "02", "title": "3D構造解析", "tag": "STRUCTURAL ANALYSIS", "body": "積雪と風の荷重を3Dフレーム全体にかけ、変形と部材ごとの検定比を確かめる。規格外の材でも構造に使える根拠をつくる。", "media": "/assets/out_t2_analysis.mp4", "caption": "積雪・風荷重による3Dフレームの変形と、部材ごとの検定比（イメージ）", "alt": "温室の3Dフレームが積雪と風で変形し、部材が検定比に応じて色分けされるアニメーション", "video": true}, {"num": "03", "title": "デジタル加工と接合", "tag": "FABRICATION", "body": "不整形な材をスキャンし、曲がりや木目、耳をそのまま活かす形で部材と継手を割り付ける。金物に頼らない木組みで組み上げ、分解もできる。", "media": "/assets/out_t3_fab.mp4", "caption": "曲がった耳材をスキャンし、材の曲がりに沿って部材と継手を割り付ける", "alt": "曲がった板材をスキャンし、その曲線に沿った部材と加工パスを生成するアニメーション", "video": true}, {"num": "04", "title": "3Dプリント", "tag": "ADDITIVE MANUFACTURING", "body": "自由な形を、積層できる向きに起こし、張り出しの角度を検出して積層できる形状へ自動で調整してから造形する。金属（WAAM）のほか、樹脂や木粉複合材にも同じ流れで対応する。", "media": "/assets/out_t4_waam_v4.mp4", "caption": "曲面を90度起こし、張り出しを検出して積層できる形に自動調整してから、下から積み上げる（金属WAAMの例）", "alt": "曲面が90度回転し、造形台の上に下から層を積み上げていくアニメーション", "video": true}, {"num": "05", "title": "Material Passport", "tag": "TRACEABILITY", "body": "伐採・運搬・製材・乾燥・加工・建物までの来歴とともに、木材の炭素固定量と各工程のGHG排出量をひとつのQRコードに記録し、次の利用へ受け継ぐ。2026年10月に運用開始。", "media": "/assets/out_t5_passport_v4.mp4", "caption": "森から建物まで、来歴・炭素固定量・GHG排出量をひとつのQRで引き継ぐ（記録例）", "alt": "森、トレーラー、製材所、乾燥、加工、建物の順に記録が加わるQRコード付きパスポートのアニメーション", "video": true}, {"num": "06", "title": "LCA・運用データ", "tag": "WHOLE-LIFE CARBON", "body": "建物の生涯CO₂をJ-CATやOne Click LCAで算定し、運用データとあわせて資産価値の根拠にする。", "media": "/assets/out_t6_lca_v4.mp4", "caption": "木造温室の炭素固定、J-CATによるホールライフカーボン、キャンパスの施設費分析", "alt": "炭素固定量、ライフサイクルCO2の内訳、施設費の内訳が順に表示されるアニメーション", "video": true}], "projects": [{"id": "p1", "cat": "gh", "img": "/assets/gh_night_in.jpg", "title": "サーキュラー木造温室™", "type": "温室", "input": "製材端材", "tech": "自動設計・構造解析", "place": "三重県", "year": "2025", "status": "完成", "desc": "製材所の端材を構造に使った木造温室。全部材を分解・再組立でき、連棟で面積を広げられる。Red Dot Design Award 2026 受賞。"}, {"id": "p2", "cat": "gh", "img": "/assets/higashiura.jpg", "title": "東浦町 セルフビルド温室（2連棟・130㎡）", "type": "温室", "input": "製材端材", "tech": "自動設計・デジタル加工", "place": "愛知県東浦町", "year": "2026", "status": "建設中", "desc": "林業用苗木・イチゴ・トマトの3ゾーンをもつ温室を、番号付きの部材で、使う人たち自身が組み上げる。"}, {"id": "p3", "cat": "fu", "img": "/assets/tsite.jpg", "title": "代官山T-SITE 提灯スタンド ⇄ ベンチ", "type": "家具・プロダクト", "input": "製材端材", "tech": "デジタル加工・Passport", "place": "東京", "year": "2026", "status": "完成", "desc": "夏祭りの提灯スタンドを、祭りの後にベンチへ組み替えた。金物を使わない木製ジョイントで、全部材にMaterial Passportを発行。"}, {"id": "p4", "cat": "fu", "img": "/assets/table.jpg", "title": "名古屋大学 C-TECs 新素材什器", "type": "家具・プロダクト", "input": "新素材 [要確認]", "tech": "デジタル加工", "place": "名古屋", "year": "2026", "status": "納品済", "desc": "名古屋大学 未来社会創造機構の交流スペースのために製作した什器。[素材・仕様を記入]"}, {"id": "p11", "cat": "fu", "img": "/assets/bench3d_a.jpg", "title": "3Dプリントベンチ", "type": "家具・プロダクト", "input": "金属", "tech": "金属3Dプリント（WAAM）", "place": "愛知県", "year": "2025", "status": "完成", "desc": "形状を積層用に自動変換し、WAAMで一体造形したベンチ。座面の格子と脚のリブまで、ひと続きの金属で積み上げている。"}, {"id": "p12", "cat": "ar", "img": "/assets/woodnode.jpg", "title": "端材を建築にするジョイント（WoodNode）", "type": "建築", "input": "耳材・端材", "tech": "金属3Dプリント・トポロジー最適化", "place": "[場所]", "year": "2024", "status": "完成", "desc": "製材所で出る耳材を構造に使うための建築ジョイント。材ごとに違う形に合わせて金属3Dプリントで造形し、トポロジー最適化で強度と軽さを両立した。竹中工務店・シモダフランジ・野地木材工業と協働。アーバンインフラ・テクノロジー推進会議 優秀賞。"}, {"id": "p7", "cat": "ar", "img": "/assets/arch_fix.jpg", "title": "大径木の家", "type": "建築", "input": "大径木", "tech": "構造解析・デジタル加工", "place": "東京都", "year": "2026", "status": "施工中", "desc": "流通しにくい大径木を、組立梁として構造に使う住宅。"}, {"id": "p8", "cat": "ma", "img": "/assets/wf_bench.jpg", "title": "木粉樹脂ペレット（竹中工務店・倉敷紡績と共同開発）", "type": "素材・データ", "input": "端材・木粉", "tech": "素材開発", "place": "東京・日本橋で採用", "year": "2025", "status": "610 kg 納入", "desc": "エンジニアリングウッドの端材を木粉にし、生分解性樹脂や再生PPと混ぜて成形材料にした。"}, {"id": "p21", "cat": "fm", "img": "/assets/memu.jpg", "title": "MEMU Open Research Campus", "type": "ファシリティマネジメント", "input": "既存施設", "tech": "ファシリティマネジメント", "place": "北海道大樹町", "year": "2022", "status": "運営中", "desc": "北海道大樹町の研究キャンパスで、施設のファシリティマネジメントを担う。既存の建物を活かしながら、使い方に合わせて手を入れ続けている。"}, {"id": "p22", "cat": "fm", "img": "/assets/ideastoa.jpg", "title": "名古屋大学 Idea Stoa", "type": "ファシリティマネジメント", "input": "既存施設", "tech": "ファシリティマネジメント", "place": "名古屋", "year": "2023", "status": "運営中", "desc": "レーザーカッターなどの工作機械を備えた、名古屋大学のものづくり・交流の拠点。施設のファシリティマネジメントを担う。"}, {"id": "p23", "cat": "fm", "img": "/assets/monomiyusan.jpg", "title": "物見遊山（遊棟）", "type": "ファシリティマネジメント", "input": "古民家", "tech": "ファシリティマネジメント・宿運営", "place": "岐阜県郡上市白鳥町", "year": "2026", "status": "運営中", "desc": "白鳥の暮らしや遊びを旅人に紹介し、受け継いでいく古民家の宿。地域の人と旅人がつながる拠点として運営している。"}], "filters": [["all", "すべて"], ["fu", "家具・プロダクト"], ["gh", "温室"], ["ar", "建築"], ["ma", "素材・データ"], ["fm", "ファシリティマネジメント"]], "kinds": {"col": "柱", "raf": "合掌", "tie": "陸梁", "beam": "桁・母屋", "sill": "土台", "brace": "筋かい"}, "ui": {"explode": "分解する", "assemble": "組み立てる", "unit": "棟", "units": "棟"}};
-this.state = { tech: 0, bays: 6, span: 1, units: 2, exploded: false, filter: 'all', row: 'p1', heroSrc: '', heroPoster: '', news: FALLBACK };
+this.D = {"techs": [{"num": "01", "title": "自動設計エンジン", "tag": "COMPUTATIONAL DESIGN", "body": "手元の材の寸法と数から、構造と部材の割付を自動で生成する。温室・家具・パビリオンを同じルールで設計できる。", "media": "/assets/t1_design.mp4", "caption": "不揃いな在庫材を、フレームの部材へ自動で割り当てる", "alt": "在庫材が温室フレームの部材に割り当てられていくアニメーション", "video": true}, {"num": "02", "title": "3D構造解析", "tag": "STRUCTURAL ANALYSIS", "body": "積雪と風の荷重を3Dフレーム全体にかけ、変形と部材ごとの検定比を確かめる。規格外の材でも構造に使える根拠をつくる。", "media": "/assets/out_t2_analysis.mp4", "caption": "積雪・風荷重による3Dフレームの変形と、部材ごとの検定比（イメージ）", "alt": "温室の3Dフレームが積雪と風で変形し、部材が検定比に応じて色分けされるアニメーション", "video": true}, {"num": "03", "title": "デジタル加工と接合", "tag": "FABRICATION", "body": "不整形な材をスキャンし、曲がりや木目、耳をそのまま活かす形で部材と継手を割り付ける。金物に頼らない木組みで組み上げ、分解もできる。", "media": "/assets/out_t3_fab.mp4", "caption": "曲がった耳材をスキャンし、材の曲がりに沿って部材と継手を割り付ける", "alt": "曲がった板材をスキャンし、その曲線に沿った部材と加工パスを生成するアニメーション", "video": true}, {"num": "04", "title": "3Dプリント", "tag": "ADDITIVE MANUFACTURING", "body": "自由な形を、積層できる向きに起こし、張り出しの角度を検出して積層できる形状へ自動で調整してから造形する。金属（WAAM）のほか、樹脂や木粉複合材にも同じ流れで対応する。", "media": "/assets/out_t4_waam_v4.mp4", "caption": "曲面を90度起こし、張り出しを検出して積層できる形に自動調整してから、下から積み上げる（金属WAAMの例）", "alt": "曲面が90度回転し、造形台の上に下から層を積み上げていくアニメーション", "video": true}, {"num": "05", "title": "Material Passport", "tag": "TRACEABILITY", "body": "伐採・運搬・製材・乾燥・加工・建物までの来歴とともに、木材の炭素固定量と各工程のGHG排出量をひとつのQRコードに記録し、次の利用へ受け継ぐ。2026年10月に運用開始。", "media": "/assets/out_t5_passport_v4.mp4", "caption": "森から建物まで、来歴・炭素固定量・GHG排出量をひとつのQRで引き継ぐ（記録例）", "alt": "森、トレーラー、製材所、乾燥、加工、建物の順に記録が加わるQRコード付きパスポートのアニメーション", "video": true}, {"num": "06", "title": "LCA・運用データ", "tag": "WHOLE-LIFE CARBON", "body": "建物の生涯CO₂をJ-CATやOne Click LCAで算定し、運用データとあわせて資産価値の根拠にする。", "media": "/assets/out_t6_lca_v4.mp4", "caption": "木造温室の炭素固定、J-CATによるホールライフカーボン、キャンパスの施設費分析", "alt": "炭素固定量、ライフサイクルCO2の内訳、施設費の内訳が順に表示されるアニメーション", "video": true}], "projects": [{"id": "p1", "cat": "gh", "img": "/assets/gh_night_in.jpg", "title": "サーキュラー木造温室™", "type": "温室", "input": "製材端材", "tech": "自動設計・構造解析", "place": "三重県", "year": "2025", "status": "完成", "desc": "製材所の端材を構造に使った木造温室。全部材を分解・再組立でき、連棟で面積を広げられる。Red Dot Design Award 2026 受賞。"}, {"id": "p2", "cat": "gh", "img": "/assets/higashiura.jpg", "title": "東浦町 セルフビルド温室（2連棟・130㎡）", "type": "温室", "input": "製材端材", "tech": "自動設計・デジタル加工", "place": "愛知県東浦町", "year": "2026", "status": "建設中", "desc": "林業用苗木・イチゴ・トマトの3ゾーンをもつ温室を、番号付きの部材で、使う人たち自身が組み上げる。"}, {"id": "p3", "cat": "fu", "img": "/assets/tsite.jpg", "title": "代官山T-SITE 提灯スタンド ⇄ ベンチ", "type": "家具・プロダクト", "input": "製材端材", "tech": "デジタル加工・Passport", "place": "東京", "year": "2026", "status": "完成", "desc": "夏祭りの提灯スタンドを、祭りの後にベンチへ組み替えた。金物を使わない木製ジョイントで、全部材にMaterial Passportを発行。"}, {"id": "p4", "cat": "fu", "img": "/assets/table.jpg", "title": "名古屋大学 C-TECs 新素材什器", "type": "家具・プロダクト", "input": "新素材 [要確認]", "tech": "デジタル加工", "place": "名古屋", "year": "2026", "status": "納品済", "desc": "名古屋大学 未来社会創造機構の交流スペースのために製作した什器。[素材・仕様を記入]"}, {"id": "p11", "cat": "fu", "img": "/assets/bench3d_a.jpg", "title": "3Dプリントベンチ", "type": "家具・プロダクト", "input": "金属", "tech": "金属3Dプリント（WAAM）", "place": "愛知県", "year": "2025", "status": "完成", "desc": "形状を積層用に自動変換し、WAAMで一体造形したベンチ。座面の格子と脚のリブまで、ひと続きの金属で積み上げている。"}, {"id": "p12", "cat": "ar", "img": "/assets/woodnode.jpg", "title": "端材を建築にするジョイント（WoodNode）", "type": "建築", "input": "耳材・端材", "tech": "金属3Dプリント・トポロジー最適化", "place": "[場所]", "year": "2024", "status": "完成", "desc": "製材所で出る耳材を構造に使うための建築ジョイント。材ごとに違う形に合わせて金属3Dプリントで造形し、トポロジー最適化で強度と軽さを両立した。竹中工務店・シモダフランジ・野地木材工業と協働。アーバンインフラ・テクノロジー推進会議 優秀賞。"}, {"id": "p7", "cat": "ar", "img": "/assets/arch_fix.jpg", "title": "大径木の家", "type": "建築", "input": "大径木", "tech": "構造解析・デジタル加工", "place": "東京都", "year": "2026", "status": "施工中", "desc": "流通しにくい大径木を、組立梁として構造に使う住宅。"}, {"id": "p8", "cat": "ma", "img": "/assets/wf_bench.jpg", "title": "木粉樹脂ペレット（竹中工務店・倉敷紡績と共同開発）", "type": "素材・データ", "input": "端材・木粉", "tech": "素材開発", "place": "東京・日本橋で採用", "year": "2025", "status": "610 kg 納入", "desc": "エンジニアリングウッドの端材を木粉にし、生分解性樹脂や再生PPと混ぜて成形材料にした。"}, {"id": "p21", "cat": "fm", "img": "/assets/memu.jpg", "title": "MEMU Open Research Campus", "type": "ファシリティマネジメント", "input": "既存施設", "tech": "ファシリティマネジメント", "place": "北海道大樹町", "year": "2022", "status": "運営中", "desc": "北海道大樹町の研究キャンパスで、施設のファシリティマネジメントを担う。既存の建物を活かしながら、使い方に合わせて手を入れ続けている。"}, {"id": "p22", "cat": "fm", "img": "/assets/ideastoa.jpg", "title": "名古屋大学 Idea Stoa", "type": "ファシリティマネジメント", "input": "既存施設", "tech": "ファシリティマネジメント", "place": "名古屋", "year": "2023", "status": "運営中", "desc": "レーザーカッターなどの工作機械を備えた、名古屋大学のものづくり・交流の拠点。施設のファシリティマネジメントを担う。"}, {"id": "p23", "cat": "fm", "img": "/assets/monomiyusan.jpg", "title": "物見遊山（遊棟）", "type": "ファシリティマネジメント", "input": "古民家", "tech": "ファシリティマネジメント・宿運営", "place": "岐阜県郡上市白鳥町", "year": "2026", "status": "運営中", "desc": "白鳥の暮らしや遊びを旅人に紹介し、受け継いでいく古民家の宿。地域の人と旅人がつながる拠点として運営している。"}], "filters": [["all", "すべて"], ["fu", "家具・プロダクト"], ["gh", "温室"], ["ar", "建築"], ["ma", "素材・データ"], ["fm", "ファシリティマネジメント"]], "kinds": {"side": "側柱", "mid": "中柱", "rafter": "合掌", "tie": "陸梁", "king": "束", "beam": "桁", "purlin": "母屋", "fast": "フィルム押さえ"}, "ui": {"explode": "分解する", "assemble": "組み立てる", "unit": "棟", "units": "棟"}};
+this.state = { tech: 0, bays: 6, span: 1, units: 2, structure: 'wood', exploded: false, filter: 'all', row: 'p1', heroSrc: '', heroPoster: '', news: FALLBACK, people: PEOPLE };
+this.cfgRef = (el) => { this.cfgEl = el; if (el && !this.cfgIO && typeof IntersectionObserver !== 'undefined') { this.cfgIO = new IntersectionObserver((e) => { if (e[0].isIntersecting) { this.cfgIO.disconnect(); this.cfgNear = true; this.syncGh(); } }, { rootMargin: '600px' }); this.cfgIO.observe(el); } };
 this.muteRef = (el) => { if (el) { el.muted = true; el.defaultMuted = true; try { const p = el.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} } };
 }
 componentDidMount() {
 loadNews().then((n) => this.setState({ news: n }));
+loadPeople().then((p) => this.setState({ people: p }));
 const mob = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
-this.setState({ heroSrc: mob ? '/assets/hero_m.mp4' : '/assets/hero_d.mp4', heroPoster: mob ? '/assets/poster_m.jpg' : '/assets/poster_d.jpg' }, () => { setTimeout(() => { try { const v = document.querySelector('#mission video'); if (v) { v.muted = true; v.load(); const p = v.play(); if (p && p.catch) p.catch(() => {}); } } catch (e) {} }, 50); });
+this.setState({ heroSrc: mob ? '/assets/hero_m_v2.mp4' : '/assets/hero_d_v2.mp4', heroPoster: mob ? '/assets/poster_m_v2.jpg' : '/assets/poster_d_v2.jpg' }, () => { setTimeout(() => { try { const v = document.querySelector('#mission video'); if (v) { v.muted = true; v.load(); const p = v.play(); if (p && p.catch) p.catch(() => {}); } } catch (e) {} }, 50); });
 this.durs = [7, 10, 9, 13, 10, 12];
 this.schedule = () => { clearTimeout(this.timer); const i = this.state.tech; this.timer = setTimeout(() => { if (this.props.autoplayTech !== false) this.setState((s) => ({ tech: (s.tech + 1) % 6 }), this.schedule); else this.schedule(); }, this.durs[i] * 1000 + 600); };
 this.schedule();
 }
 componentWillUnmount() { clearTimeout(this.timer); }
 model() {
-const D = this.D;
-const spans = [4.8, 6.4, 8.0];
-const Wd = spans[this.state.span], bays = this.state.bays, units = this.state.units;
-const bay = 2.0, He = 2.6, Hr = He + Wd * 0.26, L = bays * bay, Wt = units * Wd;
-const m = [];
-const add = (a, b, k) => m.push({ a, b, k, len: Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]) });
-for (let u = 0; u < units; u++) {
-const y0 = u * Wd;
-for (let i = 0; i <= bays; i++) {
-const x = i * bay;
-if (u === 0) add([x, y0, 0], [x, y0, He], 'col');
-add([x, y0 + Wd, 0], [x, y0 + Wd, He], 'col');
-add([x, y0, He], [x, y0 + Wd / 2, Hr], 'raf');
-add([x, y0 + Wd, He], [x, y0 + Wd / 2, Hr], 'raf');
-add([x, y0 + Wd * 0.22, He + (Hr - He) * 0.44], [x, y0 + Wd * 0.78, He + (Hr - He) * 0.44], 'tie');
-}
-const rows = [[y0 + Wd / 2, Hr], [y0 + Wd * 0.25, He + (Hr - He) * 0.5], [y0 + Wd * 0.75, He + (Hr - He) * 0.5], [y0 + Wd, He], [y0 + Wd, 0]];
-if (u === 0) rows.push([y0, He], [y0, 0], [y0, He * 0.5]);
-rows.forEach(([y, z]) => { for (let i = 0; i < bays; i++) add([i * bay, y, z], [(i + 1) * bay, y, z], z === 0 ? 'sill' : 'beam'); });
-}
-[0, bays - 1].forEach((i) => { add([i * bay, 0, 0], [(i + 1) * bay, 0, He], 'brace'); add([i * bay, Wt, 0], [(i + 1) * bay, Wt, He], 'brace'); });
-const c30 = Math.cos(Math.PI / 6), s30 = Math.sin(Math.PI / 6);
-const raw = (p) => [(p[0] - p[1]) * c30, (p[0] + p[1]) * s30 - p[2] * 1.05];
-let x0 = 1e9, x1 = -1e9, y0b = 1e9, y1b = -1e9;
-m.forEach((e) => [e.a, e.b].forEach((q) => { const r = raw(q); x0 = Math.min(x0, r[0]); x1 = Math.max(x1, r[0]); y0b = Math.min(y0b, r[1]); y1b = Math.max(y1b, r[1]); }));
-const sc = Math.min(800 / (x1 - x0), 480 / (y1b - y0b)), cx = (x0 + x1) / 2, cy = (y0b + y1b) / 2;
-const P = (p) => { const r = raw(p); return [450 + (r[0] - cx) * sc, 330 + (r[1] - cy) * sc]; };
-const sec = { col: 0.105 * 0.105, raf: 0.06 * 0.15, tie: 0.045 * 0.105, beam: 0.105 * 0.105, sill: 0.105 * 0.105, brace: 0.045 * 0.09 };
-const order = ['col', 'raf', 'tie', 'beam', 'sill', 'brace'];
-const groups = {}; order.forEach((k) => (groups[k] = []));
-m.forEach((e, i) => groups[e.k].push(i));
-order.forEach((k) => groups[k].sort((a, b) => m[b].len - m[a].len));
-const layout = (ps) => {
-const pos = {}, labels = []; let y = 64;
-order.forEach((k) => {
-const g = groups[k]; if (!g.length) return;
-labels.push({ k, y: y + 4, y2: y + 22, n: g.length, label: D.kinds[k] });
-let x = 190, ry = y;
-g.forEach((i) => { const w = Math.max(6, m[i].len * ps); if (x + w > 870) { x = 190; ry += 6; } pos[i] = { x, y: ry, s: w }; x += w + 4; });
-y = Math.max(ry, y + 26) + 30;
-});
-return { pos, labels, h: y };
-};
-let ps = 44, lay = layout(ps);
-while (lay.h > 585 && ps > 6) { ps -= 2; lay = layout(ps); }
-let vol = 0;
-const accent = this.props.accent ?? '#FF5528';
-const ex = this.state.exploded;
-const lines = m.map((e, i) => {
-vol += e.len * sec[e.k];
-const A = P(e.a), Bp = P(e.b);
-const strong = e.k === 'col' || e.k === 'raf';
-let x, y, a, s;
-if (ex) { const q = lay.pos[i]; x = q.x; y = q.y; a = 0; s = q.s; }
-else { x = A[0]; y = A[1]; a = Math.atan2(Bp[1] - A[1], Bp[0] - A[0]) * 180 / Math.PI; s = Math.hypot(Bp[0] - A[0], Bp[1] - A[1]); }
-return { x: x.toFixed(1), y: y.toFixed(1), a: a.toFixed(2), s: s.toFixed(2), d: Math.min(i * 5, 1000), c: e.k === 'brace' ? accent : (strong ? '#000000' : '#696660'), w: strong ? 3 : 1.8 };
-});
-const co2 = vol * 0.314 * 0.5 * 44 / 12;
+const p = this.ghParams();
+const g = ghMembers(p), st = ghStats(g);
+const vol = st.woodVol, co2 = st.co2;
 const nConv = Math.ceil(vol / 0.40 / 0.56), nX = Math.ceil(vol / 0.95 / 0.56);
 const icons = (n) => Array.from({ length: Math.min(n, 90) }, (_, i) => ({ d: i * 18 }));
-return { lines, labels: lay.labels, count: m.length, vol: vol.toFixed(2), co2: co2.toFixed(2), area: Math.round(L * Wt), lengthM: L.toFixed(1), nConv, nX, treesConv: icons(nConv), treesX: icons(nX), co2Trees: Math.max(1, Math.round(co2 / 0.505)) };
+return { count: st.count, vol: vol.toFixed(2), co2: co2.toFixed(2), area: Math.round(st.area), lengthM: (p.spans * 2).toFixed(1), nConv, nX, treesConv: icons(nConv), treesX: icons(nX), co2Trees: Math.max(1, Math.round(co2 / 0.505)) };
 }
+ghParams() { return { bays: this.state.units, spans: this.state.bays, bayW: [4.8, 6.4, 8.0][this.state.span], structure: this.state.structure }; }
+syncGh() {
+const el = this.cfgEl; if (!el || !this.cfgNear) return;
+if (!this.gh) { if (this.ghLoading) return; this.ghLoading = true; import('/lib/gh3d.js').then((m) => { this.gh = m.mountGreenhouse(el, { labels: this.D.kinds }); this.gh.update(this.ghParams(), this.state.exploded); }).catch(() => {}); return; }
+this.gh.update(this.ghParams(), this.state.exploded);
+}
+componentDidUpdate() { this.syncGh(); }
 renderVals() {
 const D = this.D;
 const accent = this.props.accent ?? '#FF5528';
@@ -91,6 +47,7 @@ const chip = (on, dark) => ({ bg: on ? (dark ? '#000' : '#fff') : 'transparent',
 const spanL = ['4.8 m', '6.4 m', '8.0 m'];
 const spans = spanL.map((label, i) => ({ label, on: this.state.span === i, ...chip(this.state.span === i, true), pick: () => this.setState({ span: i }) }));
 const unitsList = [1, 2, 3].map((n) => ({ label: n + (n === 1 ? D.ui.unit : D.ui.units), on: this.state.units === n, ...chip(this.state.units === n, true), pick: () => this.setState({ units: n }) }));
+const structs = [['wood', '木造'], ['hybrid', 'ハイブリッド'], ['steel', '鉄骨']].map(([k, label]) => ({ label, on: this.state.structure === k, ...chip(this.state.structure === k, true), pick: () => this.setState({ structure: k }) }));
 const flt = this.state.filter;
 const visible = D.projects.filter((p) => flt === 'all' || p.cat === flt);
 const rowSel = visible.some((p) => p.id === this.state.row) ? this.state.row : (visible[0] ? visible[0].id : '');
@@ -100,8 +57,8 @@ const filters = D.filters.map(([k, label]) => ({ label, n: k === 'all' ? D.proje
 return {
 heroSrc: this.state.heroSrc || undefined, heroPoster: this.state.heroPoster || undefined,
 accent, accentDark: '#C93A12', muteRef: this.muteRef,
-techs, spans, unitsList, rows, filters, ...f, bays: this.state.bays,
-modeLabel: (this.state.exploded ? 'KIT OF PARTS' : 'LIVE MODEL') + ' — ' + (this.state.bays * 2) + ' m × ' + spanL[this.state.span] + ' × ' + this.state.units,
+techs, spans, unitsList, structs, cfgRef: this.cfgRef, rows, filters, ...f, bays: this.state.bays,
+modeLabel: (this.state.exploded ? 'KIT OF PARTS' : 'LIVE MODEL') + ' — ' + (this.state.bays * 2) + ' m × ' + spanL[this.state.span] + ' × ' + this.state.units + ' — ' + this.state.structure.toUpperCase(),
 onBays: (e) => this.setState({ bays: parseInt(e.target.value, 10) }),
 exploded: this.state.exploded, toggleExplode: () => this.setState((s) => ({ exploded: !s.exploded })),
 explodeLabel: this.state.exploded ? D.ui.assemble : D.ui.explode, explodeBg: this.state.exploded ? '#000' : '#fff', explodeFg: this.state.exploded ? '#fff' : '#000'
@@ -134,7 +91,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 
 <section id="mission" style="position: relative; height: 100vh; min-height: 760px; overflow: hidden; background: #000">
 <div class="par" style="position: absolute; inset: 0">
-<video ref="${V.muteRef}" src="${V.heroSrc}" poster="${V.heroPoster}" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" aria-label="森、丸太、製材所、設計データ、建方、木組み、完成した温室をつなぐ映像" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
+<video ref="${V.muteRef}" src="${V.heroSrc}" poster="${V.heroPoster}" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" aria-label="構造・光・熱の解析で屋根の形と遮光パターンが決まり、木造グリッドシェルの建築として完成するまでを描いたモーショングラフィック" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
 </div>
 <div class="hero-shade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.12) 72%, rgba(0,0,0,0) 100%)"></div>
 <div class="hero-copy" style="position: absolute; left: 4vw; right: 4vw; bottom: 140px; max-width: 760px">
@@ -149,7 +106,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 </div>
 </div>
 
-<p class="en hero-cap fadein" style="position: absolute; right: 4vw; bottom: 140px; margin: 0; font-size: 11px; letter-spacing: 0.2em; color: #A9A69F; text-align: right; line-height: 2">SAME TIMBER, REASSEMBLED<br /><span style="color: #fff">PAVILION → GREENHOUSE → HOUSE</span></p>
+<p class="en hero-cap fadein" style="position: absolute; right: 4vw; bottom: 140px; margin: 0; font-size: 11px; letter-spacing: 0.2em; color: #A9A69F; text-align: right; line-height: 2">STRUCTURE · LIGHT · HEAT<br /><span style="color: #fff">OPTIMISED, THEN DESIGNED</span></p>
 </section>
 <section id="awards" style="border-bottom: 1px solid #222; padding: 40px 4vw; box-sizing: border-box">
 <div class="aw-row" style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; gap: 56px; flex-wrap: wrap">
@@ -189,8 +146,8 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 <div style="display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
 <div class="reveal" style="flex: 999 1 560px; min-width: 0">
 <p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #696660">OUR MODEL</p>
-<h2 style="margin: 0 0 28px; font-size: clamp(36px, 4.4vw, 68px); line-height: 1.25; font-weight: 900">あらゆる素材を建築に。<br />建築を、持続可能な社会資産に。</h2>
-<p style="margin: 0; max-width: 640px; font-size: 18px; line-height: 1.9; color: #333">XENCEは設計も施工も自社で行い、建てた施設の指定管理・運営まで担います。そこで得たデータを技術開発に戻し、次の建築をより速く、確かにする。<b>建築の請負を、建てて終わりにしない。素材のデータから環境配慮、運営マネジメントまでをつなぐ、建築のプラットフォーマーになります。</b></p>
+<h2 style="margin: 0 0 28px; font-size: clamp(36px, 4.4vw, 68px); line-height: 1.25; font-weight: 900">オープンインテグラルな建築をつくる、<br />建設業で最良のプラットフォーム。</h2>
+<p style="margin: 0; max-width: 640px; font-size: 18px; line-height: 1.9; color: #333">XENCEは設計・施工・指定管理を、一件ずつの請負としてではなく、ひと続きの仕事として担います。森や製材所、解体現場から出る素材を社会の中でつなぎ、建物にし、使われ方を記録し、役目を終えたら次の建築へ渡す。<b>仕様を開いて誰とでも組めるオープンさと、素材から運用までを一貫して担う統合力。その両方で、建設業をサーキュラーエコノミーへ変えていきます。</b></p>
 </div>
 <div class="reveal" style="flex: 1 1 360px; display: flex; flex-direction: column; align-items: center">
 <svg viewBox="-110 0 620 400" role="img" aria-label="設計 → 施工 → 指定管理 → 技術開発" style="width: 100%; max-width: 520px; height: auto; display: block">
@@ -204,7 +161,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 <text x="200" y="196" text-anchor="middle" font-size="30" font-weight="800" fill="#000" font-family="Montserrat">XENCE</text>
 <text x="200" y="222" text-anchor="middle" font-size="12" letter-spacing="2" fill="#696660" font-family="Montserrat">FLYWHEEL</text>
 </svg>
-<p style="margin: 20px 0 0; max-width: 420px; font-size: 14px; line-height: 1.85; color: #333">設計・施工・指定管理を一社で行い、そこで得たデータを技術開発に戻す。回るほど、次の建築が速く確かになる。</p>
+<p style="margin: 20px 0 0; max-width: 420px; font-size: 14px; line-height: 1.85; color: #333">設計・施工・指定管理を途切れさせず、そこで得たデータを技術開発に戻す。回るほど素材のつながりが広がり、次の建築が速く確かになる。</p>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px 32px; margin-top: 64px"><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">DESIGN</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">設計</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">一級建築士事務所として、温室・住宅・施設を設計する。</p></div><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">BUILD</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">施工</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">規格外の材を自社で加工し、組み上げる。</p></div><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">OPERATE</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">指定管理</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">建てた施設を運営・管理し、データを残す。</p></div><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">R&D</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">技術開発</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">自動設計・構造解析・Passportを自社で開発する。</p></div></div>
@@ -214,7 +171,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 <section id="technology" style="padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box">
 <div class="reveal" style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; margin-bottom: 64px">
 <div><p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #A9A69F">TECHNOLOGY</p>
-<h2 style="margin: 0; font-size: clamp(36px, 4vw, 60px); line-height: 1.3; font-weight: 900">規格外を、<br />標準にするデジタル技術。</h2></div>
+<h2 style="margin: 0; font-size: clamp(36px, 4vw, 60px); line-height: 1.3; font-weight: 900">“あらゆる素材”を、<br />建築の標準にのせるデジタル技術。</h2></div>
 <p style="margin: 0; max-width: 460px; font-size: 16px; line-height: 1.9; color: #D8D6D1">自社で開発したツールで、設計・施工・運用をひとつのデータでつなぎます。</p>
 </div>
 <div class="tech-wrap" style="display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch">
@@ -250,7 +207,7 @@ ${t.isImage ? html`<img src="${t.media}" alt="${t.alt}" style="width: 100%; heig
 <div class="reveal" style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; margin-bottom: 56px">
 <div><p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #696660">TRY THE SYSTEM</p>
 <h2 style="margin: 0; font-size: clamp(36px, 4vw, 60px); line-height: 1.3; font-weight: 900">サーキュラー木造温室™を、<br />ここで設計してみる。</h2></div>
-<p style="margin: 0; max-width: 480px; font-size: 16px; line-height: 1.9; color: #333">自動設計エンジンの体験版です。条件を変えると構造と数量がその場で変わります。「分解する」で部材を整列させ、何本の立木から製材されたかも確かめられます。</p>
+<p style="margin: 0; max-width: 480px; font-size: 16px; line-height: 1.9; color: #333">設計で使っているパラメトリックモデルを、そのまま動かしています。奥行き・間口・連棟・構造を変えると、部材と数量がその場で変わります。「分解する」で部材を種類ごとに並べ、何本の立木から製材されたかも確かめられます。ドラッグで回転、ピンチで拡大できます。</p>
 </div>
 <div class="cfg-wrap" style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
 <div class="cfg-ctrl" style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 28px; background: #fff; padding: 32px; border: 1px solid #000">
@@ -270,28 +227,24 @@ ${(V.spans || []).map((s) => html`<button type="button" class="en" onClick="${s.
 ${(V.unitsList || []).map((u) => html`<button type="button" class="en" onClick="${u.pick}" aria-pressed="${u.on}" style="font-family: inherit; font-size: 14px; font-weight: 700; padding: 12px 18px; min-height: 44px; border-radius: 999px; cursor: pointer; border: 1.5px solid #000; background: ${u.bg}; color: ${u.fg}">${u.label}</button>`)}
 </div>
 </div>
+<div>
+<p id="cfg-struct" style="margin: 0 0 12px; font-weight: 700; font-size: 15px">構造</p>
+<div role="group" aria-labelledby="cfg-struct" style="display: flex; gap: 8px; flex-wrap: wrap">
+${(V.structs || []).map((u) => html`<button type="button" onClick="${u.pick}" aria-pressed="${u.on}" style="font-family: inherit; font-size: 14px; font-weight: 700; padding: 12px 18px; min-height: 44px; border-radius: 999px; cursor: pointer; border: 1.5px solid #000; background: ${u.bg}; color: ${u.fg}">${u.label}</button>`)}
+</div>
+</div>
 <button type="button" onClick="${V.toggleExplode}" aria-pressed="${V.exploded}" style="font: inherit; font-weight: 700; font-size: 16px; padding: 18px; border-radius: 999px; border: 1.5px solid #000; background: ${V.explodeBg}; color: ${V.explodeFg}; cursor: pointer">${V.explodeLabel}</button>
 </div>
 <div class="cfg-right" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 1px; background: #000; border: 1px solid #000">
-<div class="cfg-view" style="background: #fff; position: relative; overflow: hidden; display: flex; align-items: stretch">
-<svg viewBox="0 0 900 600" role="img" aria-label="設定に応じて変わる温室フレームの図。分解すると部材が種類ごとに整列する" style="flex: 1; min-width: 0; height: auto; align-self: center; display: block">
-${(V.lines || []).map((l) => html`
-<line class="ln" x1="0" y1="0" x2="1" y2="0" stroke="${l.c}" stroke-width="${l.w}" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform: translate(${l.x}px, ${l.y}px) rotate(${l.a}deg) scaleX(${l.s}); transition-delay: ${l.d}ms"></line>
-`)}
-${V.exploded ? html`
-${(V.labels || []).map((g) => html`
-<text x="40" y="${g.y}" font-size="14" font-weight="700" fill="#000" style="animation: fade .6s .5s both">${g.label}</text>
-<text x="40" y="${g.y2}" font-size="12" fill="#696660" font-family="Montserrat" style="animation: fade .6s .6s both">× ${g.n}</text>
-`)}
-` : null}
-</svg>
+<div class="cfg-view" style="background: #F4F3F1; position: relative; overflow: hidden; display: flex; align-items: stretch">
+<div ref="${V.cfgRef}" class="cfg-3d" style="flex: 1; min-width: 0; position: relative; aspect-ratio: 3 / 2; background: #F4F3F1"></div>
 <div class="cfg-stats" style="flex: none; width: 168px; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 56px 24px 24px 0">
 <div><p style="margin: 0; font-size: 12px; color: #696660">部材数</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700">${V.count}</p></div>
 <div><p style="margin: 0; font-size: 12px; color: #696660">床面積</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700">${V.area}<span style="font-size: 13px"> m²</span></p></div>
 <div><p style="margin: 0; font-size: 12px; color: #696660">製材品の量</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700">${V.vol}<span style="font-size: 13px"> m³</span></p></div>
 <div><p style="margin: 0; font-size: 12px; color: #696660">炭素貯蔵量</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700; color: ${V.accentDark}">${V.co2}<span style="font-size: 13px"> t-CO₂</span></p></div>
 </div>
-<p class="en" style="position: absolute; left: 20px; top: 14px; margin: 0; font-size: 12px; letter-spacing: 0.14em; color: #696660"><span class="live" style="color: ${V.accent}">●</span> ${V.modeLabel}</p>
+<p class="en" style="position: absolute; left: 20px; top: 14px; z-index: 2; pointer-events: none; margin: 0; font-size: 12px; letter-spacing: 0.14em; color: #696660"><span class="live" style="color: ${V.accent}">●</span> ${V.modeLabel}</p>
 </div>
 <div class="cfg-trees" style="background: #fff; padding: 24px 28px">
 <p style="margin: 0 0 16px; font-weight: 700; font-size: 15px">この温室の製材品を、立木に換算すると</p>
@@ -380,7 +333,7 @@ ${r.noImg ? html`<div style="height: 320px; background: #696660; display: flex; 
 
 <section id="studio" style="padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box; border-top: 1px solid #222">
 <div class="reveal" style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; margin-bottom: 64px"><div><p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #A9A69F">STUDIO</p><h2 class="en" style="margin: 0 0 16px; font-size: clamp(40px, 5vw, 76px); font-weight: 900">People</h2><p style="margin: 0; font-size: 17px; line-height: 1.8; color: #D8D6D1">建築士、エンジニア、研究者、運営チーム。名古屋とデュッセルドルフから。</p></div><a href="#careers" class="en" style="background: #fff; color: #000; padding: 16px 28px; border-radius: 999px; font-weight: 700">Careers →</a></div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 56px 24px"><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ko.jpg" alt="Kotaro Ozawa" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Kotaro Ozawa</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Founder & CEO</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ao.jpg" alt="Asako Osedo" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Asako Osedo</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Co-Director, Service Design Officer</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ks.jpg" alt="Koji Saito" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Koji Saito</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Lead Architect</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ay.jpg" alt="Akihiro Yamada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Akihiro Yamada</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Lead Construction Management</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/kj.jpg" alt="Kotaro Jin" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Kotaro Jin</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Architect</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/kk.jpg" alt="Kosuke Kuroda" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Kosuke Kuroda</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Designer</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/yk.jpg" alt="Yushi Kimoto" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Yushi Kimoto</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Designer</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ms.jpg" alt="Mako Sumi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Mako Sumi</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Community Manager</p></div></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 56px 24px">${(this.state.people || []).map((p) => html`<div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="${p.img}" alt="${p.name}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">${p.name}</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">${p.role}</p></div>`)}</div>
 </section>
 
 <section id="contact" style="padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box">

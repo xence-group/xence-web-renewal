@@ -2,86 +2,42 @@ import { h, render, Component as PC } from '/vendor/preact.module.js';
 import htm from '/vendor/htm.module.js';
 const html = htm.bind(h);
 import { loadNews, FALLBACK, newsHref, isExternal } from '/lib/news.js';
+import { ghMembers, ghStats } from '/lib/ghmodel.js';
+import { loadPeople, FALLBACK as PEOPLE } from '/lib/people.js';
 
 class App extends PC {
 constructor(props) {
 super(props);
-this.D = {"techs": [{"num": "01", "title": "Design engine", "tag": "COMPUTATIONAL DESIGN", "body": "Feed in what’s actually available — lengths, sections, quantities — and the engine generates the structure and every cut. One rule set designs greenhouses, furniture and pavilions.", "media": "/assets/t1_design.mp4", "caption": "Irregular stock automatically allocated to frame members", "alt": "Animation of inventory boards being allocated to a greenhouse frame", "video": true}, {"num": "02", "title": "Structural analysis", "tag": "STRUCTURAL ANALYSIS", "body": "Snow and wind loads are run across the full 3D frame, checking deflection and utilisation member by member — the evidence that non-standard material can carry real loads.", "media": "/assets/out_t2_analysis.mp4", "caption": "Snow and wind load cases on the 3D frame, utilisation per member (illustrative)", "alt": "Animation of a greenhouse frame deflecting under snow and wind, members coloured by utilisation", "video": true}, {"num": "03", "title": "Digital fabrication", "tag": "FABRICATION", "body": "We scan irregular stock and shape each member around its curve, grain and waney edge instead of cutting them away. Timber joints lock it together — no steel hardware, fully demountable.", "media": "/assets/out_t3_fab.mp4", "caption": "A curved board scanned, and a member shaped to follow its curve", "alt": "Animation of a curved board being scanned and a member and toolpath following its shape", "video": true}, {"num": "04", "title": "3D printing", "tag": "ADDITIVE MANUFACTURING", "body": "Free-form geometry is stood up, checked for overhangs and automatically reshaped to be printable before slicing. Shown here in steel (WAAM); the same pipeline runs resin and wood composite.", "media": "/assets/out_t4_waam_v4.mp4", "caption": "Stood up, checked for overhangs, auto-adjusted to be printable, then built bottom-up (steel WAAM example)", "alt": "Animation of a curved surface rotating upright and being printed layer by layer", "video": true}, {"num": "05", "title": "Material Passport", "tag": "TRACEABILITY", "body": "Felling, haulage, sawing, drying, fabrication, building: one QR code records the history, the carbon stored in the wood and the GHG emitted at each step, and passes all three to the piece’s next use. Live since October 2026.", "media": "/assets/out_t5_passport_v4.mp4", "caption": "History, stored carbon and GHG emissions, carried by one QR code (sample record)", "alt": "Animation of a QR passport collecting records from forest, trailer, sawmill, kiln, fabrication and building", "video": true}, {"num": "06", "title": "LCA & operating data", "tag": "WHOLE-LIFE CARBON", "body": "We calculate whole-life carbon with J-CAT and One Click LCA, then pair it with operating data to evidence a building’s value as an asset.", "media": "/assets/out_t6_lca_v4.mp4", "caption": "Greenhouse carbon storage, whole-life carbon in J-CAT, and campus facility-cost analytics", "alt": "Animation showing carbon storage, lifecycle carbon breakdown and facility cost breakdown", "video": true}], "projects": [{"id": "p1", "cat": "gh", "img": "/assets/gh_night_in.jpg", "title": "Circular Timber Greenhouse™", "type": "Greenhouse", "input": "Sawmill offcuts", "tech": "Design engine · Analysis", "place": "Mie", "year": "2025", "status": "Completed", "desc": "A timber greenhouse whose structure is built from sawmill offcuts. Fully demountable; units link together to scale. Red Dot Design Award 2026."}, {"id": "p2", "cat": "gh", "img": "/assets/higashiura.jpg", "title": "Self-build greenhouse, Higashiura (2 units, 130 m²)", "type": "Greenhouse", "input": "Sawmill offcuts", "tech": "Design engine · Fabrication", "place": "Higashiura, Aichi", "year": "2026", "status": "Under construction", "desc": "A three-zone greenhouse — forestry seedlings, strawberries, tomatoes — raised with numbered parts by the people who will farm it."}, {"id": "p3", "cat": "fu", "img": "/assets/tsite.jpg", "title": "Lantern stand ⇄ bench, Daikanyama T-SITE", "type": "Furniture", "input": "Sawmill offcuts", "tech": "Fabrication · Passport", "place": "Tokyo", "year": "2026", "status": "Completed", "desc": "Lantern stands for a summer festival, reassembled into benches once it ended. No steel hardware — and a Material Passport for every part."}, {"id": "p4", "cat": "fu", "img": "/assets/table.jpg", "title": "New-material furniture, Nagoya University C-TECs", "type": "Furniture", "input": "New material [confirm]", "tech": "Fabrication", "place": "Nagoya", "year": "2026", "status": "Delivered", "desc": "Furniture for the exchange space at Nagoya University’s Institute of Innovation for Future Society. [Add material and spec]"}, {"id": "p11", "cat": "fu", "img": "/assets/bench3d_a.jpg", "title": "3D-printed bench", "type": "Furniture", "input": "Steel", "tech": "Metal 3D printing (WAAM)", "place": "Aichi", "year": "2025", "status": "Completed", "desc": "A bench re-sliced for WAAM and printed in one continuous piece of steel — lattice seat and ribbed legs included."}, {"id": "p12", "cat": "ar", "img": "/assets/woodnode.jpg", "title": "WoodNode — a joint that turns offcuts into architecture", "type": "Architecture", "input": "Sawmill offcuts", "tech": "Metal 3D printing · Topology optimisation", "place": "[Location]", "year": "2024", "status": "Completed", "desc": "A structural joint that lets sawmill offcuts carry loads. Each node is metal 3D-printed to fit its pieces and topology-optimised for strength and low weight. With Takenaka Corporation, Shimoda Flange and Noji Lumber. Excellence Award, Urban Infrastructure Technology Promotion Conference."}, {"id": "p7", "cat": "ar", "img": "/assets/arch_fix.jpg", "title": "House of large-diameter logs", "type": "Architecture", "input": "Large-diameter logs", "tech": "Analysis · Fabrication", "place": "Tokyo", "year": "2026", "status": "Under construction", "desc": "A house that puts hard-to-sell large-diameter logs to work as built-up structural beams."}, {"id": "p8", "cat": "ma", "img": "/assets/wf_bench.jpg", "title": "Wood-flour resin pellets (with Takenaka and Kurabo)", "type": "Material & data", "input": "Offcuts · Wood flour", "tech": "Materials R&D", "place": "Adopted in Nihonbashi, Tokyo", "year": "2025", "status": "610 kg delivered", "desc": "Engineered-wood offcuts milled to flour and compounded with biodegradable resin or recycled PP into a mouldable material."}, {"id": "p21", "cat": "fm", "img": "/assets/memu.jpg", "title": "MEMU Open Research Campus", "type": "Facility management", "input": "Existing facility", "tech": "Facility management", "place": "Taiki, Hokkaido", "year": "2022", "status": "Operating", "desc": "Facility management for a research campus in Taiki, Hokkaido — keeping existing buildings in use and adapting them as needs change."}, {"id": "p22", "cat": "fm", "img": "/assets/ideastoa.jpg", "title": "Idea Stoa, Nagoya University", "type": "Facility management", "input": "Existing facility", "tech": "Facility management", "place": "Nagoya", "year": "2023", "status": "Operating", "desc": "Nagoya University’s space for making and meeting, equipped with laser cutters and other machines. XENCE manages the facility."}, {"id": "p23", "cat": "fm", "img": "/assets/monomiyusan.jpg", "title": "Monomiyusan (Yuto)", "type": "Facility management", "input": "Old farmhouse", "tech": "Facility management · Hospitality", "place": "Shirotori, Gujo, Gifu", "year": "2026", "status": "Operating", "desc": "A guesthouse in an old farmhouse that introduces travellers to everyday life and play in Shirotori, and hands it on. Run as a place where locals and visitors meet."}], "filters": [["all", "All"], ["fu", "Furniture"], ["gh", "Greenhouse"], ["ar", "Architecture"], ["ma", "Material & data"], ["fm", "Facility management"]], "kinds": {"col": "Posts", "raf": "Rafters", "tie": "Ties", "beam": "Beams & purlins", "sill": "Sills", "brace": "Braces"}, "ui": {"explode": "Take it apart", "assemble": "Put it back together", "unit": " unit", "units": " units"}};
-this.state = { tech: 0, bays: 6, span: 1, units: 2, exploded: false, filter: 'all', row: 'p1', heroSrc: '', heroPoster: '', news: FALLBACK };
+this.D = {"techs": [{"num": "01", "title": "Design engine", "tag": "COMPUTATIONAL DESIGN", "body": "Feed in what’s actually available — lengths, sections, quantities — and the engine generates the structure and every cut. One rule set designs greenhouses, furniture and pavilions.", "media": "/assets/t1_design.mp4", "caption": "Irregular stock automatically allocated to frame members", "alt": "Animation of inventory boards being allocated to a greenhouse frame", "video": true}, {"num": "02", "title": "Structural analysis", "tag": "STRUCTURAL ANALYSIS", "body": "Snow and wind loads are run across the full 3D frame, checking deflection and utilisation member by member — the evidence that non-standard material can carry real loads.", "media": "/assets/out_t2_analysis.mp4", "caption": "Snow and wind load cases on the 3D frame, utilisation per member (illustrative)", "alt": "Animation of a greenhouse frame deflecting under snow and wind, members coloured by utilisation", "video": true}, {"num": "03", "title": "Digital fabrication", "tag": "FABRICATION", "body": "We scan irregular stock and shape each member around its curve, grain and waney edge instead of cutting them away. Timber joints lock it together — no steel hardware, fully demountable.", "media": "/assets/out_t3_fab.mp4", "caption": "A curved board scanned, and a member shaped to follow its curve", "alt": "Animation of a curved board being scanned and a member and toolpath following its shape", "video": true}, {"num": "04", "title": "3D printing", "tag": "ADDITIVE MANUFACTURING", "body": "Free-form geometry is stood up, checked for overhangs and automatically reshaped to be printable before slicing. Shown here in steel (WAAM); the same pipeline runs resin and wood composite.", "media": "/assets/out_t4_waam_v4.mp4", "caption": "Stood up, checked for overhangs, auto-adjusted to be printable, then built bottom-up (steel WAAM example)", "alt": "Animation of a curved surface rotating upright and being printed layer by layer", "video": true}, {"num": "05", "title": "Material Passport", "tag": "TRACEABILITY", "body": "Felling, haulage, sawing, drying, fabrication, building: one QR code records the history, the carbon stored in the wood and the GHG emitted at each step, and passes all three to the piece’s next use. Live since October 2026.", "media": "/assets/out_t5_passport_v4.mp4", "caption": "History, stored carbon and GHG emissions, carried by one QR code (sample record)", "alt": "Animation of a QR passport collecting records from forest, trailer, sawmill, kiln, fabrication and building", "video": true}, {"num": "06", "title": "LCA & operating data", "tag": "WHOLE-LIFE CARBON", "body": "We calculate whole-life carbon with J-CAT and One Click LCA, then pair it with operating data to evidence a building’s value as an asset.", "media": "/assets/out_t6_lca_v4.mp4", "caption": "Greenhouse carbon storage, whole-life carbon in J-CAT, and campus facility-cost analytics", "alt": "Animation showing carbon storage, lifecycle carbon breakdown and facility cost breakdown", "video": true}], "projects": [{"id": "p1", "cat": "gh", "img": "/assets/gh_night_in.jpg", "title": "Circular Timber Greenhouse™", "type": "Greenhouse", "input": "Sawmill offcuts", "tech": "Design engine · Analysis", "place": "Mie", "year": "2025", "status": "Completed", "desc": "A timber greenhouse whose structure is built from sawmill offcuts. Fully demountable; units link together to scale. Red Dot Design Award 2026."}, {"id": "p2", "cat": "gh", "img": "/assets/higashiura.jpg", "title": "Self-build greenhouse, Higashiura (2 units, 130 m²)", "type": "Greenhouse", "input": "Sawmill offcuts", "tech": "Design engine · Fabrication", "place": "Higashiura, Aichi", "year": "2026", "status": "Under construction", "desc": "A three-zone greenhouse — forestry seedlings, strawberries, tomatoes — raised with numbered parts by the people who will farm it."}, {"id": "p3", "cat": "fu", "img": "/assets/tsite.jpg", "title": "Lantern stand ⇄ bench, Daikanyama T-SITE", "type": "Furniture", "input": "Sawmill offcuts", "tech": "Fabrication · Passport", "place": "Tokyo", "year": "2026", "status": "Completed", "desc": "Lantern stands for a summer festival, reassembled into benches once it ended. No steel hardware — and a Material Passport for every part."}, {"id": "p4", "cat": "fu", "img": "/assets/table.jpg", "title": "New-material furniture, Nagoya University C-TECs", "type": "Furniture", "input": "New material [confirm]", "tech": "Fabrication", "place": "Nagoya", "year": "2026", "status": "Delivered", "desc": "Furniture for the exchange space at Nagoya University’s Institute of Innovation for Future Society. [Add material and spec]"}, {"id": "p11", "cat": "fu", "img": "/assets/bench3d_a.jpg", "title": "3D-printed bench", "type": "Furniture", "input": "Steel", "tech": "Metal 3D printing (WAAM)", "place": "Aichi", "year": "2025", "status": "Completed", "desc": "A bench re-sliced for WAAM and printed in one continuous piece of steel — lattice seat and ribbed legs included."}, {"id": "p12", "cat": "ar", "img": "/assets/woodnode.jpg", "title": "WoodNode — a joint that turns offcuts into architecture", "type": "Architecture", "input": "Sawmill offcuts", "tech": "Metal 3D printing · Topology optimisation", "place": "[Location]", "year": "2024", "status": "Completed", "desc": "A structural joint that lets sawmill offcuts carry loads. Each node is metal 3D-printed to fit its pieces and topology-optimised for strength and low weight. With Takenaka Corporation, Shimoda Flange and Noji Lumber. Excellence Award, Urban Infrastructure Technology Promotion Conference."}, {"id": "p7", "cat": "ar", "img": "/assets/arch_fix.jpg", "title": "House of large-diameter logs", "type": "Architecture", "input": "Large-diameter logs", "tech": "Analysis · Fabrication", "place": "Tokyo", "year": "2026", "status": "Under construction", "desc": "A house that puts hard-to-sell large-diameter logs to work as built-up structural beams."}, {"id": "p8", "cat": "ma", "img": "/assets/wf_bench.jpg", "title": "Wood-flour resin pellets (with Takenaka and Kurabo)", "type": "Material & data", "input": "Offcuts · Wood flour", "tech": "Materials R&D", "place": "Adopted in Nihonbashi, Tokyo", "year": "2025", "status": "610 kg delivered", "desc": "Engineered-wood offcuts milled to flour and compounded with biodegradable resin or recycled PP into a mouldable material."}, {"id": "p21", "cat": "fm", "img": "/assets/memu.jpg", "title": "MEMU Open Research Campus", "type": "Facility management", "input": "Existing facility", "tech": "Facility management", "place": "Taiki, Hokkaido", "year": "2022", "status": "Operating", "desc": "Facility management for a research campus in Taiki, Hokkaido — keeping existing buildings in use and adapting them as needs change."}, {"id": "p22", "cat": "fm", "img": "/assets/ideastoa.jpg", "title": "Idea Stoa, Nagoya University", "type": "Facility management", "input": "Existing facility", "tech": "Facility management", "place": "Nagoya", "year": "2023", "status": "Operating", "desc": "Nagoya University’s space for making and meeting, equipped with laser cutters and other machines. XENCE manages the facility."}, {"id": "p23", "cat": "fm", "img": "/assets/monomiyusan.jpg", "title": "Monomiyusan (Yuto)", "type": "Facility management", "input": "Old farmhouse", "tech": "Facility management · Hospitality", "place": "Shirotori, Gujo, Gifu", "year": "2026", "status": "Operating", "desc": "A guesthouse in an old farmhouse that introduces travellers to everyday life and play in Shirotori, and hands it on. Run as a place where locals and visitors meet."}], "filters": [["all", "All"], ["fu", "Furniture"], ["gh", "Greenhouse"], ["ar", "Architecture"], ["ma", "Material & data"], ["fm", "Facility management"]], "kinds": {"side": "Side posts", "mid": "Mid posts", "rafter": "Rafters", "tie": "Ties", "king": "King posts", "beam": "Eaves beams", "purlin": "Purlins", "fast": "Film fasteners"}, "ui": {"explode": "Take it apart", "assemble": "Put it back together", "unit": " unit", "units": " units"}};
+this.state = { tech: 0, bays: 6, span: 1, units: 2, structure: 'wood', exploded: false, filter: 'all', row: 'p1', heroSrc: '', heroPoster: '', news: FALLBACK, people: PEOPLE };
+this.cfgRef = (el) => { this.cfgEl = el; if (el && !this.cfgIO && typeof IntersectionObserver !== 'undefined') { this.cfgIO = new IntersectionObserver((e) => { if (e[0].isIntersecting) { this.cfgIO.disconnect(); this.cfgNear = true; this.syncGh(); } }, { rootMargin: '600px' }); this.cfgIO.observe(el); } };
 this.muteRef = (el) => { if (el) { el.muted = true; el.defaultMuted = true; try { const p = el.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} } };
 }
 componentDidMount() {
 loadNews().then((n) => this.setState({ news: n }));
+loadPeople().then((p) => this.setState({ people: p }));
 const mob = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
-this.setState({ heroSrc: mob ? '/assets/hero_m.mp4' : '/assets/hero_d.mp4', heroPoster: mob ? '/assets/poster_m.jpg' : '/assets/poster_d.jpg' }, () => { setTimeout(() => { try { const v = document.querySelector('#mission video'); if (v) { v.muted = true; v.load(); const p = v.play(); if (p && p.catch) p.catch(() => {}); } } catch (e) {} }, 50); });
+this.setState({ heroSrc: mob ? '/assets/hero_m_v2.mp4' : '/assets/hero_d_v2.mp4', heroPoster: mob ? '/assets/poster_m_v2.jpg' : '/assets/poster_d_v2.jpg' }, () => { setTimeout(() => { try { const v = document.querySelector('#mission video'); if (v) { v.muted = true; v.load(); const p = v.play(); if (p && p.catch) p.catch(() => {}); } } catch (e) {} }, 50); });
 this.durs = [7, 10, 9, 13, 10, 12];
 this.schedule = () => { clearTimeout(this.timer); const i = this.state.tech; this.timer = setTimeout(() => { if (this.props.autoplayTech !== false) this.setState((s) => ({ tech: (s.tech + 1) % 6 }), this.schedule); else this.schedule(); }, this.durs[i] * 1000 + 600); };
 this.schedule();
 }
 componentWillUnmount() { clearTimeout(this.timer); }
 model() {
-const D = this.D;
-const spans = [4.8, 6.4, 8.0];
-const Wd = spans[this.state.span], bays = this.state.bays, units = this.state.units;
-const bay = 2.0, He = 2.6, Hr = He + Wd * 0.26, L = bays * bay, Wt = units * Wd;
-const m = [];
-const add = (a, b, k) => m.push({ a, b, k, len: Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]) });
-for (let u = 0; u < units; u++) {
-const y0 = u * Wd;
-for (let i = 0; i <= bays; i++) {
-const x = i * bay;
-if (u === 0) add([x, y0, 0], [x, y0, He], 'col');
-add([x, y0 + Wd, 0], [x, y0 + Wd, He], 'col');
-add([x, y0, He], [x, y0 + Wd / 2, Hr], 'raf');
-add([x, y0 + Wd, He], [x, y0 + Wd / 2, Hr], 'raf');
-add([x, y0 + Wd * 0.22, He + (Hr - He) * 0.44], [x, y0 + Wd * 0.78, He + (Hr - He) * 0.44], 'tie');
-}
-const rows = [[y0 + Wd / 2, Hr], [y0 + Wd * 0.25, He + (Hr - He) * 0.5], [y0 + Wd * 0.75, He + (Hr - He) * 0.5], [y0 + Wd, He], [y0 + Wd, 0]];
-if (u === 0) rows.push([y0, He], [y0, 0], [y0, He * 0.5]);
-rows.forEach(([y, z]) => { for (let i = 0; i < bays; i++) add([i * bay, y, z], [(i + 1) * bay, y, z], z === 0 ? 'sill' : 'beam'); });
-}
-[0, bays - 1].forEach((i) => { add([i * bay, 0, 0], [(i + 1) * bay, 0, He], 'brace'); add([i * bay, Wt, 0], [(i + 1) * bay, Wt, He], 'brace'); });
-const c30 = Math.cos(Math.PI / 6), s30 = Math.sin(Math.PI / 6);
-const raw = (p) => [(p[0] - p[1]) * c30, (p[0] + p[1]) * s30 - p[2] * 1.05];
-let x0 = 1e9, x1 = -1e9, y0b = 1e9, y1b = -1e9;
-m.forEach((e) => [e.a, e.b].forEach((q) => { const r = raw(q); x0 = Math.min(x0, r[0]); x1 = Math.max(x1, r[0]); y0b = Math.min(y0b, r[1]); y1b = Math.max(y1b, r[1]); }));
-const sc = Math.min(800 / (x1 - x0), 480 / (y1b - y0b)), cx = (x0 + x1) / 2, cy = (y0b + y1b) / 2;
-const P = (p) => { const r = raw(p); return [450 + (r[0] - cx) * sc, 330 + (r[1] - cy) * sc]; };
-const sec = { col: 0.105 * 0.105, raf: 0.06 * 0.15, tie: 0.045 * 0.105, beam: 0.105 * 0.105, sill: 0.105 * 0.105, brace: 0.045 * 0.09 };
-const order = ['col', 'raf', 'tie', 'beam', 'sill', 'brace'];
-const groups = {}; order.forEach((k) => (groups[k] = []));
-m.forEach((e, i) => groups[e.k].push(i));
-order.forEach((k) => groups[k].sort((a, b) => m[b].len - m[a].len));
-const layout = (ps) => {
-const pos = {}, labels = []; let y = 64;
-order.forEach((k) => {
-const g = groups[k]; if (!g.length) return;
-labels.push({ k, y: y + 4, y2: y + 22, n: g.length, label: D.kinds[k] });
-let x = 190, ry = y;
-g.forEach((i) => { const w = Math.max(6, m[i].len * ps); if (x + w > 870) { x = 190; ry += 6; } pos[i] = { x, y: ry, s: w }; x += w + 4; });
-y = Math.max(ry, y + 26) + 30;
-});
-return { pos, labels, h: y };
-};
-let ps = 44, lay = layout(ps);
-while (lay.h > 585 && ps > 6) { ps -= 2; lay = layout(ps); }
-let vol = 0;
-const accent = this.props.accent ?? '#FF5528';
-const ex = this.state.exploded;
-const lines = m.map((e, i) => {
-vol += e.len * sec[e.k];
-const A = P(e.a), Bp = P(e.b);
-const strong = e.k === 'col' || e.k === 'raf';
-let x, y, a, s;
-if (ex) { const q = lay.pos[i]; x = q.x; y = q.y; a = 0; s = q.s; }
-else { x = A[0]; y = A[1]; a = Math.atan2(Bp[1] - A[1], Bp[0] - A[0]) * 180 / Math.PI; s = Math.hypot(Bp[0] - A[0], Bp[1] - A[1]); }
-return { x: x.toFixed(1), y: y.toFixed(1), a: a.toFixed(2), s: s.toFixed(2), d: Math.min(i * 5, 1000), c: e.k === 'brace' ? accent : (strong ? '#000000' : '#696660'), w: strong ? 3 : 1.8 };
-});
-const co2 = vol * 0.314 * 0.5 * 44 / 12;
+const p = this.ghParams();
+const g = ghMembers(p), st = ghStats(g);
+const vol = st.woodVol, co2 = st.co2;
 const nConv = Math.ceil(vol / 0.40 / 0.56), nX = Math.ceil(vol / 0.95 / 0.56);
 const icons = (n) => Array.from({ length: Math.min(n, 90) }, (_, i) => ({ d: i * 18 }));
-return { lines, labels: lay.labels, count: m.length, vol: vol.toFixed(2), co2: co2.toFixed(2), area: Math.round(L * Wt), lengthM: L.toFixed(1), nConv, nX, treesConv: icons(nConv), treesX: icons(nX), co2Trees: Math.max(1, Math.round(co2 / 0.505)) };
+return { count: st.count, vol: vol.toFixed(2), co2: co2.toFixed(2), area: Math.round(st.area), lengthM: (p.spans * 2).toFixed(1), nConv, nX, treesConv: icons(nConv), treesX: icons(nX), co2Trees: Math.max(1, Math.round(co2 / 0.505)) };
 }
+ghParams() { return { bays: this.state.units, spans: this.state.bays, bayW: [4.8, 6.4, 8.0][this.state.span], structure: this.state.structure }; }
+syncGh() {
+const el = this.cfgEl; if (!el || !this.cfgNear) return;
+if (!this.gh) { if (this.ghLoading) return; this.ghLoading = true; import('/lib/gh3d.js').then((m) => { this.gh = m.mountGreenhouse(el, { labels: this.D.kinds }); this.gh.update(this.ghParams(), this.state.exploded); }).catch(() => {}); return; }
+this.gh.update(this.ghParams(), this.state.exploded);
+}
+componentDidUpdate() { this.syncGh(); }
 renderVals() {
 const D = this.D;
 const accent = this.props.accent ?? '#FF5528';
@@ -91,6 +47,7 @@ const chip = (on, dark) => ({ bg: on ? (dark ? '#000' : '#fff') : 'transparent',
 const spanL = ['4.8 m', '6.4 m', '8.0 m'];
 const spans = spanL.map((label, i) => ({ label, on: this.state.span === i, ...chip(this.state.span === i, true), pick: () => this.setState({ span: i }) }));
 const unitsList = [1, 2, 3].map((n) => ({ label: n + (n === 1 ? D.ui.unit : D.ui.units), on: this.state.units === n, ...chip(this.state.units === n, true), pick: () => this.setState({ units: n }) }));
+const structs = [['wood', 'Timber'], ['hybrid', 'Hybrid'], ['steel', 'Steel']].map(([k, label]) => ({ label, on: this.state.structure === k, ...chip(this.state.structure === k, true), pick: () => this.setState({ structure: k }) }));
 const flt = this.state.filter;
 const visible = D.projects.filter((p) => flt === 'all' || p.cat === flt);
 const rowSel = visible.some((p) => p.id === this.state.row) ? this.state.row : (visible[0] ? visible[0].id : '');
@@ -100,8 +57,8 @@ const filters = D.filters.map(([k, label]) => ({ label, n: k === 'all' ? D.proje
 return {
 heroSrc: this.state.heroSrc || undefined, heroPoster: this.state.heroPoster || undefined,
 accent, accentDark: '#C93A12', muteRef: this.muteRef,
-techs, spans, unitsList, rows, filters, ...f, bays: this.state.bays,
-modeLabel: (this.state.exploded ? 'KIT OF PARTS' : 'LIVE MODEL') + ' — ' + (this.state.bays * 2) + ' m × ' + spanL[this.state.span] + ' × ' + this.state.units,
+techs, spans, unitsList, structs, cfgRef: this.cfgRef, rows, filters, ...f, bays: this.state.bays,
+modeLabel: (this.state.exploded ? 'KIT OF PARTS' : 'LIVE MODEL') + ' — ' + (this.state.bays * 2) + ' m × ' + spanL[this.state.span] + ' × ' + this.state.units + ' — ' + this.state.structure.toUpperCase(),
 onBays: (e) => this.setState({ bays: parseInt(e.target.value, 10) }),
 exploded: this.state.exploded, toggleExplode: () => this.setState((s) => ({ exploded: !s.exploded })),
 explodeLabel: this.state.exploded ? D.ui.assemble : D.ui.explode, explodeBg: this.state.exploded ? '#000' : '#fff', explodeFg: this.state.exploded ? '#fff' : '#000'
@@ -134,7 +91,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 
 <section id="mission" style="position: relative; height: 100vh; min-height: 760px; overflow: hidden; background: #000">
 <div class="par" style="position: absolute; inset: 0">
-<video ref="${V.muteRef}" src="${V.heroSrc}" poster="${V.heroPoster}" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" aria-label="Film: forest, logs, sawmill, design data, assembly, joinery and the finished greenhouse" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
+<video ref="${V.muteRef}" src="${V.heroSrc}" poster="${V.heroPoster}" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" aria-label="Motion graphic: structural form-finding, solar and airflow analysis shape a timber gridshell roof and its shading pattern, ending in the finished building" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
 </div>
 <div class="hero-shade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.12) 72%, rgba(0,0,0,0) 100%)"></div>
 <div class="hero-copy" style="position: absolute; left: 4vw; right: 4vw; bottom: 140px; max-width: 760px">
@@ -149,7 +106,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 </div>
 </div>
 
-<p class="en hero-cap fadein" style="position: absolute; right: 4vw; bottom: 140px; margin: 0; font-size: 11px; letter-spacing: 0.2em; color: #A9A69F; text-align: right; line-height: 2">SAME TIMBER, REASSEMBLED<br /><span style="color: #fff">PAVILION → GREENHOUSE → HOUSE</span></p>
+<p class="en hero-cap fadein" style="position: absolute; right: 4vw; bottom: 140px; margin: 0; font-size: 11px; letter-spacing: 0.2em; color: #A9A69F; text-align: right; line-height: 2">STRUCTURE · LIGHT · HEAT<br /><span style="color: #fff">OPTIMISED, THEN DESIGNED</span></p>
 </section>
 <section id="awards" style="border-bottom: 1px solid #222; padding: 40px 4vw; box-sizing: border-box">
 <div class="aw-row" style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; gap: 56px; flex-wrap: wrap">
@@ -189,8 +146,8 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 <div style="display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
 <div class="reveal" style="flex: 999 1 560px; min-width: 0">
 <p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #696660">OUR MODEL</p>
-<h2 style="margin: 0 0 28px; font-size: clamp(36px, 4.4vw, 68px); line-height: 1.25; font-weight: 900">Every material into architecture.<br />Architecture into lasting social assets.</h2>
-<p style="margin: 0; max-width: 640px; font-size: 18px; line-height: 1.9; color: #333">XENCE designs and builds, then runs and manages what it builds. The data from every site goes back into our technology, so each building is faster and more certain than the last. <b>A building contract should not end at handover. XENCE connects material data, environmental performance and facility management as a platform for architecture.</b></p>
+<h2 style="margin: 0 0 28px; font-size: clamp(36px, 4.4vw, 68px); line-height: 1.25; font-weight: 900">The best platform in construction<br />for open-integral architecture.</h2>
+<p style="margin: 0; max-width: 640px; font-size: 18px; line-height: 1.9; color: #333">XENCE designs, builds and operates — not as separate contracts, but as one continuous service. We connect materials across society, from forests, sawmills and demolition sites, turn them into buildings, record how they are used, and pass them on to the next building when their job is done. <b>Open enough to work with anyone, integrated enough to carry a material from source to operation: that is how we turn construction into a circular economy.</b></p>
 </div>
 <div class="reveal" style="flex: 1 1 360px; display: flex; flex-direction: column; align-items: center">
 <svg viewBox="-110 0 620 400" role="img" aria-label="Design → Build → Operate → R&D" style="width: 100%; max-width: 520px; height: auto; display: block">
@@ -204,7 +161,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 <text x="200" y="196" text-anchor="middle" font-size="30" font-weight="800" fill="#000" font-family="Montserrat">XENCE</text>
 <text x="200" y="222" text-anchor="middle" font-size="12" letter-spacing="2" fill="#696660" font-family="Montserrat">FLYWHEEL</text>
 </svg>
-<p style="margin: 20px 0 0; max-width: 420px; font-size: 14px; line-height: 1.85; color: #333">Design, build and operation in one company, with the data fed back into R&D. The more it turns, the faster and surer the next building.</p>
+<p style="margin: 20px 0 0; max-width: 420px; font-size: 14px; line-height: 1.85; color: #333">Design, build and operation without breaks, with the data fed back into R&D. The more it turns, the wider the material network and the faster and surer the next building.</p>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px 32px; margin-top: 64px"><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">DESIGN</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">Design</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">A licensed architecture office designing greenhouses, homes and facilities.</p></div><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">BUILD</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">Build</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">We fabricate non-standard timber in-house and put it up ourselves.</p></div><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">OPERATE</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">Operate</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">We run and manage what we build — and keep its data.</p></div><div class="reveal" style="border-top: 2px solid #000; padding-top: 16px"><p class="en" style="margin: 0; font-size: 11px; letter-spacing: 0.16em; color: ${V.accentDark}; font-weight: 700">R&D</p><h3 style="margin: 6px 0 6px; font-size: 22px; font-weight: 900">Technology</h3><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #333">Design engine, structural analysis and Material Passport, built in-house.</p></div></div>
@@ -214,7 +171,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 <section id="technology" style="padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box">
 <div class="reveal" style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; margin-bottom: 64px">
 <div><p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #A9A69F">TECHNOLOGY</p>
-<h2 style="margin: 0; font-size: clamp(36px, 4vw, 60px); line-height: 1.3; font-weight: 900">Digital tools that make<br />the non-standard standard.</h2></div>
+<h2 style="margin: 0; font-size: clamp(36px, 4vw, 60px); line-height: 1.3; font-weight: 900">Digital tools that bring<br />“every material” up to building standard.</h2></div>
 <p style="margin: 0; max-width: 460px; font-size: 16px; line-height: 1.9; color: #D8D6D1">Software we write ourselves links design, fabrication and operation into a single stream of data.</p>
 </div>
 <div class="tech-wrap" style="display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch">
@@ -250,7 +207,7 @@ ${t.isImage ? html`<img src="${t.media}" alt="${t.alt}" style="width: 100%; heig
 <div class="reveal" style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; margin-bottom: 56px">
 <div><p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #696660">TRY THE SYSTEM</p>
 <h2 style="margin: 0; font-size: clamp(36px, 4vw, 60px); line-height: 1.3; font-weight: 900">Design a Circular Timber Greenhouse™.<br />Right here.</h2></div>
-<p style="margin: 0; max-width: 480px; font-size: 16px; line-height: 1.9; color: #333">A lightweight build of our design engine. Change the inputs and the structure recalculates live. Hit “Take it apart” to see the kit of parts — and how many trees it took.</p>
+<p style="margin: 0; max-width: 480px; font-size: 16px; line-height: 1.9; color: #333">The same parametric model we design with, running live. Change the length, span, units and structure, and every member and quantity updates on the spot. Hit “Take it apart” to lay out the kit of parts — and see how many trees it took. Drag to orbit, pinch to zoom.</p>
 </div>
 <div class="cfg-wrap" style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
 <div class="cfg-ctrl" style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 28px; background: #fff; padding: 32px; border: 1px solid #000">
@@ -270,28 +227,24 @@ ${(V.spans || []).map((s) => html`<button type="button" class="en" onClick="${s.
 ${(V.unitsList || []).map((u) => html`<button type="button" class="en" onClick="${u.pick}" aria-pressed="${u.on}" style="font-family: inherit; font-size: 14px; font-weight: 700; padding: 12px 18px; min-height: 44px; border-radius: 999px; cursor: pointer; border: 1.5px solid #000; background: ${u.bg}; color: ${u.fg}">${u.label}</button>`)}
 </div>
 </div>
+<div>
+<p id="cfg-struct" style="margin: 0 0 12px; font-weight: 700; font-size: 15px">Structure</p>
+<div role="group" aria-labelledby="cfg-struct" style="display: flex; gap: 8px; flex-wrap: wrap">
+${(V.structs || []).map((u) => html`<button type="button" onClick="${u.pick}" aria-pressed="${u.on}" style="font-family: inherit; font-size: 14px; font-weight: 700; padding: 12px 18px; min-height: 44px; border-radius: 999px; cursor: pointer; border: 1.5px solid #000; background: ${u.bg}; color: ${u.fg}">${u.label}</button>`)}
+</div>
+</div>
 <button type="button" onClick="${V.toggleExplode}" aria-pressed="${V.exploded}" style="font: inherit; font-weight: 700; font-size: 16px; padding: 18px; border-radius: 999px; border: 1.5px solid #000; background: ${V.explodeBg}; color: ${V.explodeFg}; cursor: pointer">${V.explodeLabel}</button>
 </div>
 <div class="cfg-right" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 1px; background: #000; border: 1px solid #000">
-<div class="cfg-view" style="background: #fff; position: relative; overflow: hidden; display: flex; align-items: stretch">
-<svg viewBox="0 0 900 600" role="img" aria-label="Greenhouse frame that updates with your settings; taken apart, the members line up by type" style="flex: 1; min-width: 0; height: auto; align-self: center; display: block">
-${(V.lines || []).map((l) => html`
-<line class="ln" x1="0" y1="0" x2="1" y2="0" stroke="${l.c}" stroke-width="${l.w}" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform: translate(${l.x}px, ${l.y}px) rotate(${l.a}deg) scaleX(${l.s}); transition-delay: ${l.d}ms"></line>
-`)}
-${V.exploded ? html`
-${(V.labels || []).map((g) => html`
-<text x="40" y="${g.y}" font-size="14" font-weight="700" fill="#000" style="animation: fade .6s .5s both">${g.label}</text>
-<text x="40" y="${g.y2}" font-size="12" fill="#696660" font-family="Montserrat" style="animation: fade .6s .6s both">× ${g.n}</text>
-`)}
-` : null}
-</svg>
+<div class="cfg-view" style="background: #F4F3F1; position: relative; overflow: hidden; display: flex; align-items: stretch">
+<div ref="${V.cfgRef}" class="cfg-3d" style="flex: 1; min-width: 0; position: relative; aspect-ratio: 3 / 2; background: #F4F3F1"></div>
 <div class="cfg-stats" style="flex: none; width: 168px; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 56px 24px 24px 0">
 <div><p style="margin: 0; font-size: 12px; color: #696660">Members</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700">${V.count}</p></div>
 <div><p style="margin: 0; font-size: 12px; color: #696660">Floor area</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700">${V.area}<span style="font-size: 13px"> m²</span></p></div>
 <div><p style="margin: 0; font-size: 12px; color: #696660">Lumber volume</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700">${V.vol}<span style="font-size: 13px"> m³</span></p></div>
 <div><p style="margin: 0; font-size: 12px; color: #696660">Carbon stored</p><p class="en" style="margin: 4px 0 0; font-size: 26px; font-weight: 700; color: ${V.accentDark}">${V.co2}<span style="font-size: 13px"> t-CO₂</span></p></div>
 </div>
-<p class="en" style="position: absolute; left: 20px; top: 14px; margin: 0; font-size: 12px; letter-spacing: 0.14em; color: #696660"><span class="live" style="color: ${V.accent}">●</span> ${V.modeLabel}</p>
+<p class="en" style="position: absolute; left: 20px; top: 14px; z-index: 2; pointer-events: none; margin: 0; font-size: 12px; letter-spacing: 0.14em; color: #696660"><span class="live" style="color: ${V.accent}">●</span> ${V.modeLabel}</p>
 </div>
 <div class="cfg-trees" style="background: #fff; padding: 24px 28px">
 <p style="margin: 0 0 16px; font-weight: 700; font-size: 15px">The lumber in this greenhouse, counted in standing trees</p>
@@ -380,7 +333,7 @@ ${r.noImg ? html`<div style="height: 320px; background: #696660; display: flex; 
 
 <section id="studio" style="padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box; border-top: 1px solid #222">
 <div class="reveal" style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; margin-bottom: 64px"><div><p class="en" style="margin: 0 0 16px; font-size: 13px; letter-spacing: 0.22em; color: #A9A69F">STUDIO</p><h2 class="en" style="margin: 0 0 16px; font-size: clamp(40px, 5vw, 76px); font-weight: 900">People</h2><p style="margin: 0; font-size: 17px; line-height: 1.8; color: #D8D6D1">Architects, engineers, researchers and operators. From Nagoya and Düsseldorf.</p></div><a href="#careers" class="en" style="background: #fff; color: #000; padding: 16px 28px; border-radius: 999px; font-weight: 700">Careers →</a></div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 56px 24px"><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ko.jpg" alt="Kotaro Ozawa" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Kotaro Ozawa</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Founder & CEO</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ao.jpg" alt="Asako Osedo" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Asako Osedo</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Co-Director, Service Design Officer</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ks.jpg" alt="Koji Saito" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Koji Saito</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Lead Architect</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ay.jpg" alt="Akihiro Yamada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Akihiro Yamada</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Lead Construction Management</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/kj.jpg" alt="Kotaro Jin" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Kotaro Jin</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Architect</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/kk.jpg" alt="Kosuke Kuroda" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Kosuke Kuroda</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Designer</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/yk.jpg" alt="Yushi Kimoto" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Yushi Kimoto</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Designer</p></div><div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="/assets/ms.jpg" alt="Mako Sumi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">Mako Sumi</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">Community Manager</p></div></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 56px 24px">${(this.state.people || []).map((p) => html`<div class="reveal"><div class="zoom" style="aspect-ratio: 1 / 1; overflow: hidden; background: #111"><img src="${p.img}" alt="${p.name}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block" /></div><p class="en" style="margin: 20px 0 6px; font-size: 19px; font-weight: 800">${p.name}</p><p class="en" style="margin: 0; font-size: 13px; line-height: 1.6; color: #A9A69F">${p.role}</p></div>`)}</div>
 </section>
 
 <section id="contact" style="padding: 140px 4vw; max-width: 1440px; margin: 0 auto; box-sizing: border-box">
