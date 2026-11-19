@@ -17,7 +17,7 @@ componentDidMount() {
 loadNews().then((n) => this.setState({ news: n }));
 loadPeople().then((p) => this.setState({ people: p }));
 const mob = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
-this.setState({ heroSrc: mob ? '/assets/hero_m_v2.mp4' : '/assets/hero_d_v2.mp4', heroPoster: mob ? '/assets/poster_m_v2.jpg' : '/assets/poster_d_v2.jpg' }, () => { setTimeout(() => { try { const v = document.querySelector('#mission video'); if (v) { v.muted = true; v.load(); const p = v.play(); if (p && p.catch) p.catch(() => {}); } } catch (e) {} }, 50); });
+this.setState({ heroSrc: mob ? '/assets/hero_m_v3.mp4' : '/assets/hero_d_v3.mp4', heroPoster: mob ? '/assets/poster_m_v3.jpg' : '/assets/poster_d_v3.jpg' }, () => { setTimeout(() => { try { const v = document.querySelector('#mission video'); if (v) { v.muted = true; v.load(); const p = v.play(); if (p && p.catch) p.catch(() => {}); } } catch (e) {} }, 50); });
 this.durs = [7, 10, 9, 13, 10, 12];
 this.schedule = () => { clearTimeout(this.timer); const i = this.state.tech; this.timer = setTimeout(() => { if (this.props.autoplayTech !== false) this.setState((s) => ({ tech: (s.tech + 1) % 6 }), this.schedule); else this.schedule(); }, this.durs[i] * 1000 + 600); };
 this.schedule();
@@ -91,7 +91,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 
 <section id="mission" style="position: relative; height: 100vh; min-height: 760px; overflow: hidden; background: #000">
 <div class="par" style="position: absolute; inset: 0">
-<video ref="${V.muteRef}" src="${V.heroSrc}" poster="${V.heroPoster}" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" aria-label="構造・光・熱の解析で屋根の形と遮光パターンが決まり、木造グリッドシェルの建築として完成するまでを描いたモーショングラフィック" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
+<video ref="${V.muteRef}" src="${V.heroSrc}" poster="${V.heroPoster}" autoPlay="${true}" muted="${true}" loop="${true}" playsInline="${true}" aria-label="不整形な木材が基準グリッドに自動で割り付けられ、構造・光・熱の解析を経て建築になり、3Dプリントのジョイントとモジュールの分解・再構築までを描いたモーショングラフィック" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
 </div>
 <div class="hero-shade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.12) 72%, rgba(0,0,0,0) 100%)"></div>
 <div class="hero-copy" style="position: absolute; left: 4vw; right: 4vw; bottom: 140px; max-width: 760px">
@@ -106,7 +106,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 </div>
 </div>
 
-<p class="en hero-cap fadein" style="position: absolute; right: 4vw; bottom: 140px; margin: 0; font-size: 11px; letter-spacing: 0.2em; color: #A9A69F; text-align: right; line-height: 2">STRUCTURE · LIGHT · HEAT<br /><span style="color: #fff">OPTIMISED, THEN DESIGNED</span></p>
+<p class="en hero-cap fadein" style="position: absolute; right: 4vw; bottom: 140px; margin: 0; font-size: 11px; letter-spacing: 0.2em; color: #A9A69F; text-align: right; line-height: 2">ALLOCATE · ANALYSE · JOIN · REBUILD<br /><span style="color: #fff">ANY MATERIAL, BUILT TO CIRCULATE</span></p>
 </section>
 <section id="awards" style="border-bottom: 1px solid #222; padding: 40px 4vw; box-sizing: border-box">
 <div class="aw-row" style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; gap: 56px; flex-wrap: wrap">

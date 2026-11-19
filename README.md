@@ -18,6 +18,6 @@ Live at xencegroup.com (Cloudflare Pages). Pages only on the old STUDIO site are
 
 ## Updates (2026-11-19, later)
 
-- **Hero video** v2 (`assets/hero_d_v2.mp4` 16:9, `assets/hero_m_v2.mp4` 9:16): structure → light → heat → architecture. Source is `src/hero/scene.html` (three.js) rendered frame by frame with `src/hero/render.mjs` (Playwright + ffmpeg). The previous video is kept in `assets/archive/`.
+- **Hero video** v3 (`assets/hero_d_v3.mp4` 16:9, `assets/hero_m_v3.mp4` 9:16, 40 s): irregular timber allocated to a reference grid → structure → light → heat → architecture → WAAM node close-up → cassettes (2.4 × 5.9 m) relocated. Source is `src/hero/scene.html` (three.js) rendered frame by frame with `src/hero/render.mjs` (Playwright + ffmpeg). Earlier versions are kept in `assets/archive/`.
 - **People** is read from the same Google Sheet, tab `people` (掲載 checkbox / 順番 / 名前 / 役職 / 写真). Uncheck 掲載 to hide someone, add a row to add someone. Fallback list in `lib/people.js`.
 - **Configurator** is now 3D: `lib/ghmodel.js` (parametric member list, same model as the greenhouse LP) and `lib/gh3d.js` (three.js viewer, loaded only when the section comes near the viewport; `vendor/three.module.min.js` r170).
