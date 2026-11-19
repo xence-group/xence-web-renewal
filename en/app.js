@@ -57,7 +57,7 @@ const filters = D.filters.map(([k, label]) => ({ label, n: k === 'all' ? D.proje
 return {
 heroSrc: this.state.heroSrc || undefined, heroPoster: this.state.heroPoster || undefined,
 accent, accentDark: '#C93A12', muteRef: this.muteRef,
-techs, spans, unitsList, structs, cfgRef: this.cfgRef, rows, filters, ...f, bays: this.state.bays,
+techs, spans, unitsList, structs, cfgRef: this.cfgRef, rows, filters, ...f, bays: this.state.bays, units: this.state.units, onUnits: (e) => this.setState({ units: parseInt(e.target.value, 10) }),
 modeLabel: (this.state.exploded ? 'KIT OF PARTS' : 'LIVE MODEL') + ' — ' + (this.state.bays * 2) + ' m × ' + spanL[this.state.span] + ' × ' + this.state.units + ' — ' + this.state.structure.toUpperCase(),
 onBays: (e) => this.setState({ bays: parseInt(e.target.value, 10) }),
 exploded: this.state.exploded, toggleExplode: () => this.setState((s) => ({ exploded: !s.exploded })),
@@ -222,10 +222,8 @@ ${(V.spans || []).map((s) => html`<button type="button" class="en" onClick="${s.
 </div>
 </div>
 <div>
-<p id="cfg-units" style="margin: 0 0 12px; font-weight: 700; font-size: 15px">Linked units</p>
-<div role="group" aria-labelledby="cfg-units" style="display: flex; gap: 8px; flex-wrap: wrap">
-${(V.unitsList || []).map((u) => html`<button type="button" class="en" onClick="${u.pick}" aria-pressed="${u.on}" style="font-family: inherit; font-size: 14px; font-weight: 700; padding: 12px 18px; min-height: 44px; border-radius: 999px; cursor: pointer; border: 1.5px solid #000; background: ${u.bg}; color: ${u.fg}">${u.label}</button>`)}
-</div>
+<label for="cfg-units" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 15px"><span>Units</span><span class="en">${V.units} units</span></label>
+<input id="cfg-units" type="range" min="1" max="6" step="1" value="${V.units}" onInput="${V.onUnits}" />
 </div>
 <div>
 <p id="cfg-struct" style="margin: 0 0 12px; font-weight: 700; font-size: 15px">Structure</p>
