@@ -4,11 +4,11 @@ Last updated: 2026-11-19. Source: https://xencegroup.com/ (Japanese) and https:/
 
 ## Summary (English)
 
-XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya and Düsseldorf.
+XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya, Japan.
 
 ## 概要（日本語）
 
-XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋とデュッセルドルフが拠点。
+XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋を拠点とする。
 
 ## Mission
 
@@ -62,7 +62,7 @@ XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築ス�
 ## Modular system / モジュール
 
 - MODULAR SYSTEM
-- ジョイントから建築まで、 ひとつのモジュールで拡張する。
+- ジョイントから建築まで、 モジュールで拡張する。
 - XENCEの設計単位は、建物ではなくジョイントです。不揃いな材をつなぐ同じ接合ルールを、家具・プロダクト、温室、建築へとデジタルに組み上げていきます。大きさが変わっても、設計・加工・記録のデータは一本でつながっています。
 - 01 — JOINT · 0.1 m
 - ジョイント
@@ -190,7 +190,7 @@ XENCEは森林も製材工場も所有しない。全国約3,500の製材所（�
 
 ## Team
 
-- 建築士、エンジニア、研究者、運営チーム。名古屋とデュッセルドルフから。
+- 建築士、エンジニア、研究者、運営チーム。名古屋から。
 - Kotaro Ozawa
 - Founder & CEO
 - Asako Osedo
@@ -553,7 +553,7 @@ https://www.uit.gr.jp/tech_research2024/presentation/program.html
 
 ## Company / 会社概要
 - 株式会社XENCE (XENCE Inc.), founded 2022-01-28, Japan Corporate Number 1180003023459
-- Head office: 〒460-0008 愛知県名古屋市中区栄一丁目29番地29号 SIMON 10 SAKAE 401; base in Düsseldorf, Germany
+- Head office: 〒460-0008 愛知県名古屋市中区栄一丁目29番地29号 SIMON 10 SAKAE 401
 - 一級建築士事務所 愛知県知事登録（い－4）第14198号
 - Business: architectural design, construction, operation and consulting for buildings and products
 - Founder & CEO: Kotaro Ozawa (小澤巧太郎), first-class registered architect

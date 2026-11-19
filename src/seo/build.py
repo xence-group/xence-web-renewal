@@ -35,8 +35,8 @@ ORG = {
 AWARDS = ['Red Dot Award 2026 (Urban Design) — Circular Timber Greenhouse™',
           'Good Design Award 2025', 'Japan Wood Design Award 2025', 'Nagoya University Venture (certified 2026)']
 DESC = {
-    'ja': 'XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋とデュッセルドルフが拠点。',
-    'en': 'XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya and Düsseldorf.',
+    'ja': 'XENCE（株式会社XENCE）は名古屋大学発のサーキュラー建築スタートアップ。端材・大径木・解体材など規格外の木材を、自動設計・3D構造解析・デジタル加工・金属3Dプリントのジョイントで建築に変え、設計・施工・指定管理（運営）とMaterial Passport・LCAまでひとつのデータでつなぐ一級建築士事務所。サーキュラー木造温室™はRed Dot Award 2026受賞。名古屋を拠点とする。',
+    'en': 'XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya, Japan.',
 }
 TITLE = {'ja': 'XENCE — あらゆる素材を建築に。', 'en': 'XENCE — Waste in. Assets out.'}
 KNOWS = ['circular construction', 'timber architecture', 'non-standard timber', 'sawmill offcuts', 'large-diameter logs',
@@ -55,7 +55,7 @@ def jsonld(lang):
         'identifier': {'@type': 'PropertyValue', 'propertyID': '法人番号 (Japan Corporate Number)', 'value': ORG['corp_no']},
         'address': {'@type': 'PostalAddress', 'postalCode': ORG['postal'], 'addressRegion': ORG['region'], 'addressLocality': ORG['locality'],
                     'streetAddress': ORG['street'], 'addressCountry': 'JP'},
-        'location': [{'@type': 'Place', 'name': 'Nagoya, Japan'}, {'@type': 'Place', 'name': 'Düsseldorf, Germany'}],
+        'location': [{'@type': 'Place', 'name': 'Nagoya, Japan'}],
         'areaServed': ['JP', 'EU'],
         'founder': {'@id': SITE + '/#founder'},
         'award': AWARDS, 'knowsAbout': KNOWS, 'sameAs': [ORG['instagram']],
@@ -68,7 +68,8 @@ def jsonld(lang):
     }
     person = {'@type': 'Person', '@id': SITE + '/#founder', 'name': ORG['founder_en'], 'alternateName': ORG['founder_ja'],
               'jobTitle': 'Founder & CEO', 'worksFor': {'@id': SITE + '/#org'},
-              'hasCredential': 'First-class registered architect (Japan)'}
+              'hasCredential': 'First-class registered architect (Japan)', 'alumniOf': 'The University of Tokyo',
+              'sameAs': ['https://www.linkedin.com/in/ozawa-kotaro-7b8582162/', 'https://x.com/OzawaKotaro', 'https://www.instagram.com/kotaro_ozawa_/']}
     product = {'@type': 'Product', '@id': SITE + '/#greenhouse', 'name': 'Circular Timber Greenhouse™' if lang == 'en' else 'サーキュラー木造温室™',
                'brand': {'@id': SITE + '/#org'}, 'award': 'Red Dot Award 2026 (Urban Design)',
                'description': ('A timber greenhouse built from sawmill offcuts. Every member can be taken apart and reassembled, and units link together to scale; available in timber, hybrid and steel.'
@@ -184,7 +185,7 @@ def static_home(lang):
     if lang == 'ja':
         out.append('<section id="s-company"><h2>会社概要</h2><dl>'
                    f'<dt>社名</dt><dd>{ORG["legal_ja"]}（XENCE／ぜんす）</dd><dt>設立</dt><dd>2022年1月28日</dd>'
-                   f'<dt>本社</dt><dd>〒{ORG["postal"]} {ORG["region"]}{ORG["locality"]}{ORG["street"]}</dd><dt>拠点</dt><dd>名古屋、デュッセルドルフ（ドイツ）</dd>'
+                   f'<dt>本社</dt><dd>〒{ORG["postal"]} {ORG["region"]}{ORG["locality"]}{ORG["street"]}</dd><dt>拠点</dt><dd>名古屋（愛知県）</dd>'
                    f'<dt>代表</dt><dd>代表取締役CEO {ORG["founder_ja"]}（一級建築士）</dd><dt>登録</dt><dd>{ORG["office_reg"]}</dd>'
                    '<dt>事業内容</dt><dd>建築および製造物のデザイン・設計・施工・運営およびコンサルティング</dd>'
                    f'<dt>法人番号</dt><dd>{ORG["corp_no"]}</dd><dt>認定・受賞</dt><dd>{"、".join(AWARDS)}</dd>'
@@ -192,7 +193,7 @@ def static_home(lang):
     else:
         out.append('<section id="s-company"><h2>Company</h2><dl>'
                    f'<dt>Name</dt><dd>{ORG["legal_en"]} (株式会社XENCE)</dd><dt>Founded</dt><dd>28 January 2022</dd>'
-                   f'<dt>Head office</dt><dd>{ORG["street_en"]}, Nagoya, Aichi {ORG["postal"]}, Japan</dd><dt>Bases</dt><dd>Nagoya, Japan and Düsseldorf, Germany</dd>'
+                   f'<dt>Head office</dt><dd>{ORG["street_en"]}, Nagoya, Aichi {ORG["postal"]}, Japan</dd><dt>Base</dt><dd>Nagoya, Japan</dd>'
                    f'<dt>CEO</dt><dd>{ORG["founder_en"]}, Founder & CEO (first-class registered architect)</dd>'
                    '<dt>Registration</dt><dd>First-class architect office, Aichi Prefecture registration No. 14198</dd>'
                    f'<dt>Recognition</dt><dd>{"; ".join(AWARDS)}</dd>'
@@ -245,8 +246,8 @@ def main():
         cd = 'XENCEへのお問い合わせ。温室・宿・住宅・什器の設計施工、未利用材の活用、技術連携、投資・事業提携のご相談。' if lang == 'ja' else 'Contact XENCE about design & build, putting unused timber to work, technology partnerships, or investment.'
         inject(f'{pre.strip("/") + "/" if pre else ""}contact/index.html', head(lang, pre + '/contact/', 'XENCE | Contact', cd), static_contact(lang), 'body')
         # company & projects (already static HTML: head metadata only)
-        cdesc = ('株式会社XENCE（XENCE Inc.）の会社概要。設立2022年、名古屋大学発ベンチャー、一級建築士事務所。本社は名古屋、拠点はデュッセルドルフ。沿革・受賞・メディア掲載。' if lang == 'ja'
-                 else 'Company profile of XENCE Inc. (株式会社XENCE): founded 2022, Nagoya University venture, licensed architecture office, Nagoya and Düsseldorf. History, awards and media.')
+        cdesc = ('株式会社XENCE（XENCE Inc.）の会社概要。設立2022年、名古屋大学発ベンチャー、一級建築士事務所。本社は名古屋。沿革・受賞・メディア掲載。' if lang == 'ja'
+                 else 'Company profile of XENCE Inc. (株式会社XENCE): founded 2022, Nagoya University venture, licensed architecture office in Nagoya. History, awards and media.')
         inject(f'{pre.strip("/") + "/" if pre else ""}company/index.html', head(lang, pre + '/company/', 'XENCE | ' + ('会社概要' if lang == 'ja' else 'Company'), cdesc,
                page_ld(lang, pre + '/company/', 'XENCE | Company', cdesc, 'AboutPage')), '', 'body')
         D = app_data(lang)
@@ -315,7 +316,7 @@ Who XENCE works with: owners who want to build greenhouses, stays, houses or fix
 
 ## Facts
 - Legal name: 株式会社XENCE (XENCE Inc.) — founded 28 January 2022 — Japan Corporate Number 1180003023459
-- Head office: SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Aichi 460-0008, Japan; second base in Düsseldorf, Germany
+- Head office: SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Aichi 460-0008, Japan
 - First-class architect office, Aichi Prefecture registration No. 14198
 - Recognition: {'; '.join(AWARDS)}
 - Flagship product: Circular Timber Greenhouse™ — timber built from sawmill offcuts, demountable, modular; timber, hybrid or steel
@@ -349,7 +350,7 @@ Who XENCE works with: owners who want to build greenhouses, stays, houses or fix
     for n in fb:
         full.append(f'### {n["date"]} — {n["ja"]}\n{("EN: " + n["en"]) if n["en"] else ""}\nURL: https://xencegroup.com/news/?id={n["id"]}\n\n{plain_body(arch.get(n["id"], ""))[:2500]}\n')
     full.append('\n## Company / 会社概要\n- 株式会社XENCE (XENCE Inc.), founded 2022-01-28, Japan Corporate Number 1180003023459\n'
-                '- Head office: 〒460-0008 愛知県名古屋市中区栄一丁目29番地29号 SIMON 10 SAKAE 401; base in Düsseldorf, Germany\n'
+                '- Head office: 〒460-0008 愛知県名古屋市中区栄一丁目29番地29号 SIMON 10 SAKAE 401\n'
                 f'- {ORG["office_reg"]}\n- Business: architectural design, construction, operation and consulting for buildings and products\n'
                 '- Founder & CEO: Kotaro Ozawa (小澤巧太郎), first-class registered architect\n'
                 '- Contact: info@xencegroup.com — https://xencegroup.com/contact/\n')

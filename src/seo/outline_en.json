@@ -199,7 +199,7 @@
    },
    {
     "t": "H2",
-    "txt": "Digital technology that turns every resource into architecture that lasts — and keeps its value.",
+    "txt": "XENCE turns every resource into architectural assets that last.",
     "href": ""
    },
    {
@@ -554,7 +554,7 @@
    },
    {
     "t": "H2",
-    "txt": "From joint to building, one module scales.",
+    "txt": "From joint to building, scaled in modules.",
     "href": ""
    },
    {
@@ -676,6 +676,11 @@
     "t": "P",
     "txt": "A timber greenhouse whose structure is built from sawmill offcuts. Fully demountable; units link together to scale. Red Dot Design Award 2026.",
     "href": ""
+   },
+   {
+    "t": "A",
+    "txt": "View project →",
+    "href": "/en/projects/circular-timber-greenhouse/"
    }
   ]
  },
@@ -919,7 +924,7 @@
    },
    {
     "t": "P",
-    "txt": "Architects, engineers, researchers and operators. From Nagoya and Düsseldorf.",
+    "txt": "Architects, engineers, researchers and operators. Based in Nagoya.",
     "href": ""
    },
    {
@@ -1035,6 +1040,46 @@
   ]
  },
  {
+  "id": "careers",
+  "items": [
+   {
+    "t": "P",
+    "txt": "CAREERS",
+    "href": ""
+   },
+   {
+    "t": "H2",
+    "txt": "Join us",
+    "href": ""
+   },
+   {
+    "t": "P",
+    "txt": "We are always looking for new people — for the roles below, and for student interns. Get in touch.",
+    "href": ""
+   },
+   {
+    "t": "A",
+    "txt": "01 Architect Licensed architects drawn to circular, modular building — and good at making it beautiful. Apply →",
+    "href": "/en/contact/?type=recruit&role=architect"
+   },
+   {
+    "t": "A",
+    "txt": "02 Construction Manager Builders who can put up architecture full of 3D-printed joints and irregular materials. Apply →",
+    "href": "/en/contact/?type=recruit&role=construction"
+   },
+   {
+    "t": "A",
+    "txt": "03 Facility Manager Lead our community managers and keep buildings alive long after handover. Apply →",
+    "href": "/en/contact/?type=recruit&role=facility"
+   },
+   {
+    "t": "A",
+    "txt": "04 Intern Design, computational design, digital fabrication or business development — on live projects. Any year, any major; timing and hours agreed together. Apply →",
+    "href": "/en/contact/?type=recruit&role=intern"
+   }
+  ]
+ },
+ {
   "id": "contact",
   "items": [
    {
@@ -1071,6 +1116,41 @@
     "t": "P",
     "txt": "XENCE",
     "href": ""
+   },
+   {
+    "t": "A",
+    "txt": "Company",
+    "href": "/en/company/"
+   },
+   {
+    "t": "A",
+    "txt": "Projects",
+    "href": "/en/projects/"
+   },
+   {
+    "t": "A",
+    "txt": "News",
+    "href": "/en/news/"
+   },
+   {
+    "t": "A",
+    "txt": "Contact",
+    "href": "/en/contact/"
+   },
+   {
+    "t": "A",
+    "txt": "Instagram ↗",
+    "href": "https://www.instagram.com/xence_architecture_studio/"
+   },
+   {
+    "t": "A",
+    "txt": "Instagram — XENCE Engineering ↗",
+    "href": "https://www.instagram.com/xence.engineering/"
+   },
+   {
+    "t": "A",
+    "txt": "info@xencegroup.com",
+    "href": "mailto:info@xencegroup.com"
    }
   ]
  }

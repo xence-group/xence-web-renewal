@@ -13,7 +13,7 @@ T = {
    title_contact='XENCE | Contact', title_thanks='XENCE | 送信完了', title_news='XENCE | News',
    lead='ご相談やお問い合わせなど、まずはフォームからお気軽にお問い合わせください。<br>建築の設計・施工、未活用材を使ったプロダクト開発、ファシリティマネジメント、LCA算定支援などのご相談を受け付けています。',
    type_label='お問い合わせ種別',
-   types=[('build','建てたい・置きたい','温室、宿、住宅、什器の設計施工'),('resource','資源を活かしたい','製材所・解体事業者・自治体の方'),('partner','技術で組みたい','企業・大学・海外パートナーの方'),('invest','投資・事業提携','投資家・事業会社の方'),('other','その他','取材・採用・その他のご相談')],
+   types=[('build','建てたい・置きたい','温室、宿、住宅、什器の設計施工'),('resource','資源を活かしたい','製材所・解体事業者・自治体の方'),('partner','技術で組みたい','企業・大学・海外パートナーの方'),('invest','投資・事業提携','投資家・事業会社の方'),('recruit','採用・インターン','職種への応募、インターンのご相談'),('other','その他','取材・その他のご相談')],
    name='お名前', company='会社名', email='メールアドレス', message='お問い合わせ内容', req='必須', opt='任意',
    privacy='<a href="https://xencegroup.com/privacy-policy" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する',
    submit='送信する', sending='送信中…', failed='送信できませんでした。お手数ですが info@xencegroup.com までメールでご連絡ください。',
@@ -27,7 +27,7 @@ T = {
    title_contact='XENCE | Contact', title_thanks='XENCE | Thank you', title_news='XENCE | News',
    lead='Tell us what you would like to build, supply or explore together.<br>We take on architectural design and construction, products made from unused timber, facility management and LCA support.',
    type_label='Topic',
-   types=[('build','Build with us','Greenhouses, guesthouses, homes and furniture'),('resource','Supply materials','Sawmills, demolition firms and municipalities'),('partner','Partner on technology','Companies, universities and overseas partners'),('invest','Invest or partner','Investors and corporate partners'),('other','Other','Press, careers and anything else')],
+   types=[('build','Build with us','Greenhouses, guesthouses, homes and furniture'),('resource','Supply materials','Sawmills, demolition firms and municipalities'),('partner','Partner on technology','Companies, universities and overseas partners'),('invest','Invest or partner','Investors and corporate partners'),('recruit','Careers & internships','Apply for a role or an internship'),('other','Other','Press and anything else')],
    name='Name', company='Company', email='Email', message='Message', req='Required', opt='Optional',
    privacy='I agree to the <a href="https://xencegroup.com/en/privacy-policy" target="_blank" rel="noopener">privacy policy</a>',
    submit='Send', sending='Sending…', failed='Your message could not be sent. Please email info@xencegroup.com.',
@@ -188,8 +188,8 @@ def shell(L, title, body, path, script=''):
 def contact(L):
     t = T[L]; pre = t['pre']
     types = ''.join(f'<label><input type="radio" name="type" value="{v}"{" required" if i == 0 else ""}><span class="n en">{i+1:02d}</span><span class="t">{a}</span><span class="d">{b}</span></label>' for i, (v, a, b) in enumerate(t['types']))
-    side = ('<div class="side"><b>株式会社XENCE</b>〒460-0008<br>愛知県名古屋市中区栄一丁目29番29号<br>SIMON 10 SAKAE 401<br><br><b>Düsseldorf</b>欧州でのご相談も承ります。<br><br><b>メール</b><a href="mailto:info@xencegroup.com">info@xencegroup.com</a></div>' if L == 'ja' else
-            '<div class="side"><b>XENCE Inc.</b>SIMON 10 SAKAE 401<br>1-29-29 Sakae, Naka-ku<br>Nagoya 460-0008, Japan<br><br><b>Düsseldorf</b>We also meet partners in Europe.<br><br><b>Email</b><a href="mailto:info@xencegroup.com">info@xencegroup.com</a></div>')
+    side = ('<div class="side"><b>株式会社XENCE</b>〒460-0008<br>愛知県名古屋市中区栄一丁目29番29号<br>SIMON 10 SAKAE 401<br><br><b>メール</b><a href="mailto:info@xencegroup.com">info@xencegroup.com</a></div>' if L == 'ja' else
+            '<div class="side"><b>XENCE Inc.</b>SIMON 10 SAKAE 401<br>1-29-29 Sakae, Naka-ku<br>Nagoya 460-0008, Japan<br><br><b>Email</b><a href="mailto:info@xencegroup.com">info@xencegroup.com</a></div>')
     req = f'<span class="tag">{t["req"]}</span>'; opt = f'<span class="tag o">{t["opt"]}</span>'
     body = f'''<main>
 <h1 class="en">Contact</h1>
@@ -211,10 +211,12 @@ def contact(L):
 </form>
 </div>
 </main>'''
+    rl = ['Architect（一級建築士）','Construction Manager（施工管理者）','Facility Manager（アセット管理者）','Intern（インターン）','希望職種：'] if L=='ja' else ['Architect','Construction Manager','Facility Manager','Intern','Role: ']
     script = f'''<script>
 (function(){{
 var p=new URLSearchParams(location.search).get('type');
 var r=p&&document.querySelector('input[name="type"][value="'+p.replace(/[^a-z]/g,'')+'"]'); if(r) r.checked=true;
+var ro=new URLSearchParams(location.search).get('role'); var RL={{architect:'{rl[0]}',construction:'{rl[1]}',facility:'{rl[2]}',intern:'{rl[3]}'}}; if(ro&&RL[ro]){{var m=document.getElementById('f-msg'); if(m&&!m.value) m.value='{rl[4]}'+RL[ro]+'\\n\\n';}}
 var f=document.querySelector('form');
 f.addEventListener('submit',function(ev){{
  ev.preventDefault();var b=f.querySelector('button');b.disabled=true;b.firstChild.nodeValue='{t['sending']} ';
@@ -305,7 +307,7 @@ def company(L):
     nl = lambda i: (pre + '/news/?id=' + i)
     if L == 'ja':
         rows = [('社名', '株式会社XENCE（ぜんす）'), ('英文表記', 'XENCE Inc.'), ('設立', '2022年1月28日（2026年1月1日 合同会社から株式会社へ組織変更）'),
-                ('代表者', '代表取締役CEO 小澤巧太郎（一級建築士）'), ('本社', '〒460-0008 愛知県名古屋市中区栄一丁目29番29号 SIMON 10 SAKAE 401'), ('拠点', '名古屋（日本）、デュッセルドルフ（ドイツ）'),
+                ('代表者', '代表取締役CEO 小澤巧太郎（一級建築士）'), ('本社', '〒460-0008 愛知県名古屋市中区栄一丁目29番29号 SIMON 10 SAKAE 401'), ('拠点', '名古屋（愛知県）'),
                 ('資本金', '300万円'), ('事業内容', '建築および製造物のデザイン・設計・施工・運営およびコンサルティング<br>サーキュラー木造温室™の設計施工、未利用材・規格外材の建築利用、施設の指定管理・ファシリティマネジメント、LCA・ホールライフカーボン算定、Material Passport'),
                 ('建築士事務所登録', 'XENCE一級建築士事務所　一級 愛知県知事登録（い－4）第14198号'), ('法人番号', '1180003023459'), ('認定', '名古屋大学発ベンチャー（2026年4月）'),
                 ('部門', 'XENCE Architecture Studio（設計）／ XENCE Engineering（施工、2026年6月発足）'), ('お問い合わせ', '<a href="mailto:info@xencegroup.com">info@xencegroup.com</a>　／　<a href="' + pre + '/contact/">お問い合わせフォーム</a>')]
@@ -319,7 +321,7 @@ def company(L):
         team = '<p class="lead">チームは<a href="/#studio" style="text-decoration:underline;text-underline-offset:3px">トップページのPeople</a>をご覧ください。</p>'
     else:
         rows = [('Company name', 'XENCE Inc. (株式会社XENCE)'), ('Founded', '28 January 2022 (reorganised as a kabushiki kaisha on 1 January 2026)'), ('CEO', 'Kotaro Ozawa, Founder & CEO (first-class registered architect)'),
-                ('Head office', 'SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Aichi 460-0008, Japan'), ('Bases', 'Nagoya, Japan and Düsseldorf, Germany'), ('Capital', 'JPY 3 million'),
+                ('Head office', 'SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Aichi 460-0008, Japan'), ('Base', 'Nagoya, Japan'), ('Capital', 'JPY 3 million'),
                 ('Business', 'Design, engineering, construction, operation and consulting for buildings and products: the Circular Timber Greenhouse™, building with unused and non-standard timber, facility management, LCA and whole-life carbon, Material Passport'),
                 ('Registration', 'XENCE First-class Architect Office, Aichi Prefecture registration (I-4) No. 14198'), ('Corporate number', '1180003023459'), ('Certification', 'Nagoya University Venture (April 2026)'),
                 ('Divisions', 'XENCE Architecture Studio (design) / XENCE Engineering (construction, since June 2026)'), ('Contact', '<a href="mailto:info@xencegroup.com">info@xencegroup.com</a> / <a href="' + pre + '/contact/">contact form</a>')]

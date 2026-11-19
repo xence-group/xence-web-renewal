@@ -199,7 +199,7 @@
    },
    {
     "t": "H2",
-    "txt": "デジタル技術で、あらゆる資源を 未来に残る建築の資産に。",
+    "txt": "XENCEはあらゆる資源を 未来に残る建築の資産に変える。",
     "href": ""
    },
    {
@@ -554,7 +554,7 @@
    },
    {
     "t": "H2",
-    "txt": "ジョイントから建築まで、 ひとつのモジュールで拡張する。",
+    "txt": "ジョイントから建築まで、 モジュールで拡張する。",
     "href": ""
    },
    {
@@ -676,6 +676,11 @@
     "t": "P",
     "txt": "製材所の端材を構造に使った木造温室。全部材を分解・再組立でき、連棟で面積を広げられる。Red Dot Design Award 2026 受賞。",
     "href": ""
+   },
+   {
+    "t": "A",
+    "txt": "詳しく見る →",
+    "href": "/projects/circular-timber-greenhouse/"
    }
   ]
  },
@@ -919,7 +924,7 @@
    },
    {
     "t": "P",
-    "txt": "建築士、エンジニア、研究者、運営チーム。名古屋とデュッセルドルフから。",
+    "txt": "建築士、エンジニア、研究者、運営チーム。名古屋から。",
     "href": ""
    },
    {
@@ -1035,6 +1040,46 @@
   ]
  },
  {
+  "id": "careers",
+  "items": [
+   {
+    "t": "P",
+    "txt": "CAREERS",
+    "href": ""
+   },
+   {
+    "t": "H2",
+    "txt": "Join us",
+    "href": ""
+   },
+   {
+    "t": "P",
+    "txt": "新しいメンバーを随時募集しています。下の職種のほか、学生インターンも受け付けています。気軽にご連絡ください。",
+    "href": ""
+   },
+   {
+    "t": "A",
+    "txt": "01 Architect 一級建築士 サーキュラーとモジュールに興味があり、かっこいい建築を建てるのが得意な人。 応募・相談する →",
+    "href": "/contact/?type=recruit&role=architect"
+   },
+   {
+    "t": "A",
+    "txt": "02 Construction Manager 施工管理者 3Dプリントの特殊ジョイントや、形のそろわない建材を使い倒す建築を建てられる人。 応募・相談する →",
+    "href": "/contact/?type=recruit&role=construction"
+   },
+   {
+    "t": "A",
+    "txt": "03 Facility Manager アセット管理者 コミュニティマネージャーの長として、建った後の建物をにぎわわせる人。 応募・相談する →",
+    "href": "/contact/?type=recruit&role=facility"
+   },
+   {
+    "t": "A",
+    "txt": "04 Intern インターン 設計、コンピュテーショナルデザイン、デジタル加工、事業開発。実プロジェクトで手を動かしたい学生を募集します。学年・専攻は問いません。期間と頻度は相談して決めます。 応募・相談する →",
+    "href": "/contact/?type=recruit&role=intern"
+   }
+  ]
+ },
+ {
   "id": "contact",
   "items": [
    {
@@ -1071,6 +1116,41 @@
     "t": "P",
     "txt": "XENCE",
     "href": ""
+   },
+   {
+    "t": "A",
+    "txt": "会社概要",
+    "href": "/company/"
+   },
+   {
+    "t": "A",
+    "txt": "プロジェクト",
+    "href": "/projects/"
+   },
+   {
+    "t": "A",
+    "txt": "News",
+    "href": "/news/"
+   },
+   {
+    "t": "A",
+    "txt": "お問い合わせ",
+    "href": "/contact/"
+   },
+   {
+    "t": "A",
+    "txt": "Instagram ↗",
+    "href": "https://www.instagram.com/xence_architecture_studio/"
+   },
+   {
+    "t": "A",
+    "txt": "Instagram — XENCE Engineering ↗",
+    "href": "https://www.instagram.com/xence.engineering/"
+   },
+   {
+    "t": "A",
+    "txt": "info@xencegroup.com",
+    "href": "mailto:info@xencegroup.com"
    }
   ]
  }

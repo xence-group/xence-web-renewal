@@ -1,6 +1,6 @@
 # XENCE
 
-> XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya and Düsseldorf.
+> XENCE is a Nagoya University venture and licensed architecture practice that turns non-standard timber — sawmill offcuts, large-diameter logs, demolition wood — into architecture using computational design, 3D structural analysis, digital fabrication and metal 3D-printed joints, and links design, construction, operation, Material Passports and LCA in one stream of data. Its Circular Timber Greenhouse™ won a Red Dot Award 2026. Based in Nagoya, Japan.
 
 XENCE (株式会社XENCE, read "zensu") is a circular-architecture startup certified as a Nagoya University venture and registered as a first-class architect office in Aichi, Japan. It designs, builds and operates buildings — greenhouses, houses, stays, furniture and pavilions — made from timber the construction industry usually discards, and records each piece's origin, carbon and reuse in a Material Passport. Founder & CEO: Kotaro Ozawa (小澤巧太郎), first-class registered architect.
 
@@ -17,7 +17,7 @@ Who XENCE works with: owners who want to build greenhouses, stays, houses or fix
 
 ## Facts
 - Legal name: 株式会社XENCE (XENCE Inc.) — founded 28 January 2022 — Japan Corporate Number 1180003023459
-- Head office: SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Aichi 460-0008, Japan; second base in Düsseldorf, Germany
+- Head office: SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Aichi 460-0008, Japan
 - First-class architect office, Aichi Prefecture registration No. 14198
 - Recognition: Red Dot Award 2026 (Urban Design) — Circular Timber Greenhouse™; Good Design Award 2025; Japan Wood Design Award 2025; Nagoya University Venture (certified 2026)
 - Flagship product: Circular Timber Greenhouse™ — timber built from sawmill offcuts, demountable, modular; timber, hybrid or steel
