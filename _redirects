@@ -1,2 +1,20 @@
+# Old STUDIO article URLs -> new article pages
 /news/:id  /news/?id=:id  301
 /en/news/:id  /en/news/?id=:id  301
+
+# Pages that exist only on the old STUDIO site (kept at archive.xencegroup.com)
+/pp/*  https://archive.xencegroup.com/pp/:splat  302
+/products  https://archive.xencegroup.com/products  302
+/products/*  https://archive.xencegroup.com/products/:splat  302
+/en/products  https://archive.xencegroup.com/en/products  302
+/en/products/*  https://archive.xencegroup.com/en/products/:splat  302
+/company  https://archive.xencegroup.com/company  302
+/en/company  https://archive.xencegroup.com/en/company  302
+/privacy-policy  https://archive.xencegroup.com/privacy-policy  302
+/en/privacy-policy  https://archive.xencegroup.com/en/privacy-policy  302
+/greenhouse  https://archive.xencegroup.com/greenhouse  302
+/llms  https://archive.xencegroup.com/llms  302
+/thanks  /contact/thanks/  301
+/projects  /#projects  301
+/people  /#studio  301
+/en/people  /en/#studio  301

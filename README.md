@@ -6,7 +6,7 @@ Static build of the renewal proposal (JA at `/`, EN at `/en/`).
 - `assets/` – images and videos
 - `src/` – generator (`gen.py`, `template.html`) and `convert.py` that turns the design-canvas files into this static site
 
-Pages carry `noindex` until the content is approved.
+Live at xencegroup.com (Cloudflare Pages). Pages only on the old STUDIO site are redirected to archive.xencegroup.com (see `_redirects`).
 
 ## Updates (2026-11-19)
 
