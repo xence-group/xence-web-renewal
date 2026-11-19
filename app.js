@@ -25,11 +25,14 @@ this.schedule();
 componentWillUnmount() { clearTimeout(this.timer); }
 model() {
 const p = this.ghParams();
+const mk = [p.bays, p.spans, p.bayW, p.structure].join('/');
+if (this._mk === mk && this._mv) return this._mv;
 const g = ghMembers(p), st = ghStats(g);
 const vol = st.woodVol, co2 = st.co2;
 const nConv = Math.ceil(vol / 0.40 / 0.56), nX = Math.ceil(vol / 0.95 / 0.56);
 const icons = (n) => Array.from({ length: Math.min(n, 90) }, (_, i) => ({ d: i * 18 }));
-return { count: st.count, vol: vol.toFixed(2), co2: co2.toFixed(2), area: Math.round(st.area), lengthM: (p.spans * 2).toFixed(1), nConv, nX, treesConv: icons(nConv), treesX: icons(nX), co2Trees: Math.max(1, Math.round(co2 / 0.505)) };
+this._mk = mk; this._mv = { count: st.count, vol: vol.toFixed(2), co2: co2.toFixed(2), area: Math.round(st.area), lengthM: (p.spans * 2).toFixed(1), nConv, nX, treesConv: icons(nConv), treesX: icons(nX), co2Trees: Math.max(1, Math.round(co2 / 0.505)) };
+return this._mv;
 }
 ghParams() { return { bays: this.state.units, spans: this.state.bays, bayW: [4.8, 6.4, 8.0][this.state.span], structure: this.state.structure }; }
 syncGh() {
