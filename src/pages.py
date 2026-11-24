@@ -147,21 +147,22 @@ h2.sec{font-size:clamp(28px,3vw,44px);font-weight:900;margin:0 0 28px}
 SOCIAL = [('Instagram', 'https://www.instagram.com/xence_architecture_studio/'), ('Instagram — XENCE Engineering', 'https://www.instagram.com/xence.engineering/')]
 def foot_links(L):
     pre = T[L]['pre']
-    nav = [('Company' if L == 'en' else '会社概要', pre + '/company/'), ('Projects' if L == 'en' else 'プロジェクト', pre + '/projects/'), ('News', pre + '/news/'), ('Contact' if L == 'en' else 'お問い合わせ', pre + '/contact/')]
+    nav = [('Company' if L == 'en' else '会社概要', pre + '/company/'), ('Projects' if L == 'en' else 'プロジェクト', pre + '/projects/'), ('News', pre + '/news/'), ('Research', pre + '/research/'), ('Contact' if L == 'en' else 'お問い合わせ', pre + '/contact/')]
     a = lambda l, u, ext=False: f'<a href="{u}"' + (' target="_blank" rel="noopener"' if ext else '') + f'>{l}</a>'
     return ('<div class="fl">' + '<br>'.join(a(l, u) for l, u in nav) + '</div>'
             '<div class="fl en">' + '<br>'.join(a(l + ' ↗', u, True) for l, u in SOCIAL) + '<br><a href="mailto:info@xencegroup.com">info@xencegroup.com</a><br>© XENCE Inc.</div>')
 
-def shell(L, title, body, path, script=''):
+def shell(L, title, body, path, script='', head=''):
     t = T[L]; pre = t['pre']
     nav = ''.join(f'<a class="sec" href="{pre}/#{a}">{b}</a>' for a, b in [('model','Model'),('technology','Technology'),('projects','Projects'),('news','News'),('growth','Investors')])
+    nav += f'<a class="sec" href="{pre}/research/">Research</a>'
     return f'''<!doctype html>
 <html lang="{L}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
-<link rel="icon" type="image/svg+xml" href="/assets/favicon_x2026.svg"><link rel="apple-touch-icon" href="/assets/apple-touch-icon_x2026.png">
+{head}<link rel="icon" type="image/svg+xml" href="/assets/favicon_x2026.svg"><link rel="apple-touch-icon" href="/assets/apple-touch-icon_x2026.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 <style>{CSS % dict(font=t['font'], accent=ACCENT)}</style>
@@ -363,10 +364,203 @@ def project(L, i):
             f'<nav class="pn"><a href="{pre}/projects/{SLUG[prv["id"]]}/">← {prv["title"]}</a><a href="{pre}/projects/{SLUG[nxt["id"]]}/">{nxt["title"]} →</a></nav></main>')
     return shell(L, 'XENCE | ' + p['title'], body, f'/projects/{SLUG[p["id"]]}/')
 
+# ---------------------------------------------------------------- research (/research/)
+# Data: src/research.json. Index is sortable / filterable in the browser; each report gets a static page.
+RCSS = '''<style>
+.rctl{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;border-top:1px solid #fff;padding:22px 0;margin:0 0 40px}
+.rctl .q{flex:1 1 240px;min-width:200px;background:transparent;border:0;border-bottom:1px solid #555;color:#fff;font:inherit;font-size:15px;padding:8px 0;outline:none;border-radius:0}
+.rctl .q:focus{border-color:#fff}.rctl .q::placeholder{color:#8a877f}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:13px;font-weight:600;background:transparent;color:#D8D6D1;border:1px solid #444;border-radius:999px;padding:8px 14px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:#fff;color:#fff;background:transparent}
+.chip[aria-pressed="true"]{background:#fff;color:#000;border-color:#fff}
+.chip .c{color:#8a877f;margin-left:6px;font-weight:500}.chip[aria-pressed="true"] .c{color:#555}
+.rsel{display:flex;gap:10px;align-items:center;font-size:13px;color:#A9A69F}
+.rsel select{font:inherit;font-size:14px;font-weight:600;color:#fff;background:#000;border:1px solid #444;border-radius:999px;padding:8px 34px 8px 14px;appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+.rsel select:hover,.rsel select:focus{border-color:#fff;outline:none}
+.seg{display:inline-flex;border:1px solid #444;border-radius:999px;padding:3px}
+.seg button{font:inherit;font-size:13px;font-weight:600;background:transparent;color:#A9A69F;border:0;border-radius:999px;padding:7px 14px;cursor:pointer}
+.seg button:hover{color:#fff;background:transparent;opacity:1}
+.seg button[aria-pressed="true"]{background:#fff;color:#000}
+.rlist.rl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:56px 28px}
+.rcard{display:block;color:#fff}.rcard:hover{color:#fff}
+.rcard .im{display:block;aspect-ratio:16/9;background:#0b0b0b;overflow:hidden}
+.rcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.rcard:hover img{transform:scale(1.03)}
+.rcard .n{display:block;margin-top:18px;font-size:12px;color:#FF5528;letter-spacing:.14em}
+.rcard .t{display:block;margin-top:8px;font-size:20px;font-weight:800;line-height:1.55}
+.rcard .tg{display:block;margin-top:12px;font-size:12.5px;color:#A9A69F;line-height:1.8}
+.rcard .row,.rcard .ttl{display:none}
+.rlist.rl-list{border-top:1px solid #333}
+.rlist.rl-list .rcard{display:grid;grid-template-columns:72px 120px minmax(0,1fr) minmax(0,260px) 28px;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid #333;transition:background .3s}
+.rlist.rl-list .rcard:hover{background:#151514}
+.rlist.rl-list .im,.rlist.rl-list .n,.rlist.rl-list .t,.rlist.rl-list .tg{display:none}
+.rlist.rl-list .row{display:contents}
+.rlist.rl-list .row span{font-size:14px;color:#A9A69F}
+.rlist.rl-list .row .ttl{display:block;font-size:17px;color:#fff;font-weight:700;line-height:1.6}
+.rlist.rl-list .row .ar{color:#FF5528}
+.empty{color:#8a877f;padding:32px 0}
+.rhero{position:relative;margin:0 0 20px;background:#000}
+.rhero canvas{display:block;width:100%;aspect-ratio:16/9;height:auto}
+.rcap{font-size:13px;color:#A9A69F;line-height:1.8;margin:0 0 64px;max-width:860px}
+.rtag{font-size:clamp(18px,1.8vw,24px);line-height:1.8;font-weight:700;margin:-8px 0 56px;max-width:900px}
+.rbody{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:72px;border-top:1px solid #fff;padding-top:44px;margin-bottom:104px}
+.rbody h2{font-size:13px;letter-spacing:.22em;color:#A9A69F;font-weight:600;margin:0 0 20px}
+.rbody p{margin:0 0 1.5em;font-size:16.5px;line-height:2.05;color:#E8E6E1}
+.fnd{list-style:none;margin:8px 0 0;padding:0;counter-reset:f}
+.fnd li{counter-increment:f;display:grid;grid-template-columns:44px minmax(0,1fr);padding:20px 0;border-top:1px solid #333;font-size:15.5px;line-height:1.95;color:#D8D6D1}
+.fnd li::before{content:counter(f,decimal-leading-zero);font-family:Montserrat,sans-serif;font-size:12px;color:#FF5528;padding-top:4px}
+.fnd b{display:block;color:#fff;font-size:17px;margin-bottom:4px}
+.rside .dlb{display:flex;flex-direction:column;gap:12px;margin:0 0 36px}
+.btn{display:flex;justify-content:space-between;align-items:center;gap:16px;border-radius:999px;padding:16px 24px;font-size:15px;font-weight:700;border:1px solid #fff;transition:background .2s,color .2s}
+.btn small{font-weight:500;font-size:12px;opacity:.75}
+.btn.p{background:#fff;color:#000}.btn.p:hover{background:#D8D6D1;color:#000;border-color:#D8D6D1}
+.btn.s{background:transparent;color:#fff}.btn.s:hover{background:#fff;color:#000}
+.rmeta{display:grid;grid-template-columns:96px minmax(0,1fr);row-gap:14px;column-gap:12px;font-size:14px;line-height:1.7;margin:0 0 36px}
+.rmeta span:nth-child(odd){color:#A9A69F}
+.cite{border:1px solid #333;padding:18px 20px;font-size:13px;line-height:1.8;color:#D8D6D1}
+.cite button{margin-top:12px;font-size:12.5px;padding:8px 16px;background:transparent;color:#fff;border:1px solid #555}
+.cite button:hover{border-color:#fff;background:#fff;color:#000;opacity:1}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #fff;margin:0 0 104px}
+.figs div{padding:32px 28px 36px 0;border-bottom:1px solid #333}
+.figs b{display:block;font-family:Montserrat,sans-serif;font-size:clamp(40px,4.4vw,64px);font-weight:800;line-height:1.05;letter-spacing:-.01em}
+.figs b small{font-size:.34em;font-weight:700;margin-left:6px;letter-spacing:0;color:#FF5528}
+.figs p{margin:14px 0 8px;font-size:14px;line-height:1.85;color:#D8D6D1;max-width:340px}
+.figs i{font-style:normal;font-size:12px;color:#8a877f}
+.toc{list-style:none;margin:0 0 104px;padding:0;border-top:1px solid #fff;columns:2;column-gap:56px}
+.toc li{break-inside:avoid;display:grid;grid-template-columns:44px minmax(0,1fr);padding:16px 0;border-bottom:1px solid #333;font-size:15px}
+.toc li span{color:#FF5528;font-family:Montserrat,sans-serif;font-size:13px}
+@media (max-width:860px){
+ .rlist.rl-grid{grid-template-columns:1fr}
+ .rlist.rl-list .rcard{grid-template-columns:44px minmax(0,1fr) 20px;gap:6px 12px}
+ .rlist.rl-list .row .d,.rlist.rl-list .row .th{display:none}
+ .rbody{grid-template-columns:1fr;gap:48px}
+ .rbody .rside{order:-1}
+ .figs{grid-template-columns:1fr}
+ .toc{columns:1}
+}
+</style>'''
+
+def _research():
+    return _json.load(open(os.path.join(root, 'src/research.json'), encoding='utf-8'))
+
+def _rdate(d, L):
+    y, m, dd = d.split('-')
+    return f'{y}年{int(m)}月{int(dd)}日' if L == 'ja' else f'{int(dd)} {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][int(m)-1]} {y}'
+
+def _rmeta(L, title, desc, path, img):
+    E = html.escape
+    url = 'https://xencegroup.com' + ('/en' if L == 'en' else '') + path
+    return (f'<meta name="description" content="{E(desc)}"><link rel="canonical" href="{url}">'
+            f'<link rel="alternate" hreflang="ja" href="https://xencegroup.com{path}"><link rel="alternate" hreflang="en" href="https://xencegroup.com/en{path}">'
+            f'<meta property="og:type" content="article"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}">'
+            f'<meta property="og:url" content="{url}"><meta property="og:image" content="https://xencegroup.com{img}"><meta name="twitter:card" content="summary_large_image">\n' + RCSS)
+
+def research_index(L):
+    pre = T[L]['pre']; R = _research(); TH = R['themes']; E = html.escape
+    reps = R['reports']
+    used = {}
+    for r in reps:
+        for k in r['themes']: used[k] = used.get(k, 0) + 1
+    chips = (f'<button class="chip" type="button" data-th="" aria-pressed="true">' + ('すべて' if L == 'ja' else 'All') + f'<span class="c">{len(reps)}</span></button>' +
+             ''.join(f'<button class="chip" type="button" data-th="{k}" aria-pressed="false">{E(TH[k][L])}<span class="c">{n}</span></button>' for k, n in used.items()))
+    cards = ''
+    for r in reps:
+        c = r[L]; th = ' · '.join(TH[k][L] for k in r['themes'])
+        pdf = r['pdf'][L]
+        cards += (f'<a class="rcard" href="{pre}/research/{r["slug"]}/" data-no="{r["no"]}" data-date="{r["date"]}" data-title="{E(c["title"])}" data-th="{" ".join(r["themes"])}" data-text="{E((c["title"] + " " + c["tagline"] + " " + th).lower())}">'
+                  f'<span class="im"><img src="{r["still"].format(lang=L)}" alt="" loading="lazy"></span>'
+                  f'<span class="n en">No.{r["no"]} · {r["date"].replace("-", ".")} · {pdf["pages"]}p</span><span class="t">{E(c["title"])}</span><span class="tg">{E(th)}</span>'
+                  f'<span class="row"><span class="en">No.{r["no"]}</span><span class="d en">{r["date"].replace("-", ".")}</span><span class="ttl">{E(c["title"])}</span><span class="th">{E(th)}</span><span class="ar en">→</span></span></a>')
+    J = dict(ja=dict(q='キーワードで探す', sort='並び順', new='新しい順', old='古い順', no='番号順', ttl='タイトル順', grid='カード', list='一覧', empty='条件に合うレポートはありません。',
+                     lead='XENCEが独自に調べ、公表する調査レポート。建築と地域資源の循環に関わるテーマを、数字と事例で整理しています。PDFは登録なしで無料でダウンロードできます。'),
+             en=dict(q='Search', sort='Sort', new='Newest', old='Oldest', no='Number', ttl='Title', grid='Cards', list='List', empty='No reports match.',
+                     lead='Independent research published by XENCE on architecture and the circulation of local resources, built on figures and case studies. All PDFs are free to download, no sign-up needed.'))[L]
+    body = (f'<main><p class="eyebrow en">XENCE RESEARCH</p><h1 class="en">Research</h1><p class="lead">{J["lead"]}</p>'
+            f'<div class="rctl"><input class="q" type="search" placeholder="{J["q"]}" aria-label="{J["q"]}"><div class="chips" role="group">{chips}</div>'
+            f'<label class="rsel">{J["sort"]}<select id="rsort"><option value="new">{J["new"]}</option><option value="old">{J["old"]}</option><option value="no">{J["no"]}</option><option value="title">{J["ttl"]}</option></select></label>'
+            f'<div class="seg" role="group"><button type="button" data-v="grid" aria-pressed="true">{J["grid"]}</button><button type="button" data-v="list" aria-pressed="false">{J["list"]}</button></div></div>'
+            f'<div class="rlist rl-grid" id="rlist">{cards}</div><p class="empty" id="rempty" hidden>{J["empty"]}</p></main>')
+    script = '''<script>
+(() => {
+  const list = document.getElementById('rlist'), cards = [...list.children], q = document.querySelector('.rctl .q'), sel = document.getElementById('rsort');
+  const chips = [...document.querySelectorAll('.chip')], seg = [...document.querySelectorAll('.seg button')], empty = document.getElementById('rempty');
+  const P = new URLSearchParams(location.search);
+  let st = { q: P.get('q') || '', th: P.get('theme') || '', sort: P.get('sort') || 'new', view: P.get('view') || 'grid' };
+  const cmp = { new: (a, b) => b.dataset.date.localeCompare(a.dataset.date), old: (a, b) => a.dataset.date.localeCompare(b.dataset.date),
+    no: (a, b) => a.dataset.no.localeCompare(b.dataset.no), title: (a, b) => a.dataset.title.localeCompare(b.dataset.title, document.documentElement.lang) };
+  const apply = () => {
+    const qq = st.q.trim().toLowerCase(); let n = 0;
+    cards.sort(cmp[st.sort] || cmp.new).forEach((c) => {
+      const ok = (!st.th || c.dataset.th.split(' ').includes(st.th)) && (!qq || c.dataset.text.includes(qq));
+      c.hidden = !ok; if (ok) n++; list.appendChild(c);
+    });
+    empty.hidden = n > 0;
+    list.className = 'rlist ' + (st.view === 'list' ? 'rl-list' : 'rl-grid');
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.th === st.th)));
+    seg.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === st.view)));
+    q.value = st.q; sel.value = st.sort;
+    const u = new URLSearchParams(); if (st.q) u.set('q', st.q); if (st.th) u.set('theme', st.th); if (st.sort !== 'new') u.set('sort', st.sort); if (st.view !== 'grid') u.set('view', st.view);
+    history.replaceState(null, '', location.pathname + (u.toString() ? '?' + u : ''));
+  };
+  q.addEventListener('input', () => { st.q = q.value; apply(); });
+  sel.addEventListener('change', () => { st.sort = sel.value; apply(); });
+  chips.forEach((c) => c.addEventListener('click', () => { st.th = c.dataset.th; apply(); }));
+  seg.forEach((b) => b.addEventListener('click', () => { st.view = b.dataset.v; apply(); }));
+  apply();
+})();
+</script>'''
+    title = 'XENCE | Research'
+    return shell(L, title, body, '/research/', script, _rmeta(L, title, J['lead'], '/research/', reps[0]['still'].format(lang=L) if reps else '/assets/poster_d_v3.jpg'))
+
+def research_page(L, i):
+    pre = T[L]['pre']; R = _research(); TH = R['themes']; E = html.escape
+    r = R['reports'][i]; c = r[L]; o = 'en' if L == 'ja' else 'ja'
+    J = dict(ja=dict(dl='PDFをダウンロード', other='English version', p='ページ', sum='要旨', purpose='目的', method='方法', find='主な知見', figs='数字で見る', toc='目次',
+                     date='発行', ed='版', author='調査・執筆', th='テーマ', lang='言語', cite='引用するとき', copy='引用文をコピー', copied='コピーしました', back='← Research 一覧へ',
+                     ask='このテーマについて相談する', langv='日本語（英語版あり）'),
+             en=dict(dl='Download PDF', other='日本語版', p='pages', sum='Summary', purpose='Purpose', method='Method', find='Key findings', figs='At a glance', toc='Contents',
+                     date='Published', ed='Edition', author='Author', th='Themes', lang='Language', cite='How to cite', copy='Copy citation', copied='Copied', back='← All research',
+                     ask='Talk to us about this topic', langv='English (Japanese also available)'))[L]
+    a, b = r['pdf'][L], r['pdf'][o]
+    th = ' · '.join(TH[k][L] for k in r['themes'])
+    fnd = ''.join(f'<li><div><b>{E(h)}</b>{E(t)}</div></li>' for h, t in c['findings'])
+    figs = ''.join(f'<div><b>{E(v)}<small>{E(u)}</small></b><p>{E(d)}</p><i>{E(s)}</i></div>' for v, u, d, s in c['figures'])
+    toc = ''.join(f'<li><span>{k+1:02d}</span>{E(x)}</li>' for k, x in enumerate(c['toc']))
+    body = (f'<main><p class="eyebrow en"><a href="{pre}/research/">XENCE RESEARCH</a> · No.{r["no"]} · {r["date"].replace("-", ".")}</p>'
+            f'<h1 style="font-size:clamp(30px,4vw,60px);line-height:1.35;max-width:1200px">{E(c["title"])}</h1>'
+            f'<p class="rtag">{E(c["tagline"])}</p>'
+            f'<div class="rhero"><canvas id="rfield" role="img" aria-label="{E(c["caption"])}"></canvas></div><p class="rcap">{E(c["caption"])}</p>'
+            f'<div class="rbody"><div><h2 class="en">{J["sum"].upper() if L == "en" else J["sum"]}</h2>'
+            f'<p><b style="color:#fff">{J["purpose"]}</b>　{E(c["purpose"])}</p><p><b style="color:#fff">{J["method"]}</b>　{E(c["method"])}</p>'
+            f'<h2 style="margin-top:48px">{J["find"]}</h2><ol class="fnd">{fnd}</ol></div>'
+            f'<aside class="rside"><div class="dlb">'
+            f'<a class="btn p" href="{a["href"]}" download="{E(a["name"])}">{J["dl"]}<small class="en">PDF · {a["pages"]} {J["p"]} · {a["size"]}</small></a>'
+            f'<a class="btn s" href="{b["href"]}" download="{E(b["name"])}">{J["other"]}<small class="en">PDF · {b["pages"]}p</small></a></div>'
+            f'<div class="rmeta"><span>{J["date"]}</span><span>{_rdate(r["date"], L)}</span><span>{J["ed"]}</span><span>{E(r["edition"][L])}</span>'
+            f'<span>{J["author"]}</span><span>{E(c["author"])}</span><span>{J["th"]}</span><span>{E(th)}</span></div>'
+            f'<div class="cite"><b style="display:block;color:#fff;margin-bottom:6px">{J["cite"]}</b><span id="citetx">{E(c["cite"])}</span><br><button type="button" id="citebtn">{J["copy"]}</button></div>'
+            f'</aside></div>'
+            f'<h2 class="sec">{J["figs"]}</h2><div class="figs">{figs}</div>'
+            f'<h2 class="sec">{J["toc"]}</h2><ol class="toc">{toc}</ol>'
+            f'<div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:96px"><a class="btn p" style="display:inline-flex" href="{a["href"]}" download="{E(a["name"])}">{J["dl"]}</a>'
+            f'<a class="btn s" style="display:inline-flex" href="{pre}/contact/?type=partner">{J["ask"]}</a></div>'
+            f'<a class="back" href="{pre}/research/">{J["back"]}</a></main>')
+    script = f'''<script type="module">
+import {{ SCENES }} from '/lib/heatfield.js';
+const cv = document.getElementById('rfield');
+(SCENES['{r["scene"]}'] || SCENES.heat)(cv, {{ lang: '{L}' }});
+const b = document.getElementById('citebtn');
+b.addEventListener('click', async () => {{ try {{ await navigator.clipboard.writeText(document.getElementById('citetx').textContent); b.textContent = '{J["copied"]}'; }} catch (e) {{}} }});
+</script>'''
+    title = f'XENCE Research No.{r["no"]} | {c["short"]}'
+    return shell(L, title, body, f'/research/{r["slug"]}/', script, _rmeta(L, title, c['tagline'] + ' ' + c['purpose'], f'/research/{r["slug"]}/', r['still'].format(lang=L)))
+
+
 def write_extra():
     for L in ('ja', 'en'):
         base = os.path.join(root, '' if L == 'ja' else 'en')
-        pages = [('company', company(L)), ('projects', projects_index(L))] + [(f'projects/{SLUG[p["id"]]}', project(L, i)) for i, p in enumerate(_app_data(L)['projects'])]
+        pages = [('company', company(L)), ('projects', projects_index(L))] + [(f'projects/{SLUG[p["id"]]}', project(L, i)) for i, p in enumerate(_app_data(L)['projects'])] + [('research', research_index(L))] + [(f'research/{r["slug"]}', research_page(L, i)) for i, r in enumerate(_research()['reports'])]
         for rel, html_ in pages:
             d = os.path.join(base, rel); os.makedirs(d, exist_ok=True)
             open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(html_)

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XENCE Research No.01 | データセンター排熱と地域価値</title>
+<meta name="description" content="データセンターの熱を、捨てる熱から配る熱へ。温室と陸上養殖が、計算の施設を地域の施設に変える。 データセンターの排熱をどこまで使えるかを整理し、温室・陸上養殖・プールなどの低温域（おおむね15〜35℃）での再利用によって、データセンターが地域にとっての価値を生むための建築的な方法を示す。"><link rel="canonical" href="https://xencegroup.com/research/data-centre-waste-heat/"><link rel="alternate" hreflang="ja" href="https://xencegroup.com/research/data-centre-waste-heat/"><link rel="alternate" hreflang="en" href="https://xencegroup.com/en/research/data-centre-waste-heat/"><meta property="og:type" content="article"><meta property="og:title" content="XENCE Research No.01 | データセンター排熱と地域価値"><meta property="og:description" content="データセンターの熱を、捨てる熱から配る熱へ。温室と陸上養殖が、計算の施設を地域の施設に変える。 データセンターの排熱をどこまで使えるかを整理し、温室・陸上養殖・プールなどの低温域（おおむね15〜35℃）での再利用によって、データセンターが地域にとっての価値を生むための建築的な方法を示す。"><meta property="og:url" content="https://xencegroup.com/research/data-centre-waste-heat/"><meta property="og:image" content="https://xencegroup.com/assets/research/r01_still_ja_v1.png"><meta name="twitter:card" content="summary_large_image">
+<style>
+.rctl{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;border-top:1px solid #fff;padding:22px 0;margin:0 0 40px}
+.rctl .q{flex:1 1 240px;min-width:200px;background:transparent;border:0;border-bottom:1px solid #555;color:#fff;font:inherit;font-size:15px;padding:8px 0;outline:none;border-radius:0}
+.rctl .q:focus{border-color:#fff}.rctl .q::placeholder{color:#8a877f}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:13px;font-weight:600;background:transparent;color:#D8D6D1;border:1px solid #444;border-radius:999px;padding:8px 14px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:#fff;color:#fff;background:transparent}
+.chip[aria-pressed="true"]{background:#fff;color:#000;border-color:#fff}
+.chip .c{color:#8a877f;margin-left:6px;font-weight:500}.chip[aria-pressed="true"] .c{color:#555}
+.rsel{display:flex;gap:10px;align-items:center;font-size:13px;color:#A9A69F}
+.rsel select{font:inherit;font-size:14px;font-weight:600;color:#fff;background:#000;border:1px solid #444;border-radius:999px;padding:8px 34px 8px 14px;appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+.rsel select:hover,.rsel select:focus{border-color:#fff;outline:none}
+.seg{display:inline-flex;border:1px solid #444;border-radius:999px;padding:3px}
+.seg button{font:inherit;font-size:13px;font-weight:600;background:transparent;color:#A9A69F;border:0;border-radius:999px;padding:7px 14px;cursor:pointer}
+.seg button:hover{color:#fff;background:transparent;opacity:1}
+.seg button[aria-pressed="true"]{background:#fff;color:#000}
+.rlist.rl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:56px 28px}
+.rcard{display:block;color:#fff}.rcard:hover{color:#fff}
+.rcard .im{display:block;aspect-ratio:16/9;background:#0b0b0b;overflow:hidden}
+.rcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.rcard:hover img{transform:scale(1.03)}
+.rcard .n{display:block;margin-top:18px;font-size:12px;color:#FF5528;letter-spacing:.14em}
+.rcard .t{display:block;margin-top:8px;font-size:20px;font-weight:800;line-height:1.55}
+.rcard .tg{display:block;margin-top:12px;font-size:12.5px;color:#A9A69F;line-height:1.8}
+.rcard .row,.rcard .ttl{display:none}
+.rlist.rl-list{border-top:1px solid #333}
+.rlist.rl-list .rcard{display:grid;grid-template-columns:72px 120px minmax(0,1fr) minmax(0,260px) 28px;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid #333;transition:background .3s}
+.rlist.rl-list .rcard:hover{background:#151514}
+.rlist.rl-list .im,.rlist.rl-list .n,.rlist.rl-list .t,.rlist.rl-list .tg{display:none}
+.rlist.rl-list .row{display:contents}
+.rlist.rl-list .row span{font-size:14px;color:#A9A69F}
+.rlist.rl-list .row .ttl{display:block;font-size:17px;color:#fff;font-weight:700;line-height:1.6}
+.rlist.rl-list .row .ar{color:#FF5528}
+.empty{color:#8a877f;padding:32px 0}
+.rhero{position:relative;margin:0 0 20px;background:#000}
+.rhero canvas{display:block;width:100%;aspect-ratio:16/9;height:auto}
+.rcap{font-size:13px;color:#A9A69F;line-height:1.8;margin:0 0 64px;max-width:860px}
+.rtag{font-size:clamp(18px,1.8vw,24px);line-height:1.8;font-weight:700;margin:-8px 0 56px;max-width:900px}
+.rbody{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:72px;border-top:1px solid #fff;padding-top:44px;margin-bottom:104px}
+.rbody h2{font-size:13px;letter-spacing:.22em;color:#A9A69F;font-weight:600;margin:0 0 20px}
+.rbody p{margin:0 0 1.5em;font-size:16.5px;line-height:2.05;color:#E8E6E1}
+.fnd{list-style:none;margin:8px 0 0;padding:0;counter-reset:f}
+.fnd li{counter-increment:f;display:grid;grid-template-columns:44px minmax(0,1fr);padding:20px 0;border-top:1px solid #333;font-size:15.5px;line-height:1.95;color:#D8D6D1}
+.fnd li::before{content:counter(f,decimal-leading-zero);font-family:Montserrat,sans-serif;font-size:12px;color:#FF5528;padding-top:4px}
+.fnd b{display:block;color:#fff;font-size:17px;margin-bottom:4px}
+.rside .dlb{display:flex;flex-direction:column;gap:12px;margin:0 0 36px}
+.btn{display:flex;justify-content:space-between;align-items:center;gap:16px;border-radius:999px;padding:16px 24px;font-size:15px;font-weight:700;border:1px solid #fff;transition:background .2s,color .2s}
+.btn small{font-weight:500;font-size:12px;opacity:.75}
+.btn.p{background:#fff;color:#000}.btn.p:hover{background:#D8D6D1;color:#000;border-color:#D8D6D1}
+.btn.s{background:transparent;color:#fff}.btn.s:hover{background:#fff;color:#000}
+.rmeta{display:grid;grid-template-columns:96px minmax(0,1fr);row-gap:14px;column-gap:12px;font-size:14px;line-height:1.7;margin:0 0 36px}
+.rmeta span:nth-child(odd){color:#A9A69F}
+.cite{border:1px solid #333;padding:18px 20px;font-size:13px;line-height:1.8;color:#D8D6D1}
+.cite button{margin-top:12px;font-size:12.5px;padding:8px 16px;background:transparent;color:#fff;border:1px solid #555}
+.cite button:hover{border-color:#fff;background:#fff;color:#000;opacity:1}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #fff;margin:0 0 104px}
+.figs div{padding:32px 28px 36px 0;border-bottom:1px solid #333}
+.figs b{display:block;font-family:Montserrat,sans-serif;font-size:clamp(40px,4.4vw,64px);font-weight:800;line-height:1.05;letter-spacing:-.01em}
+.figs b small{font-size:.34em;font-weight:700;margin-left:6px;letter-spacing:0;color:#FF5528}
+.figs p{margin:14px 0 8px;font-size:14px;line-height:1.85;color:#D8D6D1;max-width:340px}
+.figs i{font-style:normal;font-size:12px;color:#8a877f}
+.toc{list-style:none;margin:0 0 104px;padding:0;border-top:1px solid #fff;columns:2;column-gap:56px}
+.toc li{break-inside:avoid;display:grid;grid-template-columns:44px minmax(0,1fr);padding:16px 0;border-bottom:1px solid #333;font-size:15px}
+.toc li span{color:#FF5528;font-family:Montserrat,sans-serif;font-size:13px}
+@media (max-width:860px){
+ .rlist.rl-grid{grid-template-columns:1fr}
+ .rlist.rl-list .rcard{grid-template-columns:44px minmax(0,1fr) 20px;gap:6px 12px}
+ .rlist.rl-list .row .d,.rlist.rl-list .row .th{display:none}
+ .rbody{grid-template-columns:1fr;gap:48px}
+ .rbody .rside{order:-1}
+ .figs{grid-template-columns:1fr}
+ .toc{columns:1}
+}
+</style><link rel="icon" type="image/svg+xml" href="/assets/favicon_x2026.svg"><link rel="apple-touch-icon" href="/assets/apple-touch-icon_x2026.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font-family:'Zen Kaku Gothic New', sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#fff;text-decoration:none}a:hover{color:#FF5528}
+.en{font-family:Montserrat,sans-serif}
+header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:18px 4vw}
+header .logo{display:flex;align-items:center}header .logo img{height:22px;width:auto;display:block}
+header nav{display:flex;gap:26px;flex-wrap:wrap;align-items:center;font-size:14px;font-weight:600}
+header .cta{background:#fff;color:#000;padding:12px 22px;border-radius:999px;font-weight:700}
+header .cta:hover{color:#000;opacity:.85}
+header .lang{font-size:13px}
+main{max-width:1440px;margin:0 auto;padding:120px 4vw 140px}
+h1{margin:0 0 32px;font-size:clamp(48px,7vw,104px);font-weight:900;line-height:1;letter-spacing:-.01em}
+.lead{max-width:760px;margin:0 0 72px;font-size:16px;line-height:2;color:#D8D6D1}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:64px;border-top:1px solid #fff;padding-top:48px}
+.side{font-size:13px;line-height:1.9;color:#A9A69F}
+.side b{display:block;color:#fff;font-size:14px;margin-bottom:6px}
+fieldset{border:0;margin:0 0 40px;padding:0}
+legend,.lab{display:flex;gap:10px;align-items:baseline;font-size:13px;font-weight:700;margin-bottom:14px;padding:0}
+.tag{font-size:11px;font-weight:700;color:#FF5528}.tag.o{color:#8a877f}
+.types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#333;border:1px solid #333}
+.types label{background:#000;padding:22px 24px;cursor:pointer;display:block;transition:background .3s}
+.types label:hover{background:#151514}
+.types label:last-child:nth-child(odd){grid-column:1/-1}
+.types input{position:absolute;opacity:0;pointer-events:none}
+.types .n{font-size:11px;color:#FF5528}
+.types .t{display:block;margin-top:8px;font-size:17px;font-weight:700}
+.types .d{display:block;margin-top:6px;font-size:12.5px;color:#A9A69F;line-height:1.6}
+.types input:checked + span{display:block}
+.types label:has(input:checked){background:#fff;color:#000}
+.types label:has(input:checked) .d{color:#333}
+.types label:has(input:focus-visible){outline:2px solid #FF5528;outline-offset:-2px}
+.field{margin-bottom:36px}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #555;color:#fff;font:inherit;font-size:17px;padding:10px 0 14px;border-radius:0;outline:none;transition:border-color .3s}
+.field textarea{min-height:200px;resize:vertical;line-height:1.8;border:1px solid #555;padding:14px 16px}
+.field input:focus,.field textarea:focus{border-color:#fff}
+.field input::placeholder,.field textarea::placeholder{color:#555}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.agree{display:flex;gap:12px;align-items:center;font-size:14px;margin:8px 0 40px;cursor:pointer}
+.agree input{width:18px;height:18px;accent-color:#FF5528;margin:0}
+.agree a{text-decoration:underline;text-underline-offset:3px}
+button{font:inherit;background:#fff;color:#000;border:0;border-radius:999px;padding:18px 40px;font-size:15px;font-weight:700;cursor:pointer;display:inline-flex;gap:12px;align-items:center;transition:opacity .3s}
+button:hover{opacity:.85}button[disabled]{opacity:.4;cursor:default}
+button .dot{color:#FF5528}
+.hp{position:absolute;left:-9999px}
+.news{border-top:1px solid #fff}
+.news a{display:grid;grid-template-columns:120px minmax(0,1fr) 24px;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid #333;transition:background .3s}
+.news a:hover{background:#151514;color:#fff}
+.news .d{font-size:13px;color:#A9A69F}.news .t{font-size:17px;line-height:1.7}.news .ar{color:#FF5528}
+.muted{color:#8a877f;font-size:14px}
+article{max-width:860px}
+article .date{font-size:13px;color:#A9A69F;margin-bottom:20px}
+article h1{font-size:clamp(28px,3.4vw,46px);line-height:1.45;font-weight:900;letter-spacing:0;margin-bottom:48px}
+article img{width:100%;height:auto;display:block;margin:0 0 48px;background:#111}
+article .body{font-size:16.5px;line-height:2.1;color:#E8E6E1;border-top:1px solid #333;padding-top:40px}
+article .body p{margin:0 0 1.6em}
+article .body figure{margin:2.4em 0}
+article .body .video{position:relative;aspect-ratio:16/9;margin:0 0 2.4em;background:#111}
+article .body .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+article .body figure img{margin:0;width:100%;height:auto}
+article .body figcaption{font-size:13px;color:#A9A69F;margin-top:10px;line-height:1.7}
+article .body h2{font-size:22px;line-height:1.6;font-weight:900;margin:2.4em 0 1em;color:#fff}
+article .body .lead-in{font-size:18px;font-weight:700;color:#fff;margin-bottom:2em}
+article .body a{color:#FF5528;word-break:break-all}
+.back{display:inline-block;margin-top:56px;font-size:14px;color:#A9A69F}
+footer{border-top:1px solid #222;padding:64px 4vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;font-size:13px;color:#A9A69F;line-height:1.9}
+footer .f{margin:0 0 12px;color:#fff;font-weight:800;font-size:20px}
+footer .fl a{color:#A9A69F}footer .fl a:hover{color:#FF5528}
+.eyebrow{margin:0 0 16px;font-size:13px;letter-spacing:.22em;color:#A9A69F}
+.dl{display:grid;grid-template-columns:200px minmax(0,1fr);border-top:1px solid #fff;margin:0 0 96px}
+.dl dt,.dl dd{margin:0;padding:22px 0;border-bottom:1px solid #333;font-size:15px;line-height:1.9}
+.dl dt{color:#A9A69F;font-size:13px;padding-right:24px}
+.dl dd a{text-decoration:underline;text-underline-offset:3px}
+h2.sec{font-size:clamp(28px,3vw,44px);font-weight:900;margin:0 0 28px}
+.tl{list-style:none;margin:0 0 96px;padding:0;border-top:1px solid #fff}
+.tl li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid #333;font-size:15px;line-height:1.8}
+.tl li span:first-child{color:#A9A69F}
+.tl li a{text-decoration:underline;text-underline-offset:3px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:48px 24px}
+.pgrid a{display:block}.pgrid img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#111;transition:opacity .3s}.pgrid a:hover img{opacity:.85}
+.pgrid .n{display:block;margin-top:16px;font-size:12px;color:#FF5528;letter-spacing:.14em}.pgrid .t{display:block;margin-top:6px;font-size:19px;font-weight:800;line-height:1.5}.pgrid .m{display:block;margin-top:6px;font-size:13px;color:#A9A69F}
+.phero{width:100%;max-height:72vh;aspect-ratio:16/9;object-fit:cover;display:block;background:#111;margin:0 0 56px}
+.pbody{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:64px;border-top:1px solid #fff;padding-top:40px;margin-bottom:96px}
+.pbody p{margin:0 0 1.4em;font-size:17px;line-height:2.05;color:#E8E6E1}
+.pbody .meta{display:grid;grid-template-columns:88px 1fr;row-gap:14px;font-size:14px;align-self:start}
+.pbody .meta span:nth-child(odd){color:#A9A69F}
+.rel a{display:block;padding:18px 0;border-bottom:1px solid #333;font-size:15px}
+.pn{display:flex;justify-content:space-between;gap:24px;border-top:1px solid #333;padding-top:28px;font-size:14px;color:#A9A69F}
+.pn a{color:#A9A69F}.pn a:hover{color:#FF5528}
+.cta2{display:inline-block;margin-top:48px;background:#fff;color:#000;padding:16px 28px;border-radius:999px;font-weight:700}.cta2:hover{color:#000;opacity:.85}
+@media (max-width:860px){
+ header nav .sec{display:none}
+ header .cta{padding:10px 16px;font-size:12px}
+ header .logo img{height:18px}
+ main{padding:72px 5vw 100px}
+ .grid{grid-template-columns:1fr;gap:40px}
+ .row2{grid-template-columns:1fr;gap:0}
+ .types{grid-template-columns:1fr}
+ .news a{grid-template-columns:1fr 20px;gap:4px 12px}
+ .news .d{grid-column:1/-1}
+ .dl{grid-template-columns:1fr}.dl dt{padding-bottom:0;border-bottom:0}
+ .tl li{grid-template-columns:1fr;gap:4px}
+ .pbody{grid-template-columns:1fr;gap:40px}
+}
+</style>
+</head>
+<body>
+<header>
+<a class="logo en" href="/"><img src="/assets/logo_xence_wh_2026.svg" alt="XENCE" width="126" height="22"></a>
+<nav class="en"><a class="sec" href="/#model">Model</a><a class="sec" href="/#technology">Technology</a><a class="sec" href="/#projects">Projects</a><a class="sec" href="/#news">News</a><a class="sec" href="/#growth">Investors</a><a class="sec" href="/research/">Research</a>
+<a class="cta" href="/contact/">CONTACT <span style="color:#FF5528">●</span></a>
+<span class="lang"><a href="/research/data-centre-waste-heat/" style="color:#fff">JA</a> / <a href="/en/research/data-centre-waste-heat/" style="color:#8a877f">EN</a></span>
+</nav>
+</header>
+<main><p class="eyebrow en"><a href="/research/">XENCE RESEARCH</a> · No.01 · 2026.11.30</p><h1 style="font-size:clamp(30px,4vw,60px);line-height:1.35;max-width:1200px">データセンター排熱の利用可能性と、低温域の再利用による地域価値の創出</h1><p class="rtag">データセンターの熱を、捨てる熱から配る熱へ。温室と陸上養殖が、計算の施設を地域の施設に変える。</p><div class="rhero"><canvas id="rfield" role="img" aria-label="熱の場。マスの大きさが温度を表す。空気へ捨てていた熱を、1km圏内の木造温室と陸上養殖棟へ配る。"></canvas></div><p class="rcap">熱の場。マスの大きさが温度を表す。空気へ捨てていた熱を、1km圏内の木造温室と陸上養殖棟へ配る。</p><div class="rbody"><div><h2 class="en">要旨</h2><p><b style="color:#fff">目的</b>　データセンターの排熱をどこまで使えるかを整理し、温室・陸上養殖・プールなどの低温域（おおむね15〜35℃）での再利用によって、データセンターが地域にとっての価値を生むための建築的な方法を示す。</p><p><b style="color:#fff">方法</b>　2026年11月までに公表された政策、業界調査、事業者の発表、学術論文を調べ、排熱を温室・陸上養殖に使う世界の事例17件と、ヒートポンプで地域熱供給に送る事例10件を、温度・距離・規模・事業の組み立て・成果で比較した。</p><h2 style="margin-top:48px">主な知見</h2><ol class="fnd"><li><div><b>熱は必ず出る</b>データセンターに入った電気はほぼすべて熱になる。世界の消費電力は2024年の約415TWhから2030年に約950TWhへ倍増する見通しで、同じ量の熱が毎年生まれる。</div></li><li><div><b>熱は義務と地域の両方から問われ始めた</b>ドイツは新設に排熱の再利用率（ERF）10%以上を課し、EUは1MW以上に費用便益分析を求める。日本では立地を巡る摩擦が強まり、国と業界が地域共生の指針づくりを始めた。</div></li><li><div><b>高温域は北欧で事業として成立している</b>ヒートポンプで70〜85℃に上げて地域熱供給に送る方式はOdense（年215GWh）などで稼働しているが、既存の熱導管網が前提で、日本の大半には当てはまらない。</div></li><li><div><b>低温域の直接利用はまだ少ないが、条件ははっきりしている</b>17事例のうち稼働中は3件、パイロットは2件。その5件はいずれも熱の受け手が1km以内にあり、3件はヒートポンプを使っていない。</div></li><li><div><b>成否を分けるのは温度・距離・需要</b>供給温度が受け手の必要温度以上で、受け手を1km以内に一緒に計画でき、需要が通年で平らか生産物の単価が高い。三つがそろうと、低温の熱は価値に変わる。</div></li><li><div><b>1〜10MWの中規模が空白である</b>事例は小さな都市型温室と巨大施設に二分される。IT負荷1MWの回収熱で、外皮の性能に応じて約3,200〜7,600㎡の温室を暖められる（本報告の試算）。</div></li><li><div><b>地域価値は5つの形で生まれる</b>エネルギーとCO2、食と一次産業、雇用・産業・ブランド、防災・公共性、合意形成と景観。データセンターは迷惑施設から地域の施設に変わりうる。</div></li></ol></div><aside class="rside"><div class="dlb"><a class="btn p" href="/assets/research/r01_ja_v1.pdf" download="XENCE_Research_No01_データセンター排熱と地域価値_第1版.pdf">PDFをダウンロード<small class="en">PDF · 44 ページ · 0.5 MB</small></a><a class="btn s" href="/assets/research/r01_en_v1.pdf" download="XENCE_Research_No01_Data_Centre_Waste_Heat_1st_edition.pdf">English version<small class="en">PDF · 48p</small></a></div><div class="rmeta"><span>発行</span><span>2026年11月30日</span><span>版</span><span>第1版</span><span>調査・執筆</span><span>小澤巧太郎（株式会社XENCE 代表取締役CEO、一級建築士）</span><span>テーマ</span><span>エネルギー・熱 · データセンター · 温室・農業 · 地域</span></div><div class="cite"><b style="display:block;color:#fff;margin-bottom:6px">引用するとき</b><span id="citetx">出典：株式会社XENCE『XENCE Research Report No.01』（2026年11月）</span><br><button type="button" id="citebtn">引用文をコピー</button></div></aside></div><h2 class="sec">数字で見る</h2><div class="figs"><div><b>415→945<small>TWh</small></b><p>世界のデータセンターの電力消費（2024年→2030年見通し）。同じ量の熱が毎年生まれる</p><i>IEA</i></div><div><b>10<small>%以上</small></b><p>ドイツが2026年7月以降の新設データセンターに求める排熱の再利用率（ERF）</p><i>EnEfG §11</i></div><div><b>17<small>件</small></b><p>データセンターの排熱を温室・陸上養殖に使う世界の事例。稼働中は3件</p><i>XENCE調べ</i></div><div><b>1<small>km以内</small></b><p>稼働中・パイロットの低温事例で、データセンターから熱の受け手までの距離</p><i>XENCE調べ</i></div><div><b>215<small>GWh/年</small></b><p>Odense（デンマーク）でMetaの排熱から地域熱供給に送られる熱量。12,000戸超に相当</p><i>Ramboll</i></div><div><b>×2<small>以上</small></b><p>同じ排熱で暖められる温室の面積の差。外皮の断熱性能だけで変わる</p><i>XENCE試算</i></div></div><h2 class="sec">目次</h2><ol class="toc"><li><span>01</span>データセンターの熱が問われている</li><li><span>02</span>どれだけの熱が、何度で出て、どこで使えるか</li><li><span>03</span>高温域：ヒートポンプで地域熱供給へ送る</li><li><span>04</span>低温域：温室と陸上養殖</li><li><span>05</span>温度・距離・需要の枠組み</li><li><span>06</span>地域価値の5つのかたち</li><li><span>07</span>建築としての設計手法</li><li><span>08</span>事業の組み立てと規模別の適用</li><li><span>09</span>結論と提言</li></ol><div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:96px"><a class="btn p" style="display:inline-flex" href="/assets/research/r01_ja_v1.pdf" download="XENCE_Research_No01_データセンター排熱と地域価値_第1版.pdf">PDFをダウンロード</a><a class="btn s" style="display:inline-flex" href="/contact/?type=partner">このテーマについて相談する</a></div><a class="back" href="/research/">← Research 一覧へ</a></main>
+<footer>
+<div><p class="f en"><img src="/assets/logo_xence_wh_2026.svg" alt="XENCE" width="103" height="18" style="height:18px;width:auto;display:block"></p>株式会社XENCE ／ XENCE一級建築士事務所<br>愛知県知事登録（い－4）第14198号</div>
+<div>Nagoya — 愛知県名古屋市中区栄1-29-29 SIMON 10 SAKAE 401</div>
+<div class="fl"><a href="/company/">会社概要</a><br><a href="/projects/">プロジェクト</a><br><a href="/news/">News</a><br><a href="/research/">Research</a><br><a href="/contact/">お問い合わせ</a></div><div class="fl en"><a href="https://www.instagram.com/xence_architecture_studio/" target="_blank" rel="noopener">Instagram ↗</a><br><a href="https://www.instagram.com/xence.engineering/" target="_blank" rel="noopener">Instagram — XENCE Engineering ↗</a><br><a href="mailto:info@xencegroup.com">info@xencegroup.com</a><br>© XENCE Inc.</div>
+</footer>
+<script type="module">
+import { SCENES } from '/lib/heatfield.js';
+const cv = document.getElementById('rfield');
+(SCENES['heat'] || SCENES.heat)(cv, { lang: 'ja' });
+const b = document.getElementById('citebtn');
+b.addEventListener('click', async () => { try { await navigator.clipboard.writeText(document.getElementById('citetx').textContent); b.textContent = 'コピーしました'; } catch (e) {} });
+</script>
+</body>
+</html>

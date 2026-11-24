@@ -31,3 +31,9 @@ Live at xencegroup.com (Cloudflare Pages). Pages only on the old STUDIO site are
 ## Logo (2026-11-24)
 
 - Official logo traced to SVG: `assets/logo_xence_wh_2026.svg` (white, used in every header and footer) and `assets/logo_xence_bk_2026.svg` (black, for light backgrounds). Favicon `assets/favicon_x2026.svg` and `assets/apple-touch-icon_x2026.png` use the symbol mark. JSON-LD `logo` points to `assets/logo_xence_2026.png`.
+
+## Research (2026-11-24)
+
+- `/research/` (and `/en/research/`) list XENCE Research Reports. Visitors can search, filter by theme, sort (newest / oldest / number / title) and switch card / list view; the state is kept in the URL (`?theme=energy&sort=old&view=list`).
+- Data lives in `src/research.json`. To add a report: put the PDFs and stills in `assets/research/` under new file names (`r02_ja_v1.pdf`, `r02_still_ja_v1.png`…), add an entry, then run `python3 src/pages.py && python3 src/seo/build.py`. The download keeps a readable Japanese file name through the `download` attribute.
+- Each report page opens with a motion graphic drawn in a canvas (`lib/heatfield.js`, scene `heat`). The same code draws the still used for cards and OGP (`still:true, t:KEY_T`), so motion and stills always match. Add a new scene per report and register it in `SCENES`.

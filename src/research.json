@@ -1,0 +1,82 @@
+{
+  "_note": "XENCE Research の掲載データ。1件追加するたびに、PDF・静止画を assets/research/ に置き、python3 src/pages.py を実行する。番号(no)は発行順の通し番号で、一覧の並び順は閲覧者が変えられる。",
+  "themes": {
+    "energy": {"ja": "エネルギー・熱", "en": "Energy & heat"},
+    "datacenter": {"ja": "データセンター", "en": "Data centres"},
+    "greenhouse": {"ja": "温室・農業", "en": "Greenhouses & farming"},
+    "aquaculture": {"ja": "陸上養殖", "en": "Aquaculture"},
+    "region": {"ja": "地域", "en": "Communities"},
+    "policy": {"ja": "政策・制度", "en": "Policy"}
+  },
+  "reports": [
+    {
+      "no": "01",
+      "slug": "data-centre-waste-heat",
+      "date": "2026-11-30",
+      "edition": {"ja": "第1版", "en": "1st edition"},
+      "themes": ["energy", "datacenter", "greenhouse", "region"],
+      "scene": "heat",
+      "still": "/assets/research/r01_still_{lang}_v1.png",
+      "pdf": {
+        "ja": {"href": "/assets/research/r01_ja_v1.pdf", "name": "XENCE_Research_No01_データセンター排熱と地域価値_第1版.pdf", "pages": 44, "size": "0.5 MB"},
+        "en": {"href": "/assets/research/r01_en_v1.pdf", "name": "XENCE_Research_No01_Data_Centre_Waste_Heat_1st_edition.pdf", "pages": 48, "size": "0.4 MB"}
+      },
+      "ja": {
+        "title": "データセンター排熱の利用可能性と、低温域の再利用による地域価値の創出",
+        "short": "データセンター排熱と地域価値",
+        "tagline": "データセンターの熱を、捨てる熱から配る熱へ。温室と陸上養殖が、計算の施設を地域の施設に変える。",
+        "caption": "熱の場。マスの大きさが温度を表す。空気へ捨てていた熱を、1km圏内の木造温室と陸上養殖棟へ配る。",
+        "purpose": "データセンターの排熱をどこまで使えるかを整理し、温室・陸上養殖・プールなどの低温域（おおむね15〜35℃）での再利用によって、データセンターが地域にとっての価値を生むための建築的な方法を示す。",
+        "method": "2026年11月までに公表された政策、業界調査、事業者の発表、学術論文を調べ、排熱を温室・陸上養殖に使う世界の事例17件と、ヒートポンプで地域熱供給に送る事例10件を、温度・距離・規模・事業の組み立て・成果で比較した。",
+        "findings": [
+          ["熱は必ず出る", "データセンターに入った電気はほぼすべて熱になる。世界の消費電力は2024年の約415TWhから2030年に約950TWhへ倍増する見通しで、同じ量の熱が毎年生まれる。"],
+          ["熱は義務と地域の両方から問われ始めた", "ドイツは新設に排熱の再利用率（ERF）10%以上を課し、EUは1MW以上に費用便益分析を求める。日本では立地を巡る摩擦が強まり、国と業界が地域共生の指針づくりを始めた。"],
+          ["高温域は北欧で事業として成立している", "ヒートポンプで70〜85℃に上げて地域熱供給に送る方式はOdense（年215GWh）などで稼働しているが、既存の熱導管網が前提で、日本の大半には当てはまらない。"],
+          ["低温域の直接利用はまだ少ないが、条件ははっきりしている", "17事例のうち稼働中は3件、パイロットは2件。その5件はいずれも熱の受け手が1km以内にあり、3件はヒートポンプを使っていない。"],
+          ["成否を分けるのは温度・距離・需要", "供給温度が受け手の必要温度以上で、受け手を1km以内に一緒に計画でき、需要が通年で平らか生産物の単価が高い。三つがそろうと、低温の熱は価値に変わる。"],
+          ["1〜10MWの中規模が空白である", "事例は小さな都市型温室と巨大施設に二分される。IT負荷1MWの回収熱で、外皮の性能に応じて約3,200〜7,600㎡の温室を暖められる（本報告の試算）。"],
+          ["地域価値は5つの形で生まれる", "エネルギーとCO2、食と一次産業、雇用・産業・ブランド、防災・公共性、合意形成と景観。データセンターは迷惑施設から地域の施設に変わりうる。"]
+        ],
+        "figures": [
+          ["415→945", "TWh", "世界のデータセンターの電力消費（2024年→2030年見通し）。同じ量の熱が毎年生まれる", "IEA"],
+          ["10", "%以上", "ドイツが2026年7月以降の新設データセンターに求める排熱の再利用率（ERF）", "EnEfG §11"],
+          ["17", "件", "データセンターの排熱を温室・陸上養殖に使う世界の事例。稼働中は3件", "XENCE調べ"],
+          ["1", "km以内", "稼働中・パイロットの低温事例で、データセンターから熱の受け手までの距離", "XENCE調べ"],
+          ["215", "GWh/年", "Odense（デンマーク）でMetaの排熱から地域熱供給に送られる熱量。12,000戸超に相当", "Ramboll"],
+          ["×2", "以上", "同じ排熱で暖められる温室の面積の差。外皮の断熱性能だけで変わる", "XENCE試算"]
+        ],
+        "toc": ["データセンターの熱が問われている", "どれだけの熱が、何度で出て、どこで使えるか", "高温域：ヒートポンプで地域熱供給へ送る", "低温域：温室と陸上養殖", "温度・距離・需要の枠組み", "地域価値の5つのかたち", "建築としての設計手法", "事業の組み立てと規模別の適用", "結論と提言"],
+        "author": "小澤巧太郎（株式会社XENCE 代表取締役CEO、一級建築士）",
+        "cite": "出典：株式会社XENCE『XENCE Research Report No.01』（2026年11月）"
+      },
+      "en": {
+        "title": "The Potential of Data Centre Waste Heat: Creating Local Value through Low-Temperature Reuse",
+        "short": "Data centre waste heat and local value",
+        "tagline": "From heat that is thrown away to heat that is shared. Greenhouses and fish farms can turn a computing facility into a community asset.",
+        "caption": "Heat field. Each square is drawn at a size proportional to its temperature. Heat once thrown into the air reaches a timber greenhouse and a fish farm within 1 km.",
+        "purpose": "This report sets out how much of a data centre's waste heat can realistically be put to use, and how architecture can turn its low-temperature reuse — in greenhouses, land-based aquaculture, pools and similar uses at roughly 15–35 °C — into lasting value for the surrounding community.",
+        "method": "We reviewed policy documents, industry surveys, company announcements and academic papers published up to November 2026, and compared 17 projects that use data centre heat for greenhouses or aquaculture and 10 that upgrade it for district heating by temperature, distance, scale, business model and outcome.",
+        "findings": [
+          ["The heat is unavoidable", "Almost all the electricity a data centre draws ends up as heat. Global consumption is projected to roughly double from about 415 TWh in 2024 to around 950 TWh in 2030, and the same amount of heat is produced every year."],
+          ["Regulators and communities are asking what happens to it", "Germany requires new data centres to reuse at least 10% of their energy (ERF), and the EU requires a cost–benefit analysis for sites of 1 MW and above. In Japan, friction over siting is growing."],
+          ["High-temperature reuse is a proven business in the Nordics", "Heat pumps raise data centre heat to 70–85 °C for district heating in Odense (215 GWh a year) and elsewhere — but the model depends on heat networks most of Japan does not have."],
+          ["Direct low-temperature reuse is rare, but its conditions are clear", "Of 17 projects, three are operating and two are pilots. All five have their heat recipient within 1 km, and three need no heat pump."],
+          ["Temperature, distance and demand decide success", "Low-grade heat becomes valuable when supply temperature meets the recipient's need, the recipient sits within 1 km, and demand is steady or tied to high-value produce."],
+          ["Mid-sized sites of 1–10 MW are a gap", "Projects cluster at two extremes. The heat recovered from 1 MW of IT load can warm roughly 3,200–7,600 m² of greenhouse, depending on the envelope (our estimate)."],
+          ["Local value takes five forms", "Energy and carbon; food and primary industry; jobs and local brands; resilience and public use; public consent and landscape. A nuisance can become a community asset."]
+        ],
+        "figures": [
+          ["415→945", "TWh", "Global data centre electricity use, 2024 → 2030 projection. The same amount of heat is produced every year", "IEA"],
+          ["10", "% min.", "Energy reuse factor (ERF) Germany requires of new data centres from July 2026", "EnEfG §11"],
+          ["17", "projects", "Data centre heat used for greenhouses or land-based aquaculture worldwide; three are operating", "XENCE"],
+          ["1", "km", "Maximum distance from data centre to heat recipient among operating and pilot low-temperature projects", "XENCE"],
+          ["215", "GWh/yr", "Heat from Meta's data centre fed into Odense's district heating — enough for 12,000+ homes", "Ramboll"],
+          ["×2", "or more", "Difference in greenhouse area the same heat can warm, from envelope performance alone", "XENCE estimate"]
+        ],
+        "toc": ["Data centre heat is now in question", "How much heat, at what temperature, used where?", "High-temperature reuse: heat pumps and district heating", "Low-temperature reuse: greenhouses and land-based aquaculture", "A framework: temperature, distance and demand", "Five forms of local value", "Architectural design methods", "Business models and application by scale", "Conclusions and recommendations"],
+        "author": "Kotaro Ozawa (Founder & CEO, XENCE Inc.; first-class registered architect)",
+        "cite": "Source: XENCE Inc., XENCE Research Report No.01 (November 2026)"
+      }
+    }
+  ]
+}
