@@ -94,7 +94,7 @@ App.prototype.render = function () { const V = this.renderVals(); return html`<h
 <div class="xroot" style="font-family: Montserrat, 'Zen Kaku Gothic New', sans-serif; color: #fff; background: #000; width: 100%">
 
 <header class="site-head" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(0,0,0,0.62); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 18px 4vw">
-<div class="en" style="font-weight: 800; font-size: 24px; letter-spacing: 0.04em">XENCE</div>
+<a href="/en/" class="site-logo" aria-label="XENCE" style="display: flex; align-items: center"><img src="/assets/logo_xence_wh_2026.svg" alt="XENCE" width="126" height="22" style="height: 22px; width: auto; display: block" /></a>
 <nav aria-label="Main" class="en" style="display: flex; gap: 26px; flex-wrap: wrap; align-items: center; font-size: 14px; font-weight: 600">
 <a href="#model">Model</a><a href="#technology">Technology</a><a href="#configurator">Configurator</a><a href="#projects">Projects</a><a href="#impact">Impact</a><a href="#growth">Investors</a>
 <a href="/en/contact/" style="background: #fff; color: #000; padding: 12px 22px; border-radius: 999px; font-weight: 700">CONTACT <span class="live" style="color: ${V.accent}">●</span></a>
@@ -360,7 +360,7 @@ ${this.state.pi >= 0 && (this.state.people || [])[this.state.pi] ? this.profile(
 </section>
 
 <footer style="border-top: 1px solid #222; padding: 64px 4vw; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; font-size: 13px; color: #A9A69F; line-height: 1.9">
-<div><p class="en" style="margin: 0 0 12px; color: #fff; font-weight: 800; font-size: 20px">XENCE</p>XENCE Inc. ／ XENCE First-class Architect Office<br />Registered in Aichi Prefecture (I-4) No. 14198</div>
+<div><p class="en" style="margin: 0 0 14px"><img src="/assets/logo_xence_wh_2026.svg" alt="XENCE" width="103" height="18" style="height: 18px; width: auto; display: block" /></p>XENCE Inc. ／ XENCE First-class Architect Office<br />Registered in Aichi Prefecture (I-4) No. 14198</div>
 <div>Nagoya — SIMON 10 SAKAE 401, 1-29-29 Sakae, Naka-ku, Nagoya, Japan</div>
 <div><a href="/en/company/" style="color: #A9A69F">Company</a><br /><a href="/en/projects/" style="color: #A9A69F">Projects</a><br /><a href="/en/news/" style="color: #A9A69F">News</a><br /><a href="/en/contact/" style="color: #A9A69F">Contact</a></div><div class="en"><a href="https://www.instagram.com/xence_architecture_studio/" target="_blank" rel="noopener" style="color: #A9A69F">Instagram ↗</a><br /><a href="https://www.instagram.com/xence.engineering/" target="_blank" rel="noopener" style="color: #A9A69F">Instagram — XENCE Engineering ↗</a><br /><a href="mailto:info@xencegroup.com" style="color: #A9A69F">info@xencegroup.com</a><br />© XENCE Inc.</div>
 </footer>

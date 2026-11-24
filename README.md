@@ -27,3 +27,7 @@ Live at xencegroup.com (Cloudflare Pages). Pages only on the old STUDIO site are
 - `python3 src/seo/build.py` regenerates, without any visual change: `<head>` meta (description, canonical, hreflang, OGP) and JSON-LD (Organization / Person / Product / WebSite / WebPage); a static text copy of each page inside `<article id="prerender">` (hidden by CSS once JS runs and removed by `app.js` before Preact renders, so crawlers that do not run JS can read the site); `robots.txt` (AI crawlers allowed, Content-Signal), `sitemap.xml`, `llms.txt`, `llms-full.txt`.
 - When visible copy changes, refresh the outlines first: run a local server on :8790 and `node src/seo/outline.mjs`, copy `/home/claude/outline_*.json` to `src/seo/`, then run `build.py`.
 - IndexNow key file: `<key>.txt` at the root (key in `src/seo/indexnow_key`).
+
+## Logo (2026-11-24)
+
+- Official logo traced to SVG: `assets/logo_xence_wh_2026.svg` (white, used in every header and footer) and `assets/logo_xence_bk_2026.svg` (black, for light backgrounds). Favicon `assets/favicon_x2026.svg` and `assets/apple-touch-icon_x2026.png` use the symbol mark. JSON-LD `logo` points to `assets/logo_xence_2026.png`.

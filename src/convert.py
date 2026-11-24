@@ -102,7 +102,7 @@ render(h(App, {json.dumps(props)}), document.getElementById('app'));
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title>
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon_x2026.svg"><link rel="apple-touch-icon" href="/assets/apple-touch-icon_x2026.png">
 {chr(10).join(heads)}
 <style>html,body{{margin:0;background:#000}}html{{scroll-behavior:smooth}}</style>
 </head>

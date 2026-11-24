@@ -50,7 +50,7 @@ def jsonld(lang):
     org = {
         '@type': ['Organization', 'ProfessionalService'], '@id': SITE + '/#org',
         'name': 'XENCE', 'legalName': ORG['legal_ja'], 'alternateName': ['株式会社XENCE', 'XENCE Inc.', 'ゼンス', 'ぜんす', 'XENCE（ゼンス）', '株式会社XENCE（ゼンス）', 'XENCE Architecture Studio', 'XENCE Engineering'],
-        'url': SITE + '/', 'logo': SITE + '/assets/favicon.svg', 'image': SITE + '/assets/poster_d_v3.jpg',
+        'url': SITE + '/', 'logo': SITE + '/assets/logo_xence_2026.png', 'image': SITE + '/assets/poster_d_v3.jpg',
         'description': DESC[lang], 'foundingDate': ORG['founded'], 'email': ORG['email'],
         'identifier': {'@type': 'PropertyValue', 'propertyID': '法人番号 (Japan Corporate Number)', 'value': ORG['corp_no']},
         'address': {'@type': 'PostalAddress', 'postalCode': ORG['postal'], 'addressRegion': ORG['region'], 'addressLocality': ORG['locality'],

@@ -43,7 +43,7 @@ body{margin:0;background:#000;color:#fff;font-family:%(font)s;-webkit-font-smoot
 a{color:#fff;text-decoration:none}a:hover{color:%(accent)s}
 .en{font-family:Montserrat,sans-serif}
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:18px 4vw}
-header .logo{font-weight:800;font-size:24px;letter-spacing:.04em}
+header .logo{display:flex;align-items:center}header .logo img{height:22px;width:auto;display:block}
 header nav{display:flex;gap:26px;flex-wrap:wrap;align-items:center;font-size:14px;font-weight:600}
 header .cta{background:#fff;color:#000;padding:12px 22px;border-radius:999px;font-weight:700}
 header .cta:hover{color:#000;opacity:.85}
@@ -130,7 +130,7 @@ h2.sec{font-size:clamp(28px,3vw,44px);font-weight:900;margin:0 0 28px}
 @media (max-width:860px){
  header nav .sec{display:none}
  header .cta{padding:10px 16px;font-size:12px}
- header .logo{font-size:20px}
+ header .logo img{height:18px}
  main{padding:72px 5vw 100px}
  .grid{grid-template-columns:1fr;gap:40px}
  .row2{grid-template-columns:1fr;gap:0}
@@ -161,14 +161,14 @@ def shell(L, title, body, path, script=''):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon_x2026.svg"><link rel="apple-touch-icon" href="/assets/apple-touch-icon_x2026.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 <style>{CSS % dict(font=t['font'], accent=ACCENT)}</style>
 </head>
 <body>
 <header>
-<a class="logo en" href="{pre}/">XENCE</a>
+<a class="logo en" href="{pre}/"><img src="/assets/logo_xence_wh_2026.svg" alt="XENCE" width="126" height="22"></a>
 <nav class="en">{nav}
 <a class="cta" href="{pre}/contact/">CONTACT <span style="color:{ACCENT}">●</span></a>
 <span class="lang"><a href="{path}" style="{t['lang_ja']}">JA</a> / <a href="/en{path}" style="{t['lang_en']}">EN</a></span>
@@ -176,7 +176,7 @@ def shell(L, title, body, path, script=''):
 </header>
 {body}
 <footer>
-<div><p class="f en">XENCE</p>{t['foot1']}</div>
+<div><p class="f en"><img src="/assets/logo_xence_wh_2026.svg" alt="XENCE" width="103" height="18" style="height:18px;width:auto;display:block"></p>{t['foot1']}</div>
 <div>{t['foot2']}</div>
 {foot_links(L)}
 </footer>
