@@ -1,0 +1,50 @@
+{
+  "_note": "Product Passport の公開ページ（/pp/<PP ID>/）のデータ。2026-11-27 に旧STUDIOサイトの内容から復旧。マスターは共有ドライブ「40_Product Passport / PP_Database」。行を足したら python3 src/pp/build.py を実行する。",
+  "models": {
+    "olw-ccd": {
+      "brand": "MOREWOOD",
+      "model": "Matsuri",
+      "hero": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2GmZyOv/s-1200x800_550d2511-17d4-4d25-b265-48c26efd2429.gif",
+      "hero_alt": "木材フレームが組み上がっていくアニメーション",
+      "catch": "手だけで組み立てる、国産ヒノキ100％の家具。",
+      "body": [
+        "金具や接着剤を一切使わない木組み工法でできた、道具を使わず手だけで組み立て・分解・組み替えができる木材フレーム。",
+        "代官山T-SITEの爽涼祭に向けて特別にデザインされたこの棚は、お祭りの時には提灯台に、普段はベンチへと組み替えることで、年間を通して使い続けることができます。"
+      ],
+      "video": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2GmZyOv/s-1280x720_9f4f93b2-960e-443e-8d1c-a14965e506f7.mp4",
+      "video_poster": "/assets/pp/pp_matsuri_g1_2026.webp",
+      "gallery": [
+        "/assets/pp/pp_matsuri_g1_2026.webp",
+        "/assets/pp/pp_matsuri_g2_2026.webp",
+        "/assets/pp/pp_matsuri_g3_2026.webp",
+        "/assets/pp/pp_matsuri_g4_2026.webp",
+        "/assets/pp/pp_matsuri_g5_2026.webp",
+        "/assets/pp/pp_matsuri_g6_2026.webp"
+      ],
+      "story_title": "「ミミ材」を活用して生まれた、<br>国産木100%のフレーム",
+      "story_body": "すべての木材は日本の山で育った国産ヒノキ100%。素材の約46%にミミ材など、木を製材するときに普段発生する端材を活用することで、これまでチップとして燃やされてしまっていた木を長く使うことができます。",
+      "story_img": "/assets/pp/pp_mimi_diagram_2026.webp",
+      "story_img_alt": "丸太の断面と、外周部のミミ材を含めて部材を取る図",
+      "materials": [
+        ["樹種", "ヒノキ"],
+        ["育った山", "紀伊半島"],
+        ["伐採年月", "2025W/2026S"],
+        ["丸太", "夏獲れ一番玉"],
+        ["使用した製材機", "シングルバンド"],
+        ["製材地", "三重県熊野市"],
+        ["製造地", "岐阜県高山市"],
+        ["現在の所在地", "東京都渋谷区"],
+        ["製材会社", "株式会社nojimoku"],
+        ["製造会社", "木工 束の間・付加付加工作"],
+        ["購入者", "カルチュア・コンビニエンス・クラブ株式会社"]
+      ],
+      "unused_ratio": "46",
+      "carbon_kg": "1288"
+    }
+  },
+  "items": [
+    {"id": "olw-ccd-A8F3Q7N2", "model": "olw-ccd"},
+    {"id": "olw-ccd-R7K4M92X", "model": "olw-ccd"},
+    {"id": "olw-ccd-K4P9X2L7", "model": "olw-ccd"}
+  ]
+}

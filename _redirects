@@ -1,9 +1,10 @@
+# Product Passport pages (QR codes /pp/<id>) are static pages in /pp/<id>/ (src/pp/build.py); no rule needed
+
 # Old STUDIO article URLs -> new article pages
 /news/:id  /news/?id=:id  301
 /en/news/:id  /en/news/?id=:id  301
 
 # Pages that exist only on the old STUDIO site (kept at archive.xencegroup.com)
-/pp/*  https://archive.xencegroup.com/pp/:splat  302
 /products  https://archive.xencegroup.com/products  302
 /products/*  https://archive.xencegroup.com/products/:splat  302
 /en/products  https://archive.xencegroup.com/en/products  302
